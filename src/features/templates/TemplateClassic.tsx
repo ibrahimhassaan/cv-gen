@@ -1,13 +1,22 @@
 import React from "react";
 import { ResumeData } from "@/features/editor/types";
 
-export const TemplateClassic = ({ data }: { data: ResumeData }) => {
+export const TemplateClassic = ({ data, color = "black" }: { data: ResumeData; color?: string }) => {
     const { personalInfo, experience, education, skills, projects } = data;
+
+    const colorMap: Record<string, { title: string; border: string }> = {
+        black: { title: "text-gray-900", border: "border-gray-900" },
+        blue: { title: "text-blue-900", border: "border-blue-900" },
+        maroon: { title: "text-red-900", border: "border-red-900" },
+        green: { title: "text-green-900", border: "border-green-900" },
+    };
+
+    const theme = colorMap[color] || colorMap.black;
 
     return (
         <div className="w-[210mm] min-h-[297mm] bg-white text-gray-900 font-serif shadow-2xl overflow-hidden p-16 print:shadow-none print:w-full print:p-12">
             {/* Header */}
-            <header className="border-b-2 border-gray-900 pb-6 mb-8 text-center">
+            <header className={`border-b-2 ${theme.border} pb-6 mb-8 text-center`}>
                 <h1 className="text-4xl font-bold uppercase tracking-widest mb-2">{personalInfo.fullName || "Your Name"}</h1>
                 <p className="text-xl italic text-gray-600 mb-4">{personalInfo.title || "Professional Title"}</p>
 

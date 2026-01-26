@@ -44,7 +44,7 @@ export default function Home() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 animate-[slide-up_1.4s_ease-out]">
-          <Link href="/create/manual">
+          <Link href="/templates">
             <Button size="lg" variant="gradient" className="w-full sm:w-auto">
               <Sparkles className="mr-2 w-4 h-4" />
               Create New CV

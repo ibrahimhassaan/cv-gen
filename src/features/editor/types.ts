@@ -1,5 +1,6 @@
 export interface ResumeData {
-    templateId: string; // Added field
+    templateId: string;
+    themeColor: string; // Hex code or tailwind color name
     personalInfo: {
         fullName: string;
         email: string;
@@ -40,7 +41,8 @@ export interface ProjectItem {
 }
 
 export const initialResumeState: ResumeData = {
-    templateId: "modern", // Default
+    templateId: "modern",
+    themeColor: "#7c3aed", // Default Violet
     personalInfo: {
         fullName: "John Doe",
         email: "john@example.com",

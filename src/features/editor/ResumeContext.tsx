@@ -7,6 +7,7 @@ interface ResumeContextType {
     resumeData: ResumeData;
     setResumeData: (data: ResumeData) => void;
     setTemplate: (id: string) => void;
+    setThemeColor: (color: string) => void;
     updatePersonalInfo: (field: string, value: string) => void;
     addExperience: () => void;
     updateExperience: (id: string, field: string, value: any) => void;
@@ -22,8 +23,9 @@ const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 
 export function ResumeProvider({ children }: { children: React.ReactNode }) {
     const [resumeData, setResumeData] = useState<ResumeData>(initialResumeState);
+    const [isLoaded, setIsLoaded] = useState(false);
 
-    // Load from local storage on mount - FIX: Use a loaded flag to prevent overwriting initial state if empty
+    // Load from local storage on mount
     useEffect(() => {
         const saved = localStorage.getItem("cv-gen-data");
         if (saved) {
@@ -33,15 +35,21 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
                 console.error("Failed to parse saved resume data", e);
             }
         }
+        setIsLoaded(true);
     }, []);
 
     // Save to local storage on change
     useEffect(() => {
+        if (!isLoaded) return;
         localStorage.setItem("cv-gen-data", JSON.stringify(resumeData));
-    }, [resumeData]);
+    }, [resumeData, isLoaded]);
 
     const setTemplate = (id: string) => {
         setResumeData(prev => ({ ...prev, templateId: id }));
+    };
+
+    const setThemeColor = (color: string) => {
+        setResumeData(prev => ({ ...prev, themeColor: color }));
     };
 
     const updatePersonalInfo = (field: string, value: string) => {
@@ -138,6 +146,7 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
                 addSkill,
                 removeSkill,
                 setTemplate,
+                setThemeColor,
             }}
         >
             {children}

@@ -3,16 +3,19 @@ import { ResumeData } from "@/features/editor/types";
 import { Mail, Phone, Globe, MapPin } from "lucide-react";
 
 export const TemplateModern = ({ data }: { data: ResumeData }) => {
-    const { personalInfo, experience, education, skills, projects } = data;
+    const { personalInfo, experience, education, skills, projects, themeColor } = data;
 
     return (
         <div className="w-[210mm] min-h-[297mm] bg-white text-slate-800 font-sans shadow-2xl overflow-hidden flex flex-col relative print:shadow-none print:w-full">
             {/* Header */}
             <header className="bg-slate-900 text-white p-10 pb-16 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-violet-600 rounded-full blur-[80px] opacity-20 transform translate-x-1/2 -translate-y-1/2" />
+                <div
+                    className="absolute top-0 right-0 w-64 h-64 rounded-full blur-[80px] opacity-20 transform translate-x-1/2 -translate-y-1/2"
+                    style={{ backgroundColor: themeColor }}
+                />
 
                 <h1 className="text-4xl font-bold tracking-tight mb-2 uppercase break-words relative z-10">{personalInfo.fullName || "Your Name"}</h1>
-                <p className="text-violet-300 text-lg font-medium tracking-wide mb-6 relative z-10">{personalInfo.title || "Professional Title"}</p>
+                <p className="text-lg font-medium tracking-wide mb-6 relative z-10" style={{ color: themeColor }}>{personalInfo.title || "Professional Title"}</p>
 
                 <div className="flex flex-wrap gap-4 text-sm text-slate-300 relative z-10">
                     {personalInfo.email && (
@@ -59,7 +62,7 @@ export const TemplateModern = ({ data }: { data: ResumeData }) => {
                                                 {exp.startDate} - {exp.current ? "Present" : exp.endDate}
                                             </span>
                                         </div>
-                                        <div className="text-sm text-violet-700 font-medium mb-2">{exp.company}</div>
+                                        <div className="text-sm font-medium mb-2" style={{ color: themeColor }}>{exp.company}</div>
                                         <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-wrap">{exp.description}</p>
                                     </div>
                                 ))}
@@ -75,7 +78,7 @@ export const TemplateModern = ({ data }: { data: ResumeData }) => {
                                     <div key={proj.id}>
                                         <div className="flex justify-between items-baseline">
                                             <h3 className="font-bold text-slate-800">{proj.name}</h3>
-                                            {proj.link && <a href={proj.link} className="text-xs text-violet-600 hover:underline">Link</a>}
+                                            {proj.link && <a href={proj.link} className="text-xs hover:underline" style={{ color: themeColor }}>Link</a>}
                                         </div>
                                         <p className="text-sm text-slate-600 leading-relaxed mt-1">{proj.description}</p>
                                     </div>
@@ -108,7 +111,7 @@ export const TemplateModern = ({ data }: { data: ResumeData }) => {
                                 {education.map((edu) => (
                                     <div key={edu.id}>
                                         <h3 className="font-bold text-slate-800 text-sm">{edu.institution}</h3>
-                                        <div className="text-xs text-violet-700 font-medium mt-0.5">{edu.degree}</div>
+                                        <div className="text-xs font-medium mt-0.5" style={{ color: themeColor }}>{edu.degree}</div>
                                         {edu.field && <div className="text-xs text-slate-500">{edu.field}</div>}
                                         <div className="text-xs text-slate-400 mt-1">{edu.year}</div>
                                     </div>
