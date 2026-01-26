@@ -3,10 +3,11 @@ import { PersonalInfoForm } from "./components/PersonalInfoForm";
 import { ExperienceForm } from "./components/ExperienceForm";
 import { EducationForm } from "./components/EducationForm";
 import { SkillsForm } from "./components/SkillsForm";
+import { TemplateSelector } from "@/features/templates/TemplateSelector";
 import { cn } from "@/lib/utils";
-import { User, Briefcase, GraduationCap, Code } from "lucide-react";
+import { User, Briefcase, GraduationCap, Code, LayoutTemplate } from "lucide-react";
 
-type Section = "personal" | "experience" | "education" | "skills" | "projects";
+type Section = "personal" | "experience" | "education" | "skills" | "design";
 
 export function EditorForm() {
     const [activeSection, setActiveSection] = useState<Section>("personal");
@@ -16,6 +17,7 @@ export function EditorForm() {
         { id: "experience", label: "Experience", icon: Briefcase },
         { id: "education", label: "Education", icon: GraduationCap },
         { id: "skills", label: "Skills", icon: Code },
+        { id: "design", label: "Templates", icon: LayoutTemplate },
     ];
 
     return (
@@ -48,6 +50,7 @@ export function EditorForm() {
                 {activeSection === "experience" && <ExperienceForm />}
                 {activeSection === "education" && <EducationForm />}
                 {activeSection === "skills" && <SkillsForm />}
+                {activeSection === "design" && <TemplateSelector />}
             </div>
         </div>
     );

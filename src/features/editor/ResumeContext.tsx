@@ -6,6 +6,7 @@ import { ResumeData, initialResumeState, ExperienceItem, EducationItem, ProjectI
 interface ResumeContextType {
     resumeData: ResumeData;
     setResumeData: (data: ResumeData) => void;
+    setTemplate: (id: string) => void;
     updatePersonalInfo: (field: string, value: string) => void;
     addExperience: () => void;
     updateExperience: (id: string, field: string, value: any) => void;
@@ -22,7 +23,7 @@ const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 export function ResumeProvider({ children }: { children: React.ReactNode }) {
     const [resumeData, setResumeData] = useState<ResumeData>(initialResumeState);
 
-    // Load from local storage on mount
+    // Load from local storage on mount - FIX: Use a loaded flag to prevent overwriting initial state if empty
     useEffect(() => {
         const saved = localStorage.getItem("cv-gen-data");
         if (saved) {
@@ -38,6 +39,10 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         localStorage.setItem("cv-gen-data", JSON.stringify(resumeData));
     }, [resumeData]);
+
+    const setTemplate = (id: string) => {
+        setResumeData(prev => ({ ...prev, templateId: id }));
+    };
 
     const updatePersonalInfo = (field: string, value: string) => {
         setResumeData((prev) => ({
@@ -132,6 +137,7 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
                 removeEducation,
                 addSkill,
                 removeSkill,
+                setTemplate,
             }}
         >
             {children}
