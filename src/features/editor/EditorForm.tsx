@@ -7,11 +7,12 @@ import { EducationForm } from "./components/EducationForm";
 import { SkillsForm } from "./components/SkillsForm";
 import { LanguagesForm } from "./components/LanguagesForm";
 import { cn } from "@/lib/utils";
-import { User, Briefcase, GraduationCap, Code, Globe, ChevronRight, ChevronLeft, Check, Loader2 } from "lucide-react";
+import { SummaryForm } from "./components/SummaryForm";
+import { User, Briefcase, GraduationCap, Code, Globe, ChevronRight, ChevronLeft, Check, Loader2, FileText } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useTranslations } from "next-intl";
 
-type Section = "personal" | "experience" | "education" | "skills" | "languages";
+type Section = "personal" | "experience" | "education" | "skills" | "languages" | "summary";
 
 interface EditorFormProps {
     onDownload?: () => void;
@@ -28,6 +29,7 @@ export function EditorForm({ onDownload, isDownloading }: EditorFormProps) {
         { id: "education", label: t('education'), icon: GraduationCap },
         { id: "skills", label: t('skills'), icon: Code },
         { id: "languages", label: t('languages'), icon: Globe },
+        { id: "summary", label: t('summary'), icon: FileText },
     ];
 
     const activeIndex = sections.findIndex((s) => s.id === activeSection);
@@ -91,6 +93,7 @@ export function EditorForm({ onDownload, isDownloading }: EditorFormProps) {
                     {activeSection === "education" && <EducationForm />}
                     {activeSection === "skills" && <SkillsForm />}
                     {activeSection === "languages" && <LanguagesForm />}
+                    {activeSection === "summary" && <SummaryForm />}
                 </div>
             </div>
 

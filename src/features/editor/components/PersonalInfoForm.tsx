@@ -2,7 +2,7 @@
 
 import { useResume } from "@/features/editor/ResumeContext";
 import { Label } from "@/components/ui/Label";
-import { Textarea } from "@/components/ui/Textarea";
+
 import { Input } from "@/components/ui/Input";
 import { Camera } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -118,16 +118,7 @@ export function PersonalInfoForm() {
                 />
             </div>
 
-            <div className="space-y-2">
-                <Label htmlFor="summary">{t('summary')}</Label>
-                <Textarea
-                    id="summary"
-                    value={personalInfo.summary}
-                    onChange={(e) => handleChange("summary", e.target.value)}
-                    placeholder={t('summaryPlaceholder')}
-                    className="min-h-[120px]"
-                />
-            </div>
+
         </div>
     );
 }

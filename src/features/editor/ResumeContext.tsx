@@ -16,7 +16,7 @@ interface ResumeContextType {
     addEducation: () => void;
     updateEducation: (id: string, field: string, value: any) => void;
     removeEducation: (id: string) => void;
-    addSkill: () => string;
+    addSkill: (skill?: { name: string; level: "Beginner" | "Intermediate" | "Advanced" | "Expert" }) => string;
     updateSkill: (id: string, field: string, value: any) => void;
     removeSkill: (id: string) => void;
     addLanguage: () => string;
@@ -110,11 +110,15 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
         }));
     };
 
-    const addSkill = () => {
+    const addSkill = (skill?: { name: string; level: "Beginner" | "Intermediate" | "Advanced" | "Expert" }) => {
         const id = crypto.randomUUID();
         setResumeData(prev => ({
             ...prev,
-            skills: [...prev.skills, { id, name: "", level: "Intermediate" }]
+            skills: [...prev.skills, {
+                id,
+                name: skill?.name || "",
+                level: skill?.level || "Intermediate"
+            }]
         }));
         return id;
     };
