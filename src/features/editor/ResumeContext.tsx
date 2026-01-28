@@ -8,6 +8,7 @@ interface ResumeContextType {
     setResumeData: (data: ResumeData) => void;
     setTemplate: (id: string) => void;
     setThemeColor: (color: string) => void;
+    setFont: (font: string) => void;
     updatePersonalInfo: (field: string, value: string) => void;
     addExperience: () => void;
     updateExperience: (id: string, field: string, value: any) => void;
@@ -23,26 +24,9 @@ const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 
 export function ResumeProvider({ children }: { children: React.ReactNode }) {
     const [resumeData, setResumeData] = useState<ResumeData>(initialResumeState);
-    const [isLoaded, setIsLoaded] = useState(false);
+    // State is managed by the consumer (BuilderPage) via initial load or effects
+    // We just provide the state container
 
-    // Load from local storage on mount
-    useEffect(() => {
-        const saved = localStorage.getItem("cv-gen-data");
-        if (saved) {
-            try {
-                setResumeData(JSON.parse(saved));
-            } catch (e) {
-                console.error("Failed to parse saved resume data", e);
-            }
-        }
-        setIsLoaded(true);
-    }, []);
-
-    // Save to local storage on change
-    useEffect(() => {
-        if (!isLoaded) return;
-        localStorage.setItem("cv-gen-data", JSON.stringify(resumeData));
-    }, [resumeData, isLoaded]);
 
     const setTemplate = (id: string) => {
         setResumeData(prev => ({ ...prev, templateId: id }));
@@ -50,6 +34,10 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
 
     const setThemeColor = (color: string) => {
         setResumeData(prev => ({ ...prev, themeColor: color }));
+    };
+
+    const setFont = (font: string) => {
+        setResumeData(prev => ({ ...prev, font }));
     };
 
     const updatePersonalInfo = (field: string, value: string) => {
@@ -147,6 +135,7 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
                 removeSkill,
                 setTemplate,
                 setThemeColor,
+                setFont,
             }}
         >
             {children}

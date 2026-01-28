@@ -1,6 +1,19 @@
+export interface SectionLabels {
+    profile?: string;
+    experience?: string;
+    education?: string;
+    skills?: string;
+    projects?: string;
+    present?: string; // "Present" for current jobs
+}
+
 export interface ResumeData {
+    id: string; // Unique identifier
+    title?: string; // User-friendly name
+    lastModified: number; // Timestamp
     templateId: string;
     themeColor: string; // Hex code or tailwind color name
+    labels?: SectionLabels; // Section heading translations
     personalInfo: {
         fullName: string;
         email: string;
@@ -8,11 +21,13 @@ export interface ResumeData {
         link: string; // Portfolio/LinkedIn
         title: string;
         summary: string;
+        photoUrl?: string; // Base64 string
     };
     experience: ExperienceItem[];
     education: EducationItem[];
     skills: string[]; // Simple string array for MVP
     projects: ProjectItem[];
+    font?: string;
 }
 
 export interface ExperienceItem {
@@ -41,8 +56,12 @@ export interface ProjectItem {
 }
 
 export const initialResumeState: ResumeData = {
+    id: "default",
+    title: "My Resume",
+    lastModified: Date.now(),
     templateId: "modern",
     themeColor: "#7c3aed", // Default Violet
+    font: "sans",
     personalInfo: {
         fullName: "John Doe",
         email: "john@example.com",

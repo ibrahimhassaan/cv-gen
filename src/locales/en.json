@@ -1,0 +1,223 @@
+{
+    "nav": {
+        "home": "Home",
+        "resume": "Resume",
+        "templates": "Templates",
+        "dashboard": "Dashboard",
+        "login": "Login",
+        "getStarted": "Get Started",
+        "brandName": "CV Gen"
+    },
+    "home": {
+        "badge": "AI-Powered Resume Builder",
+        "title": "Craft Your Perfect",
+        "titleHighlight": "Resume in Seconds",
+        "subtitle": "Create professional, ATS-friendly resumes with our premium templates. Use AI to extract data from your existing CV or build one from scratch.",
+        "ctaPrimary": "Get Started Free",
+        "ctaSecondary": "Upload Your CV →"
+    },
+    "features": {
+        "aiParsing": {
+            "title": "AI Parsing",
+            "description": "Upload your old PDF and let our AI extract your details instantly."
+        },
+        "premiumTemplates": {
+            "title": "Premium Templates",
+            "description": "Choose from professionally designed layouts that stand out."
+        },
+        "instantSharing": {
+            "title": "Instant Sharing",
+            "description": "Download as PDF or share a unique link with recruiters."
+        }
+    },
+    "howItWorks": {
+        "title": "How It Works",
+        "chooseTemplate": {
+            "title": "Choose Template",
+            "description": "Browse our collection of ATS-friendly designs."
+        },
+        "enterDetails": {
+            "title": "Enter Details",
+            "description": "Fill manually or auto-import from existing CV."
+        },
+        "downloadPdf": {
+            "title": "Download PDF",
+            "description": "Get your polished resume instantly."
+        }
+    },
+    "whyCvMatters": {
+        "title": "Why a Great CV",
+        "titleHighlight": "Matters",
+        "subtitle": "Your resume is often the first impression you make on a potential employer. Here's why it's crucial to get it right.",
+        "sixSeconds": {
+            "title": "6 Seconds",
+            "description": "Average time recruiters spend scanning a resume."
+        },
+        "beatAts": {
+            "title": "Beat the ATS",
+            "description": "75% of resumes are rejected by software instantly."
+        },
+        "standOut": {
+            "title": "Stand Out",
+            "description": "Distinctive design rises above 250+ applicants."
+        },
+        "higherSalary": {
+            "title": "Higher Salary",
+            "description": "Polished resumes negotiate 7-15% higher pay."
+        }
+    },
+    "faq": {
+        "title": "Frequently Asked Questions",
+        "subtitle": "Everything you need to know about CV Gen",
+        "q1": {
+            "question": "Is CV Gen really free to use?",
+            "answer": "Yes! You can create and download your resume completely free. We offer premium templates and features for users who want extra customization options."
+        },
+        "q2": {
+            "question": "What is ATS and why does it matter?",
+            "answer": "ATS (Applicant Tracking System) is software that companies use to filter resumes. Many resumes are rejected before a human sees them. Our templates are designed to pass ATS scans while still looking beautiful."
+        },
+        "q3": {
+            "question": "Can I upload my existing resume?",
+            "answer": "Absolutely! Our AI-powered parser can extract information from your existing PDF resume and auto-fill the fields, saving you time and effort."
+        },
+        "q4": {
+            "question": "What file formats can I download?",
+            "answer": "You can download your resume as a high-quality PDF, which is the most widely accepted format by employers. We also provide a shareable link you can send directly to recruiters."
+        },
+        "q5": {
+            "question": "How many resumes can I create?",
+            "answer": "Create as many resumes as you need! We recommend tailoring your resume for each job application to maximize your chances of getting an interview."
+        }
+    },
+    "cta": {
+        "title": "Ready to Land Your Dream Job",
+        "subtitle": "Join thousands of job seekers who have already created stunning resumes with CV Gen. It only takes a few minutes.",
+        "button": "Create Your Resume Now",
+        "trustSignals": "✓ Free to use · ✓ No account required · ✓ Download instantly"
+    },
+    "footer": {
+        "copyright": "© 2026 CV Gen. Craft your future.",
+        "privacy": "Privacy",
+        "terms": "Terms",
+        "contact": "Contact"
+    },
+    "templates": {
+        "pageTitle": "Select job-winning resume template",
+        "subtitle": "You can always change your template later.",
+        "allTemplates": "All templates",
+        "recommended": "RECOMMENDED",
+        "useThisTemplate": "Use This Template"
+    },
+    "editor": {
+        "personal": "Personal",
+        "experience": "Experience",
+        "education": "Education",
+        "skills": "Skills",
+        "back": "Back",
+        "nextStep": "Next Step",
+        "finishDownload": "Finish & Download",
+        "reset": "Reset",
+        "editor": "Editor",
+        "selectTemplate": "Select Template",
+        "switchTemplate": "Switch Template",
+        "pdf": "PDF",
+        "downloading": "Downloading...",
+        "share": "Share",
+        "resetConfirm": "Reset all data?",
+        "personalInfo": {
+            "fullName": "Full Name",
+            "fullNamePlaceholder": "John Doe",
+            "jobTitle": "Job Title",
+            "jobTitlePlaceholder": "Software Engineer",
+            "email": "Email",
+            "emailPlaceholder": "john@example.com",
+            "phone": "Phone",
+            "phonePlaceholder": "+1 234 567 890",
+            "portfolio": "Portfolio / LinkedIn",
+            "portfolioPlaceholder": "linkedin.com/in/johndoe",
+            "summary": "Professional Summary",
+            "summaryPlaceholder": "Briefly describe your professional background and goals...",
+            "profilePhoto": "Profile Photo",
+            "noPhoto": "No Photo",
+            "remove": "Remove",
+            "photoHint": "Recommended: Square JPG or PNG, max 1MB."
+        },
+        "experienceForm": {
+            "company": "Company",
+            "companyPlaceholder": "Company Name",
+            "role": "Role",
+            "rolePlaceholder": "Job Title",
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "datePlaceholder": "MMM YYYY",
+            "description": "Description",
+            "descriptionPlaceholder": "• Achievements...",
+            "addExperience": "Add Experience"
+        },
+        "educationForm": {
+            "institution": "Institution",
+            "institutionPlaceholder": "University / School",
+            "degree": "Degree",
+            "degreePlaceholder": "Bachelor's, Master's",
+            "field": "Field of Study",
+            "fieldPlaceholder": "Computer Science",
+            "year": "Year",
+            "yearPlaceholder": "2020 - 2024",
+            "addEducation": "Add Education"
+        },
+        "skillsForm": {
+            "addSkills": "Add Skills",
+            "skillPlaceholder": "e.g. JavaScript, React, System Design",
+            "noSkills": "No skills added yet."
+        }
+    },
+    "notFound": {
+        "title": "Page Not Found",
+        "message": "Oops! The page you are looking for doesn't exist or has been moved.",
+        "returnHome": "Return Home"
+    },
+    "comingSoon": {
+        "title": "Coming Soon",
+        "subtitle": "We're working hard to bring you this feature. Stay tuned!",
+        "backHome": "Back to Home"
+    },
+    "language": {
+        "en": "English",
+        "id": "Bahasa Indonesia"
+    },
+    "templatePreview": {
+        "fullName": "Chloe Anderson",
+        "title": "Executive Retail Manager",
+        "email": "chloe.anderson@email.com",
+        "phone": "(555) 123-4567",
+        "link": "linkedin.com/chloe",
+        "summary": "Proactive retail professional with 5+ years of experience in high-volume shops. Proven track record of exceeding sales targets.",
+        "exp1Role": "Store Manager",
+        "exp1Company": "Fashion Boutique",
+        "exp1Start": "2019",
+        "exp1End": "Present",
+        "exp1Desc": "Leading a team of 15 associates to drive sales and customer satisfaction.",
+        "exp2Role": "Sales Associate",
+        "exp2Company": "Retail Chain",
+        "exp2Start": "2016",
+        "exp2End": "2019",
+        "exp2Desc": "Customer service excellence award winner for 3 consecutive years.",
+        "eduInstitution": "City College",
+        "eduDegree": "BA Marketing",
+        "eduField": "Marketing",
+        "eduYear": "2016",
+        "skill1": "Sales Management",
+        "skill2": "Customer Service",
+        "skill3": "Visual Merchandising",
+        "skill4": "Inventory Control",
+        "accentColor": "Theme Color",
+        "all": "All",
+        "labelProfile": "Profile",
+        "labelExperience": "Experience",
+        "labelEducation": "Education",
+        "labelSkills": "Skills",
+        "labelProjects": "Projects",
+        "labelPresent": "Present"
+    }
+}

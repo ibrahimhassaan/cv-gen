@@ -1,3 +1,5 @@
+"use client";
+
 import { useResume } from "@/features/editor/ResumeContext";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
@@ -5,9 +7,11 @@ import { Textarea } from "@/components/ui/Textarea";
 import { Button } from "@/components/ui/Button";
 import { Plus, Trash2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
+import { useTranslations } from "next-intl";
 
 export function ExperienceForm() {
     const { resumeData, addExperience, updateExperience, removeExperience } = useResume();
+    const t = useTranslations('editor.experienceForm');
 
     return (
         <div className="space-y-6 animate-[fade-in_0.3s]">
@@ -17,19 +21,19 @@ export function ExperienceForm() {
                         <div className="flex justify-between items-start">
                             <div className="w-full grid grid-cols-2 gap-4">
                                 <div className="space-y-2">
-                                    <Label>Company</Label>
+                                    <Label>{t('company')}</Label>
                                     <Input
                                         value={exp.company}
                                         onChange={(e) => updateExperience(exp.id, "company", e.target.value)}
-                                        placeholder="Company Name"
+                                        placeholder={t('companyPlaceholder')}
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <Label>Role</Label>
+                                    <Label>{t('role')}</Label>
                                     <Input
                                         value={exp.role}
                                         onChange={(e) => updateExperience(exp.id, "role", e.target.value)}
-                                        placeholder="Job Title"
+                                        placeholder={t('rolePlaceholder')}
                                     />
                                 </div>
                             </div>
@@ -45,20 +49,20 @@ export function ExperienceForm() {
 
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
-                                <Label>Start Date</Label>
+                                <Label>{t('startDate')}</Label>
                                 <Input
                                     value={exp.startDate}
                                     onChange={(e) => updateExperience(exp.id, "startDate", e.target.value)}
-                                    placeholder="MMM YYYY"
+                                    placeholder={t('datePlaceholder')}
                                 />
                             </div>
                             <div className="space-y-2">
-                                <Label>End Date</Label>
+                                <Label>{t('endDate')}</Label>
                                 <div className="flex gap-2 items-center">
                                     <Input
                                         value={exp.endDate}
                                         onChange={(e) => updateExperience(exp.id, "endDate", e.target.value)}
-                                        placeholder="MMM YYYY"
+                                        placeholder={t('datePlaceholder')}
                                         disabled={exp.current}
                                     />
                                     {/* Checkbox for 'Current' could go here */}
@@ -67,11 +71,11 @@ export function ExperienceForm() {
                         </div>
 
                         <div className="space-y-2">
-                            <Label>Description</Label>
+                            <Label>{t('description')}</Label>
                             <Textarea
                                 value={exp.description}
                                 onChange={(e) => updateExperience(exp.id, "description", e.target.value)}
-                                placeholder="• Achievements..."
+                                placeholder={t('descriptionPlaceholder')}
                                 className="min-h-[100px]"
                             />
                         </div>
@@ -80,7 +84,7 @@ export function ExperienceForm() {
             ))}
 
             <Button onClick={addExperience} variant="outline" className="w-full border-dashed">
-                <Plus className="w-4 h-4 mr-2" /> Add Experience
+                <Plus className="w-4 h-4 mr-2" /> {t('addExperience')}
             </Button>
         </div>
     );

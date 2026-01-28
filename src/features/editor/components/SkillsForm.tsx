@@ -1,13 +1,17 @@
+"use client";
+
 import { useResume } from "@/features/editor/ResumeContext";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { Button } from "@/components/ui/Button";
 import { Plus, X } from "lucide-react";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export function SkillsForm() {
     const { resumeData, addSkill, removeSkill } = useResume();
     const [newSkill, setNewSkill] = useState("");
+    const t = useTranslations('editor.skillsForm');
 
     const handleAdd = () => {
         if (newSkill.trim()) {
@@ -26,13 +30,13 @@ export function SkillsForm() {
     return (
         <div className="space-y-6 animate-[fade-in_0.3s]">
             <div className="space-y-4">
-                <Label>Add Skills</Label>
+                <Label>{t('addSkills')}</Label>
                 <div className="flex gap-2">
                     <Input
                         value={newSkill}
                         onChange={(e) => setNewSkill(e.target.value)}
                         onKeyDown={handleKeyDown}
-                        placeholder="e.g. JavaScript, React, System Design"
+                        placeholder={t('skillPlaceholder')}
                     />
                     <Button onClick={handleAdd} size="icon">
                         <Plus className="w-4 h-4" />
@@ -56,7 +60,7 @@ export function SkillsForm() {
                     </div>
                 ))}
                 {resumeData.skills.length === 0 && (
-                    <p className="text-sm text-muted-foreground italic">No skills added yet.</p>
+                    <p className="text-sm text-muted-foreground italic">{t('noSkills')}</p>
                 )}
             </div>
         </div>

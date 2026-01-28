@@ -10,6 +10,7 @@ interface TemplateHeaderColsProps {
     columnLayout?: "two-equal" | "main-left" | "main-right";
     accentColor?: string;
     font?: "sans" | "serif";
+    featureThemeBg?: boolean;
 }
 
 export const TemplateHeaderCols = ({
@@ -18,36 +19,64 @@ export const TemplateHeaderCols = ({
     headerText = "text-slate-900",
     columnLayout = "main-left",
     accentColor = "text-blue-600",
-    font = "sans"
+    font = "sans",
+    featureThemeBg = false
 }: TemplateHeaderColsProps) => {
-    const { personalInfo, experience, education, skills, projects } = data;
+    const { personalInfo, experience, education, skills, projects, labels, themeColor } = data;
+
+    // Default labels fallback
+    const l = {
+        profile: labels?.profile || "Profile",
+        experience: labels?.experience || "Experience",
+        education: labels?.education || "Education",
+        skills: labels?.skills || "Skills",
+        projects: labels?.projects || "Projects",
+        present: labels?.present || "Present"
+    };
+
+    // Dynamic header styles
+    const activeHeaderBg = featureThemeBg ? undefined : headerBg;
+    const activeHeaderStyle = featureThemeBg ? { backgroundColor: themeColor, color: "white" } : {};
+    const activeHeaderText = featureThemeBg ? "text-white" : headerText;
+
+    // Use font from data if available, otherwise use prop
+    const activeFont = data.font || font;
 
     return (
-        <div className={cn("w-[210mm] min-h-[297mm] bg-white shadow-2xl overflow-hidden flex flex-col relative print:shadow-none print:w-full", font === "serif" ? "font-serif" : "font-sans")}>
-            {/* Header */}
-            <header className={cn("p-10 pb-8", headerBg, headerText)}>
-                <h1 className="text-4xl font-bold uppercase tracking-wide mb-2">{personalInfo.fullName || "Your Name"}</h1>
-                <p className="text-lg opacity-80 mb-6 font-medium">{personalInfo.title || "Professional Title"}</p>
+        <div className={cn("w-[210mm] min-h-[297mm] bg-white shadow-2xl overflow-hidden flex flex-col relative print:shadow-none print:w-full", activeFont === "serif" ? "font-serif" : activeFont === "mono" ? "font-mono" : "font-sans")}>            {/* Header */}
+            <header
+                className={cn("p-10 pb-8 flex items-center gap-8", activeHeaderBg, activeHeaderText)}
+                style={activeHeaderStyle}
+            >
+                {personalInfo.photoUrl && (
+                    <div className={cn("w-32 h-32 rounded-full overflow-hidden border-4 shadow-lg shrink-0", featureThemeBg ? "border-white/30" : "border-slate-100")}>
+                        <img src={personalInfo.photoUrl} alt={personalInfo.fullName} className="w-full h-full object-cover" />
+                    </div>
+                )}
+                <div className="flex-1">
+                    <h1 className="text-4xl font-bold uppercase tracking-wide mb-2">{personalInfo.fullName || "Your Name"}</h1>
+                    <p className="text-lg opacity-80 mb-6 font-medium">{personalInfo.title || "Professional Title"}</p>
 
-                <div className="flex flex-wrap gap-6 text-sm opacity-75">
-                    {personalInfo.email && (
-                        <div className="flex items-center gap-1.5">
-                            <Mail className="w-3.5 h-3.5" />
-                            <span>{personalInfo.email}</span>
-                        </div>
-                    )}
-                    {personalInfo.phone && (
-                        <div className="flex items-center gap-1.5">
-                            <Phone className="w-3.5 h-3.5" />
-                            <span>{personalInfo.phone}</span>
-                        </div>
-                    )}
-                    {personalInfo.link && (
-                        <div className="flex items-center gap-1.5">
-                            <Globe className="w-3.5 h-3.5" />
-                            <span>{personalInfo.link}</span>
-                        </div>
-                    )}
+                    <div className="flex flex-wrap gap-6 text-sm opacity-75">
+                        {personalInfo.email && (
+                            <div className="flex items-center gap-1.5">
+                                <Mail className="w-3.5 h-3.5" />
+                                <span>{personalInfo.email}</span>
+                            </div>
+                        )}
+                        {personalInfo.phone && (
+                            <div className="flex items-center gap-1.5">
+                                <Phone className="w-3.5 h-3.5" />
+                                <span>{personalInfo.phone}</span>
+                            </div>
+                        )}
+                        {personalInfo.link && (
+                            <div className="flex items-center gap-1.5">
+                                <Globe className="w-3.5 h-3.5" />
+                                <span>{personalInfo.link}</span>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </header>
 
@@ -59,24 +88,24 @@ export const TemplateHeaderCols = ({
                         <>
                             {personalInfo.summary && (
                                 <section>
-                                    <h2 className={cn("text-xs font-bold uppercase tracking-widest mb-3 border-b pb-1", accentColor)}>Profile</h2>
+                                    <h2 className="text-xs font-bold uppercase tracking-widest mb-3 border-b pb-1" style={{ color: themeColor }}>{l.profile}</h2>
                                     <p className="text-sm leading-relaxed text-slate-600">{personalInfo.summary}</p>
                                 </section>
                             )}
 
                             {experience.length > 0 && (
                                 <section>
-                                    <h2 className={cn("text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1", accentColor)}>Experience</h2>
+                                    <h2 className="text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1" style={{ color: themeColor }}>{l.experience}</h2>
                                     <div className="space-y-6">
                                         {experience.map((exp) => (
                                             <div key={exp.id}>
                                                 <div className="flex justify-between items-baseline mb-1">
-                                                    <h3 className="font-bold text-slate-800">{exp.role}</h3>
+                                                    <h3 className="font-bold text-slate-600">{exp.role}</h3>
                                                     <span className="text-xs text-slate-500 font-medium">
-                                                        {exp.startDate} - {exp.current ? "Present" : exp.endDate}
+                                                        {exp.startDate} - {exp.current ? l.present : exp.endDate}
                                                     </span>
                                                 </div>
-                                                <div className={cn("text-sm font-medium mb-1", accentColor)}>{exp.company}</div>
+                                                <div className="text-sm font-medium mb-1" style={{ color: themeColor }}>{exp.company}</div>
                                                 <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-wrap">{exp.description}</p>
                                             </div>
                                         ))}
@@ -86,11 +115,11 @@ export const TemplateHeaderCols = ({
 
                             {columnLayout === "two-equal" && education.length > 0 && (
                                 <section>
-                                    <h2 className={cn("text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1", accentColor)}>Education</h2>
+                                    <h2 className="text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1" style={{ color: themeColor }}>{l.education}</h2>
                                     <div className="space-y-4">
                                         {education.map((edu) => (
                                             <div key={edu.id}>
-                                                <h3 className="font-bold text-slate-800 text-sm">{edu.institution}</h3>
+                                                <h3 className="font-bold text-slate-600 text-sm">{edu.institution}</h3>
                                                 <div className="text-xs text-slate-600">{edu.degree}</div>
                                                 <div className="text-xs text-slate-400 mt-0.5">{edu.year}</div>
                                             </div>
@@ -106,7 +135,7 @@ export const TemplateHeaderCols = ({
                         <>
                             {skills.length > 0 && (
                                 <section>
-                                    <h2 className={cn("text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1", accentColor)}>Skills</h2>
+                                    <h2 className="text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1" style={{ color: themeColor }}>{l.skills}</h2>
                                     <div className="flex flex-col gap-2">
                                         {skills.map((skill, i) => (
                                             <span key={i} className="text-sm text-slate-700">• {skill}</span>
@@ -117,11 +146,11 @@ export const TemplateHeaderCols = ({
 
                             {education.length > 0 && (
                                 <section>
-                                    <h2 className={cn("text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1", accentColor)}>Education</h2>
+                                    <h2 className="text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1" style={{ color: themeColor }}>{l.education}</h2>
                                     <div className="space-y-4">
                                         {education.map((edu) => (
                                             <div key={edu.id}>
-                                                <h3 className="font-bold text-slate-800 text-sm">{edu.institution}</h3>
+                                                <h3 className="font-bold text-slate-600 text-sm">{edu.institution}</h3>
                                                 <div className="text-xs text-slate-600">{edu.degree}</div>
                                                 <div className="text-xs text-slate-400 mt-0.5">{edu.year}</div>
                                             </div>
@@ -140,23 +169,23 @@ export const TemplateHeaderCols = ({
                         <>
                             {personalInfo.summary && (
                                 <section>
-                                    <h2 className={cn("text-xs font-bold uppercase tracking-widest mb-3 border-b pb-1", accentColor)}>Profile</h2>
+                                    <h2 className="text-xs font-bold uppercase tracking-widest mb-3 border-b pb-1" style={{ color: themeColor }}>{l.profile}</h2>
                                     <p className="text-sm leading-relaxed text-slate-600">{personalInfo.summary}</p>
                                 </section>
                             )}
                             {experience.length > 0 && (
                                 <section>
-                                    <h2 className={cn("text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1", accentColor)}>Experience</h2>
+                                    <h2 className="text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1" style={{ color: themeColor }}>{l.experience}</h2>
                                     <div className="space-y-6">
                                         {experience.map((exp) => (
                                             <div key={exp.id}>
                                                 <div className="flex justify-between items-baseline mb-1">
-                                                    <h3 className="font-bold text-slate-800">{exp.role}</h3>
+                                                    <h3 className="font-bold text-slate-600">{exp.role}</h3>
                                                     <span className="text-xs text-slate-500 font-medium">
-                                                        {exp.startDate} - {exp.current ? "Present" : exp.endDate}
+                                                        {exp.startDate} - {exp.current ? l.present : exp.endDate}
                                                     </span>
                                                 </div>
-                                                <div className={cn("text-sm font-medium mb-1", accentColor)}>{exp.company}</div>
+                                                <div className="text-sm font-medium mb-1" style={{ color: themeColor }}>{exp.company}</div>
                                                 <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-wrap">{exp.description}</p>
                                             </div>
                                         ))}
@@ -171,7 +200,7 @@ export const TemplateHeaderCols = ({
                         <>
                             {skills.length > 0 && (
                                 <section>
-                                    <h2 className={cn("text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1", accentColor)}>Skills</h2>
+                                    <h2 className="text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1" style={{ color: themeColor }}>{l.skills}</h2>
                                     <div className="flex flex-col gap-2">
                                         {skills.map((skill, i) => (
                                             <span key={i} className="text-sm text-slate-700">• {skill}</span>
@@ -182,11 +211,11 @@ export const TemplateHeaderCols = ({
 
                             {columnLayout !== "two-equal" && education.length > 0 && (
                                 <section>
-                                    <h2 className={cn("text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1", accentColor)}>Education</h2>
+                                    <h2 className="text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1" style={{ color: themeColor }}>{l.education}</h2>
                                     <div className="space-y-4">
                                         {education.map((edu) => (
                                             <div key={edu.id}>
-                                                <h3 className="font-bold text-slate-800 text-sm">{edu.institution}</h3>
+                                                <h3 className="font-bold text-slate-600 text-sm">{edu.institution}</h3>
                                                 <div className="text-xs text-slate-600">{edu.degree}</div>
                                                 <div className="text-xs text-slate-400 mt-0.5">{edu.year}</div>
                                             </div>
@@ -197,13 +226,13 @@ export const TemplateHeaderCols = ({
 
                             {projects.length > 0 && (
                                 <section>
-                                    <h2 className={cn("text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1", accentColor)}>Projects</h2>
+                                    <h2 className="text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1" style={{ color: themeColor }}>{l.projects}</h2>
                                     <div className="space-y-4">
                                         {projects.map((proj) => (
                                             <div key={proj.id}>
                                                 <div className="flex justify-between items-baseline">
-                                                    <h3 className="font-bold text-sm text-slate-800">{proj.name}</h3>
-                                                    {proj.link && <a href={proj.link} className={cn("text-xs hover:underline", accentColor)}>Link</a>}
+                                                    <h3 className="font-bold text-sm text-slate-600">{proj.name}</h3>
+                                                    {proj.link && <a href={proj.link} className="text-xs hover:underline" style={{ color: themeColor }}>Link</a>}
                                                 </div>
                                                 <p className="text-xs text-slate-600 leading-relaxed mt-1">{proj.description}</p>
                                             </div>

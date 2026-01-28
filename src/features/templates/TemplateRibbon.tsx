@@ -1,18 +1,39 @@
 import React from "react";
 import { ResumeData } from "@/features/editor/types";
 
+import { cn } from "@/lib/utils";
+
 export const TemplateRibbon = ({ data }: { data: ResumeData }) => {
-    const { personalInfo, experience, education, skills, projects, themeColor } = data;
+    const { personalInfo, experience, education, skills, projects, themeColor, labels } = data;
+
+    // Default labels fallback
+    const l = {
+        profile: labels?.profile || "Profile",
+        experience: labels?.experience || "Experience",
+        education: labels?.education || "Education",
+        skills: labels?.skills || "Skills",
+        projects: labels?.projects || "Projects",
+        present: labels?.present || "Present",
+        contact: "Contact"
+    };
+
+    const fontClass = data.font === "serif" ? "font-serif" : data.font === "mono" ? "font-mono" : "font-sans";
 
     return (
-        <div className="w-[210mm] min-h-[297mm] bg-white text-slate-800 font-sans shadow-2xl overflow-hidden flex flex-col print:shadow-none print:w-full">
+        <div className={cn("w-[210mm] min-h-[297mm] bg-white text-slate-600 shadow-2xl overflow-hidden flex flex-col print:shadow-none print:w-full", fontClass)}>
 
             {/* Header Ribbon - CSS Clip Path for Arrow Shape */}
-            <header className="relative w-full pt-16 pb-24 px-16 text-center text-white"
+            <header className="relative w-full pt-12 pb-24 px-16 text-center text-white flex flex-col items-center"
                 style={{
                     backgroundColor: themeColor,
                     clipPath: "polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%)"
                 }}>
+
+                {personalInfo.photoUrl && (
+                    <div className="w-28 h-28 rounded-full border-4 border-white/30 shadow-lg overflow-hidden mb-6">
+                        <img src={personalInfo.photoUrl} alt={personalInfo.fullName} className="w-full h-full object-cover" />
+                    </div>
+                )}
 
                 <h1 className="text-5xl font-bold mb-4 tracking-tight drop-shadow-sm">
                     {personalInfo.fullName || "Your Name"}
@@ -34,7 +55,7 @@ export const TemplateRibbon = ({ data }: { data: ResumeData }) => {
                 <aside className="col-span-4 space-y-12 pt-4">
 
                     <section className="text-center">
-                        <h3 className="text-sm font-bold uppercase tracking-widest text-slate-900 border-b border-slate-200 pb-3 mb-6">Contact</h3>
+                        <h3 className="text-sm font-bold uppercase tracking-widest text-slate-900 border-b border-slate-200 pb-3 mb-6">{l.contact}</h3>
                         <div className="space-y-4 text-sm text-slate-600">
                             {personalInfo.email && (
                                 <div>
@@ -57,7 +78,7 @@ export const TemplateRibbon = ({ data }: { data: ResumeData }) => {
 
                     {skills.length > 0 && (
                         <section className="text-center">
-                            <h3 className="text-sm font-bold uppercase tracking-widest text-slate-900 border-b border-slate-200 pb-3 mb-6">Skills</h3>
+                            <h3 className="text-sm font-bold uppercase tracking-widest text-slate-900 border-b border-slate-200 pb-3 mb-6">{l.skills}</h3>
                             <div className="flex flex-wrap justify-center gap-2">
                                 {skills.map((skill, i) => (
                                     <span key={i} className="text-sm text-slate-600">
@@ -70,7 +91,7 @@ export const TemplateRibbon = ({ data }: { data: ResumeData }) => {
 
                     {education.length > 0 && (
                         <section className="text-center">
-                            <h3 className="text-sm font-bold uppercase tracking-widest text-slate-900 border-b border-slate-200 pb-3 mb-6">Education</h3>
+                            <h3 className="text-sm font-bold uppercase tracking-widest text-slate-900 border-b border-slate-200 pb-3 mb-6">{l.education}</h3>
                             <div className="space-y-6">
                                 {education.map((edu) => (
                                     <div key={edu.id}>
@@ -89,7 +110,7 @@ export const TemplateRibbon = ({ data }: { data: ResumeData }) => {
                 <div className="col-span-8 space-y-12">
                     {experience.length > 0 && (
                         <section>
-                            <h2 className="text-2xl font-serif italic text-slate-400 mb-8 border-b-2 border-slate-100 pb-2">Experience</h2>
+                            <h2 className="text-2xl font-serif italic text-slate-400 mb-8 border-b-2 border-slate-100 pb-2">{l.experience}</h2>
                             <div className="space-y-10 pl-4 border-l-2 border-slate-100">
                                 {experience.map((exp) => (
                                     <div key={exp.id} className="relative">
@@ -97,7 +118,7 @@ export const TemplateRibbon = ({ data }: { data: ResumeData }) => {
                                         <div className="absolute -left-[23px] top-1.5 w-3 h-3 rounded-full border-2 border-white shadow-sm" style={{ backgroundColor: themeColor }}></div>
 
                                         <div className="text-sm italic text-slate-400 mb-1">
-                                            {exp.startDate} - {exp.current ? "Present" : exp.endDate}
+                                            {exp.startDate} - {exp.current ? l.present : exp.endDate}
                                         </div>
                                         <h3 className="font-bold text-slate-900 text-lg mb-0.5">{exp.role}</h3>
                                         <div className="text-sm font-bold uppercase tracking-wider mb-3" style={{ color: themeColor }}>{exp.company}</div>
@@ -112,7 +133,7 @@ export const TemplateRibbon = ({ data }: { data: ResumeData }) => {
 
                     {projects.length > 0 && (
                         <section>
-                            <h2 className="text-2xl font-serif italic text-slate-400 mb-8 border-b-2 border-slate-100 pb-2">Projects</h2>
+                            <h2 className="text-2xl font-serif italic text-slate-400 mb-8 border-b-2 border-slate-100 pb-2">{l.projects}</h2>
                             <div className="space-y-6">
                                 {projects.map((proj) => (
                                     <div key={proj.id}>

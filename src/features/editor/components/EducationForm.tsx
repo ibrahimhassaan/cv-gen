@@ -1,12 +1,16 @@
+"use client";
+
 import { useResume } from "@/features/editor/ResumeContext";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { Button } from "@/components/ui/Button";
 import { Plus, Trash2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
+import { useTranslations } from "next-intl";
 
 export function EducationForm() {
     const { resumeData, addEducation, updateEducation, removeEducation } = useResume();
+    const t = useTranslations('editor.educationForm');
 
     return (
         <div className="space-y-6 animate-[fade-in_0.3s]">
@@ -15,11 +19,11 @@ export function EducationForm() {
                     <CardContent className="p-4 space-y-4">
                         <div className="flex justify-between items-start">
                             <div className="w-full space-y-2">
-                                <Label>Institution</Label>
+                                <Label>{t('institution')}</Label>
                                 <Input
                                     value={edu.institution}
                                     onChange={(e) => updateEducation(edu.id, "institution", e.target.value)}
-                                    placeholder="University / School"
+                                    placeholder={t('institutionPlaceholder')}
                                 />
                             </div>
                             <Button
@@ -34,29 +38,29 @@ export function EducationForm() {
 
                         <div className="grid grid-cols-2 gap-4">
                             <div className="space-y-2">
-                                <Label>Degree</Label>
+                                <Label>{t('degree')}</Label>
                                 <Input
                                     value={edu.degree}
                                     onChange={(e) => updateEducation(edu.id, "degree", e.target.value)}
-                                    placeholder="Bachelor's, Master's"
+                                    placeholder={t('degreePlaceholder')}
                                 />
                             </div>
                             <div className="space-y-2">
-                                <Label>Field of Study</Label>
+                                <Label>{t('field')}</Label>
                                 <Input
                                     value={edu.field}
                                     onChange={(e) => updateEducation(edu.id, "field", e.target.value)}
-                                    placeholder="Computer Science"
+                                    placeholder={t('fieldPlaceholder')}
                                 />
                             </div>
                         </div>
 
                         <div className="space-y-2">
-                            <Label>Year</Label>
+                            <Label>{t('year')}</Label>
                             <Input
                                 value={edu.year}
                                 onChange={(e) => updateEducation(edu.id, "year", e.target.value)}
-                                placeholder="2020 - 2024"
+                                placeholder={t('yearPlaceholder')}
                             />
                         </div>
                     </CardContent>
@@ -64,7 +68,7 @@ export function EducationForm() {
             ))}
 
             <Button onClick={addEducation} variant="outline" className="w-full border-dashed">
-                <Plus className="w-4 h-4 mr-2" /> Add Education
+                <Plus className="w-4 h-4 mr-2" /> {t('addEducation')}
             </Button>
         </div>
     );

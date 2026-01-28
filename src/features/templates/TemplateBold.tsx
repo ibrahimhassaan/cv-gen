@@ -2,43 +2,65 @@ import React from "react";
 import { ResumeData } from "@/features/editor/types";
 import { Mail, Phone, Globe, MapPin, Briefcase, GraduationCap, Code } from "lucide-react";
 
+import { cn } from "@/lib/utils";
+
 export const TemplateBold = ({ data }: { data: ResumeData }) => {
-    const { personalInfo, experience, education, skills, projects, themeColor } = data;
+    const { personalInfo, experience, education, skills, projects, themeColor, labels } = data;
+
+    // Default labels fallback
+    const l = {
+        profile: labels?.profile || "Profile",
+        experience: labels?.experience || "Experience",
+        education: labels?.education || "Education",
+        skills: labels?.skills || "Skills",
+        projects: labels?.projects || "Projects",
+        present: labels?.present || "Present"
+    };
+
+    const fontClass = data.font === "serif" ? "font-serif" : data.font === "mono" ? "font-mono" : "font-sans";
 
     return (
-        <div className="w-[210mm] min-h-[297mm] bg-white text-slate-800 font-sans shadow-2xl overflow-hidden flex flex-col print:shadow-none print:w-full">
+        <div className={cn("w-[210mm] min-h-[297mm] bg-white text-slate-600 shadow-2xl overflow-hidden flex flex-col print:shadow-none print:w-full", fontClass)}>
 
             {/* Header Bar */}
             <div className="h-4 w-full" style={{ backgroundColor: themeColor }}></div>
 
-            <header className="px-12 pt-12 pb-8">
-                <h1 className="text-[3.5rem] font-black uppercase tracking-tighter leading-none text-slate-900 mb-2">
-                    {personalInfo.fullName || "Your Name"}
-                </h1>
-                <p className="text-xl font-medium tracking-wide uppercase text-slate-400 mb-8">
-                    {personalInfo.title || "Professional Title"}
-                </p>
+            <header className="px-12 pt-12 pb-8 flex justify-between items-start">
+                <div className="flex-1">
+                    <h1 className="text-[3.5rem] font-black uppercase tracking-tighter leading-none text-slate-900 mb-2">
+                        {personalInfo.fullName || "Your Name"}
+                    </h1>
+                    <p className="text-xl font-medium tracking-wide uppercase text-slate-400 mb-8">
+                        {personalInfo.title || "Professional Title"}
+                    </p>
 
-                <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm font-medium text-slate-500 border-t-2 border-slate-100 pt-6">
-                    {personalInfo.email && (
-                        <div className="flex items-center gap-2">
-                            <Mail className="w-4 h-4" style={{ color: themeColor }} />
-                            <span>{personalInfo.email}</span>
-                        </div>
-                    )}
-                    {personalInfo.phone && (
-                        <div className="flex items-center gap-2">
-                            <Phone className="w-4 h-4" style={{ color: themeColor }} />
-                            <span>{personalInfo.phone}</span>
-                        </div>
-                    )}
-                    {personalInfo.link && (
-                        <div className="flex items-center gap-2">
-                            <Globe className="w-4 h-4" style={{ color: themeColor }} />
-                            <span>{personalInfo.link}</span>
-                        </div>
-                    )}
+                    <div className="flex flex-wrap gap-x-8 gap-y-2 text-sm font-medium text-slate-500 border-t-2 border-slate-100 pt-6">
+                        {personalInfo.email && (
+                            <div className="flex items-center gap-2">
+                                <Mail className="w-4 h-4" style={{ color: themeColor }} />
+                                <span>{personalInfo.email}</span>
+                            </div>
+                        )}
+                        {personalInfo.phone && (
+                            <div className="flex items-center gap-2">
+                                <Phone className="w-4 h-4" style={{ color: themeColor }} />
+                                <span>{personalInfo.phone}</span>
+                            </div>
+                        )}
+                        {personalInfo.link && (
+                            <div className="flex items-center gap-2">
+                                <Globe className="w-4 h-4" style={{ color: themeColor }} />
+                                <span>{personalInfo.link}</span>
+                            </div>
+                        )}
+                    </div>
                 </div>
+
+                {personalInfo.photoUrl && (
+                    <div className="w-40 h-40 shadow-2xl skew-y-3 border-4 border-white ml-8 shrink-0 bg-slate-200">
+                        <img src={personalInfo.photoUrl} alt={personalInfo.fullName} className="w-full h-full object-cover" />
+                    </div>
+                )}
             </header>
 
             <main className="flex flex-1 px-12 pb-12 gap-12">
@@ -58,7 +80,7 @@ export const TemplateBold = ({ data }: { data: ResumeData }) => {
                         <section>
                             <h2 className="flex items-center gap-3 text-lg font-bold uppercase tracking-wider mb-6" style={{ color: themeColor }}>
                                 <Briefcase className="w-5 h-5" />
-                                Experience
+                                {l.experience}
                             </h2>
 
                             <div className="border-l-2 border-slate-100 ml-2.5 pl-8 space-y-8 pb-2">
@@ -72,7 +94,7 @@ export const TemplateBold = ({ data }: { data: ResumeData }) => {
                                         <div className="flex justify-between items-center text-sm mb-3">
                                             <span className="font-bold text-slate-700">{exp.company}</span>
                                             <span className="text-slate-400 font-mono text-xs bg-slate-50 px-2 py-1 rounded">
-                                                {exp.startDate} - {exp.current ? "Present" : exp.endDate}
+                                                {exp.startDate} - {exp.current ? l.present : exp.endDate}
                                             </span>
                                         </div>
                                         <p className="text-sm text-slate-600 leading-relaxed">
@@ -88,7 +110,7 @@ export const TemplateBold = ({ data }: { data: ResumeData }) => {
                         <section>
                             <h2 className="flex items-center gap-3 text-lg font-bold uppercase tracking-wider mb-6" style={{ color: themeColor }}>
                                 <Code className="w-5 h-5" />
-                                Projects
+                                {l.projects}
                             </h2>
                             <div className="grid grid-cols-1 gap-6">
                                 {projects.map((proj) => (
@@ -114,7 +136,7 @@ export const TemplateBold = ({ data }: { data: ResumeData }) => {
                     {skills.length > 0 && (
                         <section>
                             <h2 className="flex items-center gap-3 text-lg font-bold uppercase tracking-wider mb-6" style={{ color: themeColor }}>
-                                Skills
+                                {l.skills}
                             </h2>
                             <div className="flex flex-wrap gap-2">
                                 {skills.map((skill, i) => (
@@ -130,7 +152,7 @@ export const TemplateBold = ({ data }: { data: ResumeData }) => {
                         <section>
                             <h2 className="flex items-center gap-3 text-lg font-bold uppercase tracking-wider mb-6" style={{ color: themeColor }}>
                                 <GraduationCap className="w-5 h-5" />
-                                Education
+                                {l.education}
                             </h2>
                             <div className="space-y-6">
                                 {education.map((edu) => (

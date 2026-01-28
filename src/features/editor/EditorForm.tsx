@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { PersonalInfoForm } from "./components/PersonalInfoForm";
 import { ExperienceForm } from "./components/ExperienceForm";
@@ -6,17 +8,25 @@ import { SkillsForm } from "./components/SkillsForm";
 import { cn } from "@/lib/utils";
 import { User, Briefcase, GraduationCap, Code, ChevronRight, ChevronLeft, Check } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { useTranslations } from "next-intl";
+import { Loader2 } from "lucide-react";
 
 type Section = "personal" | "experience" | "education" | "skills";
 
-export function EditorForm() {
+interface EditorFormProps {
+    onDownload?: () => void;
+    isDownloading?: boolean;
+}
+
+export function EditorForm({ onDownload, isDownloading }: EditorFormProps) {
     const [activeSection, setActiveSection] = useState<Section>("personal");
+    const t = useTranslations('editor');
 
     const sections: { id: Section; label: string; icon: any }[] = [
-        { id: "personal", label: "Personal", icon: User },
-        { id: "experience", label: "Experience", icon: Briefcase },
-        { id: "education", label: "Education", icon: GraduationCap },
-        { id: "skills", label: "Skills", icon: Code },
+        { id: "personal", label: t('personal'), icon: User },
+        { id: "experience", label: t('experience'), icon: Briefcase },
+        { id: "education", label: t('education'), icon: GraduationCap },
+        { id: "skills", label: t('skills'), icon: Code },
     ];
 
     const activeIndex = sections.findIndex((s) => s.id === activeSection);
@@ -34,33 +44,35 @@ export function EditorForm() {
     };
 
     return (
-        <div className="space-y-8 flex flex-col h-full">
+        <div className="space-y-4">
             {/* Stepper Navigation */}
-            <div className="relative">
-                <div className="absolute top-1/2 left-0 w-full h-0.5 bg-white/10 -z-10 transform -translate-y-1/2" />
-                <div className="flex justify-between items-center px-2">
+            <div className="relative px-2">
+                {/* Connecting Line */}
+                <div className="absolute top-1/2 left-4 right-4 h-0.5 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 -z-10 transform -translate-y-[50%]" />
+
+                <div className="flex justify-between items-center relative">
                     {sections.map((section, index) => {
                         const Icon = section.icon;
                         const isActive = index === activeIndex;
                         const isCompleted = index < activeIndex;
 
                         return (
-                            <div key={section.id} className="flex flex-col items-center space-y-2 cursor-pointer group" onClick={() => setActiveSection(section.id)}>
+                            <div key={section.id} className="flex flex-col items-center group cursor-pointer" onClick={() => setActiveSection(section.id)}>
                                 <div
                                     className={cn(
-                                        "w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all duration-300 bg-background",
+                                        "w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-500 relative z-10",
                                         isActive
-                                            ? "border-primary text-primary shadow-lg shadow-primary/20 scale-110"
+                                            ? "bg-white text-primary shadow-[0_0_15px_rgba(124,58,237,0.3)] border-2 border-primary scale-110"
                                             : isCompleted
-                                                ? "border-primary bg-primary text-white"
-                                                : "border-white/20 text-muted-foreground group-hover:border-white/40"
+                                                ? "bg-gradient-to-br from-primary to-accent text-white shadow-md border-transparent"
+                                                : "bg-white border-2 border-gray-100 text-gray-300 hover:border-primary/30 hover:text-primary/50"
                                     )}
                                 >
-                                    {isCompleted ? <Check className="w-6 h-6" /> : <Icon className="w-6 h-6" />}
+                                    {isCompleted ? <Check className="w-4 h-4 md:w-5 md:h-5" /> : <Icon className="w-4 h-4 md:w-5 md:h-5" />}
                                 </div>
                                 <span className={cn(
-                                    "text-sm font-medium transition-colors duration-300 absolute -bottom-8 w-24 text-center",
-                                    isActive ? "text-primary" : "text-muted-foreground"
+                                    "text-[10px] md:text-xs font-semibold mt-1.5 transition-colors duration-300",
+                                    isActive ? "text-primary" : isCompleted ? "text-foreground" : "text-muted-foreground"
                                 )}>
                                     {section.label}
                                 </span>
@@ -71,8 +83,8 @@ export function EditorForm() {
             </div>
 
             {/* Active Form Area */}
-            <div className="flex-1 mt-8 min-h-[400px] overflow-y-auto pt-4 pb-20">
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="mt-2 px-1">
+                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 ease-out">
                     {activeSection === "personal" && <PersonalInfoForm />}
                     {activeSection === "experience" && <ExperienceForm />}
                     {activeSection === "education" && <EducationForm />}
@@ -81,23 +93,37 @@ export function EditorForm() {
             </div>
 
             {/* Navigation Buttons */}
-            <div className="flex justify-between items-center pt-4 border-t border-white/10 mt-auto bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky bottom-0 z-10 py-4">
+            <div className="sticky bottom-0 z-20 flex justify-between items-center pt-4 pb-4 border-t border-gray-100 bg-white/80 backdrop-blur-md -mx-4 px-4 mt-auto">
                 <Button
-                    variant="outline"
+                    variant="ghost"
                     onClick={handleBack}
                     disabled={activeIndex === 0}
-                    className={cn(activeIndex === 0 && "opacity-0 pointer-events-none", "h-12 text-lg px-6")}
+                    className={cn(activeIndex === 0 && "opacity-0 pointer-events-none", "hover:bg-gray-100 text-muted-foreground hover:text-foreground")}
                 >
-                    <ChevronLeft className="w-5 h-5 mr-2" /> Back
+                    <ChevronLeft className="w-4 h-4 mr-2" /> {t('back')}
                 </Button>
 
                 {activeIndex === sections.length - 1 ? (
-                    <Button variant="default" className="bg-green-600 hover:bg-green-700 text-white h-12 text-lg px-8">
-                        Finish <Check className="w-5 h-5 ml-2" />
+                    <Button
+                        variant="gradient"
+                        onClick={onDownload}
+                        disabled={isDownloading}
+                        className="shadow-lg shadow-green-500/20 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white rounded-full px-8"
+                    >
+                        {isDownloading ? (
+                            <>
+                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                {t('downloading')}...
+                            </>
+                        ) : (
+                            <>
+                                {t('finishDownload')} <Check className="w-4 h-4 ml-2" />
+                            </>
+                        )}
                     </Button>
                 ) : (
-                    <Button onClick={handleNext} className="h-12 text-lg px-8">
-                        Next <ChevronRight className="w-5 h-5 ml-2" />
+                    <Button onClick={handleNext} variant="gradient" className="rounded-full px-8 shadow-lg shadow-primary/25 hover:shadow-primary/40">
+                        {t('nextStep')} <ChevronRight className="w-4 h-4 ml-2" />
                     </Button>
                 )}
             </div>

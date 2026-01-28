@@ -1,0 +1,222 @@
+{
+    "nav": {
+        "home": "Beranda",
+        "resume": "Resume",
+        "templates": "Template",
+        "dashboard": "Dasbor",
+        "login": "Masuk",
+        "getStarted": "Mulai Sekarang",
+        "brandName": "CV Gen"
+    },
+    "home": {
+        "badge": "Pembuat Resume Berbasis AI",
+        "title": "Buat Resume Sempurna",
+        "titleHighlight": "Dalam Hitungan Detik",
+        "subtitle": "Buat resume profesional yang lolos ATS dengan template premium kami. Gunakan AI untuk mengekstrak data dari CV lama atau buat dari awal.",
+        "ctaPrimary": "Mulai Gratis",
+        "ctaSecondary": "Unggah CV Anda →"
+    },
+    "features": {
+        "aiParsing": {
+            "title": "Parsing AI",
+            "description": "Unggah PDF lama Anda dan biarkan AI kami mengekstrak detailnya secara instan."
+        },
+        "premiumTemplates": {
+            "title": "Template Premium",
+            "description": "Pilih dari tata letak profesional yang menonjol."
+        },
+        "instantSharing": {
+            "title": "Berbagi Instan",
+            "description": "Unduh sebagai PDF atau bagikan tautan unik ke perekrut."
+        }
+    },
+    "howItWorks": {
+        "title": "Cara Kerjanya",
+        "chooseTemplate": {
+            "title": "Pilih Template",
+            "description": "Jelajahi koleksi desain ramah ATS kami."
+        },
+        "enterDetails": {
+            "title": "Isi Detail",
+            "description": "Isi manual atau impor otomatis dari CV yang ada."
+        },
+        "downloadPdf": {
+            "title": "Unduh PDF",
+            "description": "Dapatkan resume Anda yang sudah rapi secara instan."
+        }
+    },
+    "whyCvMatters": {
+        "title": "Mengapa CV yang Bagus",
+        "titleHighlight": "Penting",
+        "subtitle": "Resume Anda sering kali menjadi kesan pertama yang Anda berikan kepada calon pemberi kerja. Inilah mengapa penting untuk membuatnya dengan benar.",
+        "sixSeconds": {
+            "title": "6 Detik",
+            "description": "Waktu rata-rata perekrut memindai resume."
+        },
+        "beatAts": {
+            "title": "Kalahkan ATS",
+            "description": "75% resume ditolak oleh perangkat lunak secara instan."
+        },
+        "standOut": {
+            "title": "Tampil Menonjol",
+            "description": "Desain khas naik di atas 250+ pelamar."
+        },
+        "higherSalary": {
+            "title": "Gaji Lebih Tinggi",
+            "description": "Resume yang rapi bernegosiasi 7-15% gaji lebih tinggi."
+        }
+    },
+    "faq": {
+        "title": "Pertanyaan yang Sering Diajukan",
+        "subtitle": "Semua yang perlu Anda ketahui tentang CV Gen",
+        "q1": {
+            "question": "Apakah CV Gen benar-benar gratis?",
+            "answer": "Ya! Anda dapat membuat dan mengunduh resume sepenuhnya gratis. Kami menawarkan template dan fitur premium bagi pengguna yang menginginkan opsi kustomisasi ekstra."
+        },
+        "q2": {
+            "question": "Apa itu ATS dan mengapa penting?",
+            "answer": "ATS (Applicant Tracking System) adalah perangkat lunak yang digunakan perusahaan untuk menyaring resume. Banyak resume ditolak sebelum dilihat manusia. Template kami dirancang untuk lolos pemindaian ATS sambil tetap terlihat indah."
+        },
+        "q3": {
+            "question": "Bisakah saya mengunggah resume yang sudah ada?",
+            "answer": "Tentu saja! Parser berbasis AI kami dapat mengekstrak informasi dari resume PDF Anda yang sudah ada dan mengisi kolom secara otomatis, menghemat waktu dan usaha Anda."
+        },
+        "q4": {
+            "question": "Format file apa yang bisa diunduh?",
+            "answer": "Anda dapat mengunduh resume sebagai PDF berkualitas tinggi, yang merupakan format paling diterima oleh pemberi kerja. Kami juga menyediakan tautan yang dapat dibagikan yang dapat Anda kirim langsung ke perekrut."
+        },
+        "q5": {
+            "question": "Berapa banyak resume yang bisa saya buat?",
+            "answer": "Buat sebanyak mungkin resume yang Anda butuhkan! Kami merekomendasikan menyesuaikan resume untuk setiap lamaran kerja untuk memaksimalkan peluang mendapat wawancara."
+        }
+    },
+    "cta": {
+        "title": "Siap Mendapatkan Pekerjaan Impian",
+        "subtitle": "Bergabunglah dengan ribuan pencari kerja yang telah membuat resume menakjubkan dengan CV Gen. Hanya butuh beberapa menit.",
+        "button": "Buat Resume Anda Sekarang",
+        "trustSignals": "✓ Gratis digunakan · ✓ Tidak perlu akun · ✓ Unduh langsung"
+    },
+    "footer": {
+        "copyright": "© 2026 CV Gen. Raih masa depan Anda.",
+        "privacy": "Privasi",
+        "terms": "Ketentuan",
+        "contact": "Kontak"
+    },
+    "templates": {
+        "pageTitle": "Pilih template resume pemenang kerja",
+        "subtitle": "Anda selalu bisa mengganti template nanti.",
+        "allTemplates": "Semua template",
+        "recommended": "DIREKOMENDASIKAN",
+        "useThisTemplate": "Gunakan Template Ini"
+    },
+    "editor": {
+        "personal": "Pribadi",
+        "experience": "Pengalaman",
+        "education": "Pendidikan",
+        "skills": "Keahlian",
+        "back": "Kembali",
+        "nextStep": "Langkah Berikutnya",
+        "finishDownload": "Selesai & Unduh",
+        "reset": "Reset",
+        "editor": "Editor",
+        "selectTemplate": "Pilih Template",
+        "switchTemplate": "Ganti Template",
+        "pdf": "PDF",
+        "share": "Bagikan",
+        "resetConfirm": "Reset semua data?",
+        "personalInfo": {
+            "fullName": "Nama Lengkap",
+            "fullNamePlaceholder": "John Doe",
+            "jobTitle": "Jabatan",
+            "jobTitlePlaceholder": "Software Engineer",
+            "email": "Email",
+            "emailPlaceholder": "john@example.com",
+            "phone": "Telepon",
+            "phonePlaceholder": "+62 812 345 6789",
+            "portfolio": "Portofolio / LinkedIn",
+            "portfolioPlaceholder": "linkedin.com/in/johndoe",
+            "summary": "Ringkasan Profesional",
+            "summaryPlaceholder": "Jelaskan secara singkat latar belakang profesional dan tujuan Anda...",
+            "profilePhoto": "Foto Profil",
+            "noPhoto": "Tidak Ada Foto",
+            "remove": "Hapus",
+            "photoHint": "Disarankan: JPG atau PNG persegi, maks 1MB."
+        },
+        "experienceForm": {
+            "company": "Perusahaan",
+            "companyPlaceholder": "Nama Perusahaan",
+            "role": "Posisi",
+            "rolePlaceholder": "Jabatan",
+            "startDate": "Tanggal Mulai",
+            "endDate": "Tanggal Selesai",
+            "datePlaceholder": "MMM YYYY",
+            "description": "Deskripsi",
+            "descriptionPlaceholder": "• Pencapaian...",
+            "addExperience": "Tambah Pengalaman"
+        },
+        "educationForm": {
+            "institution": "Institusi",
+            "institutionPlaceholder": "Universitas / Sekolah",
+            "degree": "Gelar",
+            "degreePlaceholder": "Sarjana, Magister",
+            "field": "Bidang Studi",
+            "fieldPlaceholder": "Ilmu Komputer",
+            "year": "Tahun",
+            "yearPlaceholder": "2020 - 2024",
+            "addEducation": "Tambah Pendidikan"
+        },
+        "skillsForm": {
+            "addSkills": "Tambah Keahlian",
+            "skillPlaceholder": "contoh: JavaScript, React, System Design",
+            "noSkills": "Belum ada keahlian ditambahkan."
+        }
+    },
+    "notFound": {
+        "title": "Halaman Tidak Ditemukan",
+        "message": "Ups! Halaman yang Anda cari tidak ada atau telah dipindahkan.",
+        "returnHome": "Kembali ke Beranda"
+    },
+    "comingSoon": {
+        "title": "Segera Hadir",
+        "subtitle": "Kami sedang bekerja keras untuk menghadirkan fitur ini. Nantikan!",
+        "backHome": "Kembali ke Beranda"
+    },
+    "language": {
+        "en": "English",
+        "id": "Bahasa Indonesia"
+    },
+    "templatePreview": {
+        "fullName": "Dewi Kusuma",
+        "title": "Manajer Ritel Eksekutif",
+        "email": "dewi.kusuma@email.com",
+        "phone": "+62 812 345 6789",
+        "link": "linkedin.com/dewi",
+        "summary": "Profesional ritel proaktif dengan pengalaman 5+ tahun di toko volume tinggi. Rekam jejak terbukti dalam melampaui target penjualan.",
+        "exp1Role": "Manajer Toko",
+        "exp1Company": "Butik Fashion",
+        "exp1Start": "2019",
+        "exp1End": "Sekarang",
+        "exp1Desc": "Memimpin tim 15 karyawan untuk mendorong penjualan dan kepuasan pelanggan.",
+        "exp2Role": "Staf Penjualan",
+        "exp2Company": "Jaringan Ritel",
+        "exp2Start": "2016",
+        "exp2End": "2019",
+        "exp2Desc": "Pemenang penghargaan keunggulan layanan pelanggan selama 3 tahun berturut-turut.",
+        "eduInstitution": "Universitas Kota",
+        "eduDegree": "S1 Pemasaran",
+        "eduField": "Pemasaran",
+        "eduYear": "2016",
+        "skill1": "Manajemen Penjualan",
+        "skill2": "Layanan Pelanggan",
+        "skill3": "Visual Merchandising",
+        "skill4": "Kontrol Inventaris",
+        "accentColor": "Warna Tema",
+        "all": "Semua",
+        "labelProfile": "Profil",
+        "labelExperience": "Pengalaman",
+        "labelEducation": "Pendidikan",
+        "labelSkills": "Keahlian",
+        "labelProjects": "Proyek",
+        "labelPresent": "Sekarang"
+    }
+}
