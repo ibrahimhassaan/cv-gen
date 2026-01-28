@@ -3,6 +3,7 @@
 import { Check, Copy, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 interface ShareModalProps {
     isOpen: boolean;
@@ -11,6 +12,7 @@ interface ShareModalProps {
 }
 
 export function ShareModal({ isOpen, onClose, shareUrl }: ShareModalProps) {
+    const t = useTranslations('modals.share');
     const [copied, setCopied] = useState(false);
 
     if (!isOpen) return null;
@@ -44,10 +46,10 @@ export function ShareModal({ isOpen, onClose, shareUrl }: ShareModalProps) {
 
                 <div className="text-center mb-6">
                     <h2 className="text-2xl font-bold font-display mb-2 text-gray-900">
-                        Share Your Resume
+                        {t('title')}
                     </h2>
                     <p className="text-muted-foreground">
-                        Anyone with this link can view your resume.
+                        {t('description')}
                     </p>
                 </div>
 
@@ -61,13 +63,13 @@ export function ShareModal({ isOpen, onClose, shareUrl }: ShareModalProps) {
                         variant={copied ? "default" : "secondary"}
                     >
                         {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                        {copied ? "Copied" : "Copy"}
+                        {copied ? t('copied') : t('copy')}
                     </Button>
                 </div>
 
                 <div className="mt-6 text-center">
                     <Button variant="ghost" onClick={onClose} className="text-muted-foreground">
-                        Close
+                        {t('close')}
                     </Button>
                 </div>
             </div>

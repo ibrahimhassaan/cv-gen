@@ -21,8 +21,8 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-    title: "CV Gen - Create Stunning Resumes",
-    description: "AI-powered professional CV generator with premium aesthetics.",
+    title: "Resume Gen - Create Stunning Resumes",
+    description: "AI-powered professional resume generator with premium aesthetics.",
 };
 
 type Props = {

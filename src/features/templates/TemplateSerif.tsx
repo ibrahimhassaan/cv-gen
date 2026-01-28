@@ -143,10 +143,47 @@ export const TemplateSerif = ({ data }: { data: ResumeData }) => {
                     {skills.length > 0 && (
                         <section>
                             <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">{l.skills}</h3>
-                            <div className="space-y-2">
-                                {skills.map((skill, i) => (
-                                    <div key={i} className="text-sm text-gray-600 border-b border-gray-100 pb-1">
-                                        {skill}
+                            <div className="space-y-4">
+                                {skills.map((skill) => (
+                                    <div key={skill.id} className="space-y-1">
+                                        <div className="flex justify-between items-baseline mb-1">
+                                            <div className="text-sm font-medium text-gray-700">{skill.name}</div>
+                                            <div className="text-xs text-gray-400 italic">{skill.level}</div>
+                                        </div>
+                                        <div className="h-1 w-full bg-gray-100 rounded-full overflow-hidden">
+                                            <div
+                                                className="h-full rounded-full"
+                                                style={{
+                                                    width: skill.level === "Beginner" ? "25%" : skill.level === "Intermediate" ? "50%" : skill.level === "Advanced" ? "75%" : "100%",
+                                                    backgroundColor: themeColor
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+                    )}
+
+                    {data.languages && data.languages.length > 0 && (
+                        <section>
+                            <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">{labels?.languages || "Languages"}</h3>
+                            <div className="space-y-4">
+                                {data.languages.map((lang) => (
+                                    <div key={lang.id} className="space-y-1">
+                                        <div className="flex justify-between items-baseline mb-1">
+                                            <div className="text-sm font-medium text-gray-700">{lang.name}</div>
+                                            <div className="text-xs text-gray-400 italic">{lang.level}</div>
+                                        </div>
+                                        <div className="h-1 w-full bg-gray-100 rounded-full overflow-hidden">
+                                            <div
+                                                className="h-full rounded-full"
+                                                style={{
+                                                    width: lang.level === "Beginner" ? "25%" : lang.level === "Moderate" ? "50%" : lang.level === "Advanced" ? "75%" : "100%",
+                                                    backgroundColor: themeColor
+                                                }}
+                                            />
+                                        </div>
                                     </div>
                                 ))}
                             </div>

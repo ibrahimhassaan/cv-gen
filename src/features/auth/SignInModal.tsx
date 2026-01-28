@@ -63,7 +63,7 @@ export function SignInModal({ isOpen, onClose, onSuccess }: SignInModalProps) {
                         Sign in to continue
                     </h2>
                     <p className="text-muted-foreground">
-                        Sign in to download your CV and access your dashboard
+                        Sign in to download your resume and access your dashboard
                     </p>
                 </div>
 

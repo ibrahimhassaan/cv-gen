@@ -114,14 +114,14 @@ export function Navbar() {
                                         className="flex items-center gap-2 w-full px-4 py-2 text-sm text-muted-foreground hover:bg-primary/5 hover:text-primary transition-colors"
                                     >
                                         <LayoutDashboard className="w-4 h-4" />
-                                        Dashboard
+                                        {t('dashboard')}
                                     </Link>
                                     <button
                                         onClick={handleSignOut}
                                         className="flex items-center gap-2 w-full px-4 py-2 text-sm text-muted-foreground hover:bg-red-50 hover:text-red-500 transition-colors"
                                     >
                                         <LogOut className="w-4 h-4" />
-                                        Sign Out
+                                        {t('signOut')}
                                     </button>
                                 </div>
                             </div>

@@ -68,7 +68,12 @@ export function TemplateSelector() {
         education: [
             { id: "1", institution: tp('eduInstitution'), degree: tp('eduDegree'), field: tp('eduField'), year: tp('eduYear') }
         ],
-        skills: [tp('skill1'), tp('skill2'), tp('skill3'), tp('skill4')],
+        skills: [
+            { id: "1", name: tp('skill1'), level: "Expert" },
+            { id: "2", name: tp('skill2'), level: "Advanced" },
+            { id: "3", name: tp('skill3'), level: "Intermediate" },
+            { id: "4", name: tp('skill4'), level: "Beginner" }
+        ],
         projects: []
     };
 

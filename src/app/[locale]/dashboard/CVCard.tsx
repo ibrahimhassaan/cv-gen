@@ -21,6 +21,7 @@ import {
     DropdownMenuTrigger,
     DropdownMenuSeparator,
 } from "@/components/ui/DropdownMenu";
+import { useTranslations } from "next-intl";
 
 interface CVCardProps {
     resume: ResumeData;
@@ -40,6 +41,7 @@ export function CVCard({
     onRename,
 }: CVCardProps) {
     const TemplatePreview = getTemplate(resume.templateId).component;
+    const t = useTranslations('dashboardPage');
 
     return (
         <div className="flex flex-col gap-4">
@@ -58,7 +60,7 @@ export function CVCard({
                 >
                     <Button size="lg" className="rounded-full shadow-xl font-semibold bg-white text-gray-900 hover:bg-gray-50">
                         <Edit3 className="mr-2 h-4 w-4" />
-                        Edit Resume
+                        {t('editResume')}
                     </Button>
                 </Link>
             </div>
@@ -71,11 +73,11 @@ export function CVCard({
                             className="truncate text-lg font-bold text-gray-900"
                             title={resume.title || resume.personalInfo.fullName}
                         >
-                            {resume.title || "Untitled Resume"}
+                            {resume.title || t('untitled')}
                         </h3>
                         <p className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
                             <span className="h-2 w-2 rounded-full bg-green-500" />
-                            Edited {formatDistanceToNow(resume.lastModified, { addSuffix: true })}
+                            {t('edited')} {formatDistanceToNow(resume.lastModified, { addSuffix: true })}
                         </p>
                     </div>
 
@@ -92,11 +94,11 @@ export function CVCard({
                         <DropdownMenuContent align="end" className="w-48">
                             <DropdownMenuItem onClick={() => onRename(resume)}>
                                 <FileText className="mr-2 h-4 w-4" />
-                                Rename
+                                {t('rename')}
                             </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => onDuplicate(resume.id)}>
                                 <Copy className="mr-2 h-4 w-4" />
-                                Duplicate
+                                {t('duplicate')}
                             </DropdownMenuItem>
                             <DropdownMenuSeparator />
                             <DropdownMenuItem
@@ -104,7 +106,7 @@ export function CVCard({
                                 className="text-red-600 focus:text-red-600 focus:bg-red-50"
                             >
                                 <Trash2 className="mr-2 h-4 w-4" />
-                                Delete
+                                {t('delete')}
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
@@ -117,7 +119,7 @@ export function CVCard({
                         onClick={() => onDownload(resume)}
                     >
                         <Download className="h-4 w-4" />
-                        Download
+                        {t('download')}
                     </Button>
                     <Button
                         variant="outline"
@@ -125,7 +127,7 @@ export function CVCard({
                         onClick={() => onShare(resume)}
                     >
                         <Share2 className="h-4 w-4" />
-                        Share
+                        {t('share')}
                     </Button>
                 </div>
             </div>

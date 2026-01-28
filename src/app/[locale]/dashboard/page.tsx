@@ -15,8 +15,10 @@ import { RenameModal } from "@/components/RenameModal";
 import { CVCard } from "@/app/[locale]/dashboard/CVCard";
 import { CreateCVCard } from "@/app/[locale]/dashboard/CreateCVCard";
 import { CVCardSkeleton } from "@/app/[locale]/dashboard/CVCardSkeleton";
+import { useTranslations } from "next-intl";
 
 export default function DashboardPage() {
+    const t = useTranslations('dashboardPage');
     const { user, loading, signOut } = useAuth();
     const router = useRouter();
     const [resumes, setResumes] = useState<ResumeData[]>([]);
@@ -32,25 +34,33 @@ export default function DashboardPage() {
 
     // Trigger download when downloadData is set
     useEffect(() => {
-        const generatePdf = async () => {
+        const processDownload = async () => {
             if (downloadData && printTemplateRef.current) {
-                // Wait for render
-                await new Promise(resolve => setTimeout(resolve, 100));
-
-                const element = printTemplateRef.current;
-                const opt = {
-                    margin: 0,
-                    filename: `${downloadData.personalInfo.fullName || "Resume"}_CV.pdf`,
-                    image: { type: 'jpeg' as const, quality: 0.98 },
-                    html2canvas: { scale: 2, useCORS: true },
-                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
-                };
-
                 try {
-                    const html2pdf = (await import('html2pdf.js')).default;
-                    await html2pdf().set(opt).from(element).save();
-                } catch (e) {
-                    console.error("PDF generation failed", e);
+                    // Wait for render
+                    await new Promise(resolve => setTimeout(resolve, 100));
+
+                    const { toPng } = await import('html-to-image');
+                    const { jsPDF } = await import('jspdf');
+
+                    const element = printTemplateRef.current;
+                    const dataUrl = await toPng(element, { quality: 0.95, pixelRatio: 2 });
+
+                    const pdf = new jsPDF({
+                        orientation: 'portrait',
+                        unit: 'mm',
+                        format: 'a4'
+                    });
+
+                    const imgProps = pdf.getImageProperties(dataUrl);
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                    pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                    pdf.save(`${downloadData.personalInfo.fullName || "Resume"}_Resume.pdf`);
+
+                } catch (error) {
+                    console.error("PDF generation failed", error);
                 } finally {
                     setDownloadData(null);
                 }
@@ -58,7 +68,7 @@ export default function DashboardPage() {
         };
 
         if (downloadData) {
-            generatePdf();
+            processDownload();
         }
     }, [downloadData]);
 
@@ -107,13 +117,31 @@ export default function DashboardPage() {
         init();
     }, [user, loading, router]);
 
-    const handleGenerateLink = (resume: ResumeData) => {
-        const link = generateShareableLink(resume);
-        setShareData({ id: resume.id, link });
+    const handleGenerateLink = async (resume: ResumeData) => {
+        if (!user) return;
+
+        // Set expiration to 7 days from now
+        const expiresAt = Date.now() + 7 * 24 * 60 * 60 * 1000;
+        const updatedResume = {
+            ...resume,
+            shareConfig: { enabled: true, expiresAt }
+        };
+
+        try {
+            await saveResume(updatedResume, user.id);
+            // Update local state
+            setResumes(prev => prev.map(r => r.id === resume.id ? updatedResume : r));
+
+            const link = generateShareableLink(updatedResume);
+            setShareData({ id: resume.id, link });
+        } catch (error) {
+            console.error("Failed to update share config:", error);
+            alert(t('errorGenerateLink'));
+        }
     };
 
     const handleDelete = async (resumeId: string) => {
-        if (confirm("Are you sure you want to delete this resume?")) {
+        if (confirm(t('deleteConfirm'))) {
             if (user) {
                 await deleteResume(resumeId, user.id);
                 setResumes(prev => prev.filter(r => r.id !== resumeId));
@@ -128,7 +156,7 @@ export default function DashboardPage() {
                 setResumes(prev => [newResume, ...prev]);
             } catch (error) {
                 console.error("Failed to duplicate resume:", error);
-                alert("Failed to duplicate resume");
+                alert(t('errorDuplicate'));
             }
         }
     };
@@ -143,7 +171,7 @@ export default function DashboardPage() {
                 setRenameData(null);
             } catch (error) {
                 console.error("Failed to rename resume:", error);
-                alert("Failed to rename resume");
+                alert(t('errorRename'));
             }
         }
     };
@@ -185,37 +213,10 @@ export default function DashboardPage() {
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold font-display mb-2 text-gray-900">Your Dashboard</h1>
+                        <h1 className="text-3xl font-bold font-display mb-2 text-gray-900">{t('title')}</h1>
                         <p className="text-muted-foreground">
-                            Manage your resumes and create new ones
+                            {t('subtitle')}
                         </p>
-                    </div>
-                    <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-3 glass-card px-4 py-2 rounded-full bg-white/60">
-                            {user.user_metadata?.avatar_url ? (
-                                <img
-                                    src={user.user_metadata.avatar_url}
-                                    alt="Profile"
-                                    className="w-8 h-8 rounded-full"
-                                />
-                            ) : (
-                                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                                    <User className="w-4 h-4 text-primary" />
-                                </div>
-                            )}
-                            <span className="text-sm font-medium">
-                                {user.user_metadata?.full_name || user.email?.split("@")[0]}
-                            </span>
-                        </div>
-                        <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={handleSignOut}
-                            className="text-muted-foreground hover:text-red-500"
-                        >
-                            <LogOut className="w-4 h-4 mr-2" />
-                            Sign Out
-                        </Button>
                     </div>
                 </div>
 

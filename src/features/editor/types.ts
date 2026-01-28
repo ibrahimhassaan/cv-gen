@@ -3,6 +3,7 @@ export interface SectionLabels {
     experience?: string;
     education?: string;
     skills?: string;
+    languages?: string;
     projects?: string;
     present?: string; // "Present" for current jobs
 }
@@ -13,21 +14,38 @@ export interface ResumeData {
     lastModified: number; // Timestamp
     templateId: string;
     themeColor: string; // Hex code or tailwind color name
+    font?: string; // "sans", "serif", "mono"
     labels?: SectionLabels; // Section heading translations
+    shareConfig?: {
+        enabled: boolean;
+        expiresAt: number; // Timestamp
+    };
     personalInfo: {
         fullName: string;
+        title: string;
         email: string;
         phone: string;
-        link: string; // Portfolio/LinkedIn
-        title: string;
+        link: string; // Portfolio / LinkedIn
         summary: string;
-        photoUrl?: string; // Base64 string
+        photoUrl?: string; // Base64 or URL
     };
     experience: ExperienceItem[];
     education: EducationItem[];
-    skills: string[]; // Simple string array for MVP
+    languages?: LanguageItem[];
+    skills: SkillItem[];
     projects: ProjectItem[];
-    font?: string;
+}
+
+export interface SkillItem {
+    id: string;
+    name: string;
+    level: "Beginner" | "Intermediate" | "Advanced" | "Expert";
+}
+
+export interface LanguageItem {
+    id: string;
+    name: string;
+    level: "Beginner" | "Moderate" | "Advanced" | "Fluent";
 }
 
 export interface ExperienceItem {
@@ -57,32 +75,23 @@ export interface ProjectItem {
 
 export const initialResumeState: ResumeData = {
     id: "default",
-    title: "My Resume",
+    title: "",
     lastModified: Date.now(),
     templateId: "modern",
     themeColor: "#7c3aed", // Default Violet
     font: "sans",
     personalInfo: {
-        fullName: "John Doe",
-        email: "john@example.com",
-        phone: "+1 234 567 890",
-        link: "linkedin.com/in/johndoe",
-        title: "Software Engineer",
-        summary: "Passionate developer with expertise in building scalable web applications.",
+        fullName: "",
+        email: "",
+        phone: "",
+        link: "",
+        title: "",
+        summary: "",
     },
-    experience: [
-        {
-            id: "1",
-            company: "Tech Corp",
-            role: "Senior Developer",
-            startDate: "Jan 2020",
-            endDate: "Present",
-            current: true,
-            description: "Leading frontend development..."
-        }
-    ],
+    experience: [],
     education: [],
-    skills: ["React", "TypeScript", "Node.js"],
+    languages: [],
+    skills: [],
     projects: [],
 };
 
@@ -98,6 +107,8 @@ interface ResumeContextType {
     addEducation: () => void;
     updateEducation: (id: string, field: string, value: any) => void;
     removeEducation: (id: string) => void;
-    addSkill: (skill: string) => void;
-    removeSkill: (skill: string) => void;
+    addSkill: (skill: Omit<SkillItem, "id">) => void;
+    removeSkill: (id: string) => void;
+    addLanguage: (lang: Omit<LanguageItem, "id">) => void;
+    removeLanguage: (id: string) => void;
 }

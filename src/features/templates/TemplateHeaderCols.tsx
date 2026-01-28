@@ -136,9 +136,48 @@ export const TemplateHeaderCols = ({
                             {skills.length > 0 && (
                                 <section>
                                     <h2 className="text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1" style={{ color: themeColor }}>{l.skills}</h2>
-                                    <div className="flex flex-col gap-2">
-                                        {skills.map((skill, i) => (
-                                            <span key={i} className="text-sm text-slate-700">• {skill}</span>
+                                    <div className="space-y-3">
+                                        {skills.map((skill) => (
+                                            <div key={skill.id} className="space-y-1">
+                                                <div className="flex justify-between text-sm">
+                                                    <span>{skill.name}</span>
+                                                    <span className="text-slate-400 text-xs">{skill.level}</span>
+                                                </div>
+                                                <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
+                                                    <div
+                                                        className="h-full rounded-full"
+                                                        style={{
+                                                            width: skill.level === "Beginner" ? "25%" : skill.level === "Intermediate" ? "50%" : skill.level === "Advanced" ? "75%" : "100%",
+                                                            backgroundColor: themeColor
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+                            )}
+
+                            {data.languages && data.languages.length > 0 && (
+                                <section>
+                                    <h2 className="text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1" style={{ color: themeColor }}>{labels?.languages || "Languages"}</h2>
+                                    <div className="space-y-3">
+                                        {data.languages.map((lang) => (
+                                            <div key={lang.id} className="space-y-1">
+                                                <div className="flex justify-between text-sm">
+                                                    <span>{lang.name}</span>
+                                                    <span className="text-slate-400 text-xs">{lang.level}</span>
+                                                </div>
+                                                <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
+                                                    <div
+                                                        className="h-full rounded-full"
+                                                        style={{
+                                                            width: lang.level === "Beginner" ? "25%" : lang.level === "Moderate" ? "50%" : lang.level === "Advanced" ? "75%" : "100%",
+                                                            backgroundColor: themeColor
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
                                         ))}
                                     </div>
                                 </section>
@@ -201,9 +240,48 @@ export const TemplateHeaderCols = ({
                             {skills.length > 0 && (
                                 <section>
                                     <h2 className="text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1" style={{ color: themeColor }}>{l.skills}</h2>
-                                    <div className="flex flex-col gap-2">
-                                        {skills.map((skill, i) => (
-                                            <span key={i} className="text-sm text-slate-700">• {skill}</span>
+                                    <div className="space-y-3">
+                                        {skills.map((skill) => (
+                                            <div key={skill.id} className="space-y-1">
+                                                <div className="flex justify-between text-sm">
+                                                    <span>{skill.name}</span>
+                                                    <span className="text-slate-400 text-xs">{skill.level}</span>
+                                                </div>
+                                                <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
+                                                    <div
+                                                        className="h-full rounded-full"
+                                                        style={{
+                                                            width: skill.level === "Beginner" ? "25%" : skill.level === "Intermediate" ? "50%" : skill.level === "Advanced" ? "75%" : "100%",
+                                                            backgroundColor: themeColor
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </section>
+                            )}
+
+                            {data.languages && data.languages.length > 0 && (
+                                <section>
+                                    <h2 className="text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1" style={{ color: themeColor }}>{labels?.languages || "Languages"}</h2>
+                                    <div className="space-y-3">
+                                        {data.languages.map((lang) => (
+                                            <div key={lang.id} className="space-y-1">
+                                                <div className="flex justify-between text-sm">
+                                                    <span>{lang.name}</span>
+                                                    <span className="text-slate-400 text-xs">{lang.level}</span>
+                                                </div>
+                                                <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
+                                                    <div
+                                                        className="h-full rounded-full"
+                                                        style={{
+                                                            width: lang.level === "Beginner" ? "25%" : lang.level === "Moderate" ? "50%" : lang.level === "Advanced" ? "75%" : "100%",
+                                                            backgroundColor: themeColor
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
                                         ))}
                                     </div>
                                 </section>

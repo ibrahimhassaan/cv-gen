@@ -16,17 +16,18 @@ interface ResumeContextType {
     addEducation: () => void;
     updateEducation: (id: string, field: string, value: any) => void;
     removeEducation: (id: string) => void;
-    addSkill: (skill: string) => void;
-    removeSkill: (skill: string) => void;
+    addSkill: () => string;
+    updateSkill: (id: string, field: string, value: any) => void;
+    removeSkill: (id: string) => void;
+    addLanguage: () => string;
+    updateLanguage: (id: string, field: string, value: any) => void;
+    removeLanguage: (id: string) => void;
 }
 
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 
 export function ResumeProvider({ children }: { children: React.ReactNode }) {
     const [resumeData, setResumeData] = useState<ResumeData>(initialResumeState);
-    // State is managed by the consumer (BuilderPage) via initial load or effects
-    // We just provide the state container
-
 
     const setTemplate = (id: string) => {
         setResumeData(prev => ({ ...prev, templateId: id }));
@@ -79,8 +80,6 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
         }));
     };
 
-    // ... Similar handlers for Education and Projects (omitted for brevity, can generate on demand)
-
     const addEducation = () => {
         const newEdu: EducationItem = {
             id: crypto.randomUUID(),
@@ -111,12 +110,51 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
         }));
     };
 
-    const addSkill = (skill: string) => {
-        if (!skill.trim()) return;
-        setResumeData(prev => ({ ...prev, skills: [...prev.skills, skill] }));
+    const addSkill = () => {
+        const id = crypto.randomUUID();
+        setResumeData(prev => ({
+            ...prev,
+            skills: [...prev.skills, { id, name: "", level: "Intermediate" }]
+        }));
+        return id;
     };
-    const removeSkill = (skill: string) => {
-        setResumeData(prev => ({ ...prev, skills: prev.skills.filter(s => s !== skill) }));
+
+    const updateSkill = (id: string, field: string, value: any) => {
+        setResumeData((prev) => ({
+            ...prev,
+            skills: prev.skills.map((item) =>
+                item.id === id ? { ...item, [field]: value } : item
+            ),
+        }));
+    };
+
+    const removeSkill = (id: string) => {
+        setResumeData(prev => ({ ...prev, skills: prev.skills.filter(s => s.id !== id) }));
+    };
+
+    const addLanguage = () => {
+        const id = crypto.randomUUID();
+        setResumeData(prev => ({
+            ...prev,
+            languages: [...(prev.languages || []), { id, name: "", level: "Moderate" }]
+        }));
+        return id;
+    };
+
+    const updateLanguage = (id: string, field: string, value: any) => {
+        setResumeData((prev) => ({
+            ...prev,
+            languages: (prev.languages || []).map((item) =>
+                item.id === id ? { ...item, [field]: value } : item
+            ),
+        }));
+    };
+
+    const removeLanguage = (id: string) => {
+        setResumeData(prev => ({
+            ...prev,
+            languages: (prev.languages || []).filter(s => s.id !== id)
+        }));
     };
 
     return (
@@ -132,7 +170,11 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
                 updateEducation,
                 removeEducation,
                 addSkill,
+                updateSkill,
                 removeSkill,
+                addLanguage,
+                updateLanguage,
+                removeLanguage,
                 setTemplate,
                 setThemeColor,
                 setFont,

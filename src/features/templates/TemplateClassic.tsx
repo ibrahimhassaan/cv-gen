@@ -100,11 +100,50 @@ export const TemplateClassic = ({ data }: { data: ResumeData }) => {
                 {skills.length > 0 && (
                     <section>
                         <h2 className="text-lg font-bold uppercase border-b mb-4 font-sans tracking-wide" style={{ color: themeColor, borderColor: themeColor }}>{l.skills}</h2>
-                        <ul className="list-disc list-inside text-sm leading-relaxed text-gray-800 columns-1">
-                            {skills.map((skill, i) => (
-                                <li key={i}>{skill}</li>
+                        <div className="space-y-3">
+                            {skills.map((skill) => (
+                                <div key={skill.id} className="space-y-1">
+                                    <div className="flex justify-between items-baseline font-sans">
+                                        <span className="font-bold text-gray-800">{skill.name}</span>
+                                        <span className="text-sm text-gray-500 italic">{skill.level}</span>
+                                    </div>
+                                    <div className="h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                                        <div
+                                            className="h-full rounded-full"
+                                            style={{
+                                                width: skill.level === "Beginner" ? "25%" : skill.level === "Intermediate" ? "50%" : skill.level === "Advanced" ? "75%" : "100%",
+                                                backgroundColor: themeColor
+                                            }}
+                                        />
+                                    </div>
+                                </div>
                             ))}
-                        </ul>
+                        </div>
+                    </section>
+                )}
+
+                {data.languages && data.languages.length > 0 && (
+                    <section className="mt-8">
+                        <h2 className="text-lg font-bold uppercase border-b mb-4 font-sans tracking-wide" style={{ color: themeColor, borderColor: themeColor }}>{labels?.languages || "Languages"}</h2>
+                        <div className="space-y-3">
+                            {data.languages.map((lang) => (
+                                <div key={lang.id} className="space-y-1">
+                                    <div className="flex justify-between items-baseline font-sans">
+                                        <span className="font-bold text-gray-800">{lang.name}</span>
+                                        <span className="text-sm text-gray-500 italic">{lang.level}</span>
+                                    </div>
+                                    <div className="h-1.5 w-full bg-gray-200 rounded-full overflow-hidden">
+                                        <div
+                                            className="h-full rounded-full"
+                                            style={{
+                                                width: lang.level === "Beginner" ? "25%" : lang.level === "Moderate" ? "50%" : lang.level === "Advanced" ? "75%" : "100%",
+                                                backgroundColor: themeColor
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                     </section>
                 )}
             </div>

@@ -138,11 +138,51 @@ export const TemplateBold = ({ data }: { data: ResumeData }) => {
                             <h2 className="flex items-center gap-3 text-lg font-bold uppercase tracking-wider mb-6" style={{ color: themeColor }}>
                                 {l.skills}
                             </h2>
-                            <div className="flex flex-wrap gap-2">
-                                {skills.map((skill, i) => (
-                                    <span key={i} className="px-3 py-1.5 bg-white border-2 text-sm font-bold text-slate-700 rounded shadow-sm" style={{ borderColor: themeColor }}>
-                                        {skill}
-                                    </span>
+                            <div className="flex flex-col gap-3">
+                                {skills.map((skill) => (
+                                    <div key={skill.id} className="p-3 bg-white border-2 rounded shadow-sm" style={{ borderColor: themeColor }}>
+                                        <div className="flex justify-between items-center mb-1.5">
+                                            <span className="text-sm font-bold text-slate-700">{skill.name}</span>
+                                            <span className="text-xs font-medium text-slate-400">{skill.level}</span>
+                                        </div>
+                                        <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                                            <div
+                                                className="h-full rounded-full"
+                                                style={{
+                                                    width: skill.level === "Beginner" ? "25%" : skill.level === "Intermediate" ? "50%" : skill.level === "Advanced" ? "75%" : "100%",
+                                                    backgroundColor: themeColor
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+                    )}
+
+                    {data.languages && data.languages.length > 0 && (
+                        <section>
+                            <h2 className="flex items-center gap-3 text-lg font-bold uppercase tracking-wider mb-6" style={{ color: themeColor }}>
+                                <Globe className="w-5 h-5" />
+                                {labels?.languages || "Languages"}
+                            </h2>
+                            <div className="flex flex-col gap-3">
+                                {data.languages.map((lang) => (
+                                    <div key={lang.id} className="p-3 bg-white border-2 rounded shadow-sm" style={{ borderColor: themeColor }}>
+                                        <div className="flex justify-between items-center mb-1.5">
+                                            <span className="text-sm font-bold text-slate-700">{lang.name}</span>
+                                            <span className="text-xs font-medium text-slate-400">{lang.level}</span>
+                                        </div>
+                                        <div className="h-2 w-full bg-slate-100 rounded-full overflow-hidden">
+                                            <div
+                                                className="h-full rounded-full"
+                                                style={{
+                                                    width: lang.level === "Beginner" ? "25%" : lang.level === "Moderate" ? "50%" : lang.level === "Advanced" ? "75%" : "100%",
+                                                    backgroundColor: themeColor
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
                                 ))}
                             </div>
                         </section>

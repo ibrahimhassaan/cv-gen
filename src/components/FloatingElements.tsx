@@ -31,7 +31,7 @@ export function FloatingElements() {
                 style={{ animationDelay: '-3s' }}
             >
                 <Download className="w-4 h-4 text-cyan-500" />
-                <span className="text-gray-600 text-sm">3 CVs generated today</span>
+                <span className="text-gray-600 text-sm">3 resumes generated today</span>
             </div>
 
             {/* Rating badge */}

@@ -1,35 +1,61 @@
-import { createClient } from "@/lib/supabase";
 import * as localStore from "@/lib/resumeStorage";
 import { ResumeData } from "@/features/editor/types";
 
+// Helper to ensure all items have IDs
+function ensureResumeIds(resume: ResumeData): ResumeData {
+    const newData = { ...resume };
+
+    if (newData.skills) {
+        newData.skills = newData.skills.map((s: any) => {
+            if (typeof s === 'string') return { id: crypto.randomUUID(), name: s, level: "Intermediate" };
+            return { ...s, id: s.id || crypto.randomUUID() };
+        });
+    }
+
+    if (newData.languages) {
+        newData.languages = newData.languages.map((l: any) => ({ ...l, id: l.id || crypto.randomUUID() }));
+    }
+
+    if (newData.experience) {
+        newData.experience = newData.experience.map(e => ({ ...e, id: e.id || crypto.randomUUID() }));
+    }
+
+    if (newData.education) {
+        newData.education = newData.education.map(e => ({ ...e, id: e.id || crypto.randomUUID() }));
+    }
+
+    if (newData.projects) {
+        newData.projects = newData.projects.map(p => ({ ...p, id: p.id || crypto.randomUUID() }));
+    }
+
+    return newData;
+}
 
 
 /**
  * Fetch all resumes for the user.
- * If userId is provided, fetch from Supabase.
+ * If userId is provided, fetch from API route.
  * Otherwise, fetch from localStorage.
  */
 export async function getResumes(userId?: string): Promise<ResumeData[]> {
     if (!userId) {
         // Authenticated user not found, fallback to local storage
-        // We use a predefined key for anonymous users or just load all
-        return localStore.loadAllResumes("anonymous");
+        const local = localStore.loadAllResumes("anonymous");
+        return local.map(ensureResumeIds);
     }
 
-    const supabase = createClient();
+    const response = await fetch("/api/resumes", {
+        method: "GET",
+        credentials: "include",
+    });
 
-    const { data, error } = await supabase
-        .from("resumes")
-        .select("data")
-        .eq("user_id", userId)
-        .order("updated_at", { ascending: false });
-
-    if (error) {
-        console.error("Error fetching resumes:", error);
+    if (!response.ok) {
+        console.error("Error fetching resumes:", response.statusText);
         return [];
     }
 
-    return data.map((row) => row.data as ResumeData);
+    const resumes: ResumeData[] = await response.json();
+    return resumes.map(ensureResumeIds);
 }
 
 /**
@@ -37,108 +63,68 @@ export async function getResumes(userId?: string): Promise<ResumeData[]> {
  */
 export async function getResume(resumeId: string, userId?: string): Promise<ResumeData | null> {
     if (!userId) {
-        return localStore.loadResume("anonymous", resumeId);
+        const local = localStore.loadResume("anonymous", resumeId);
+        return local ? ensureResumeIds(local) : null;
     }
 
-    const supabase = createClient();
+    const response = await fetch(`/api/resumes/${resumeId}`, {
+        method: "GET",
+        credentials: "include",
+    });
 
-    const { data, error } = await supabase
-        .from("resumes")
-        .select("data")
-        .eq("id", resumeId)
-        .eq("user_id", userId)
-        .single();
-
-    if (error) {
-        // It might be a local resume (not yet synced) or just doesn't exist.
-        // Or maybe it's a shared resume?
-        console.error("Error fetching resume:", error);
+    if (!response.ok) {
+        console.error("Error fetching resume:", response.statusText);
         return null;
     }
 
-    return data.data as ResumeData;
+    const resume: ResumeData = await response.json();
+    return ensureResumeIds(resume);
 }
 
 /**
  * Fetch a public resume by ID (for shared view).
  */
-/**
- * Fetch a public resume by ID (for shared view).
- * Uses Service Role key to bypass RLS.
- */
 export async function getPublicResume(resumeId: string): Promise<ResumeData | null> {
-    // Dynamically import to safely use admin client (server-side only)
-    const { createAdminClient } = await import("./supabase");
+    const response = await fetch(`/api/resumes/public/${resumeId}`, {
+        method: "GET",
+    });
 
-    // Check if we have the service key (only on server)
-    if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
-        console.error("Service Role Key is missing. Cannot fetch public resume.");
+    if (!response.ok) {
+        console.error("Error fetching public resume:", response.statusText);
         return null;
     }
 
-    const supabase = createAdminClient();
-
-    const { data, error } = await supabase
-        .from("resumes")
-        .select("data")
-        .eq("id", resumeId);
-
-    if (error || !data || data.length === 0) {
-        if (error) console.error("Error fetching public resume:", error);
-        return null;
-    }
-
-    return data[0].data as ResumeData;
+    const resume: ResumeData = await response.json();
+    return resume;
 }
 
 /**
  * Save a resume.
- * If userId is provided, save to Supabase.
- * Always save to localStorage as a backup/offline cache (optional, strictly following hybrid for now).
+ * If userId is provided, save via API route.
+ * Otherwise, save to localStorage.
  */
 export async function saveResume(resume: ResumeData, userId?: string): Promise<ResumeData> {
     if (!userId) {
         return localStore.saveResume("anonymous", resume);
     }
 
-    // Ensure we have a valid UUID
-    const resumeToSave = { ...resume };
+    const response = await fetch("/api/resumes", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(resume),
+    });
 
-    if (!resumeToSave.id || resumeToSave.id === "default") {
-        resumeToSave.id = crypto.randomUUID();
-        // Also update local storage so UI updates? 
-        // Or just let the caller handle it.
-    }
-
-    // Also update timestamp
-    resumeToSave.lastModified = Date.now();
-
-    // Prepare payload
-    const payload = {
-        id: resumeToSave.id,
-        user_id: userId,
-        title: resumeToSave.title || "Untitled Resume",
-        data: resumeToSave,
-        updated_at: new Date().toISOString(),
-    };
-
-    const supabase = createClient();
-
-    const { error } = await supabase
-        .from("resumes")
-        .upsert(
-            payload,
-            { onConflict: "id" }
-        )
-        .select()
-        .single();
-
-    if (error) {
+    if (!response.ok) {
+        const error = await response.json();
         console.error("Error saving resume:", error);
-        throw error;
+        throw new Error(error.error || "Failed to save resume");
     }
 
-    return resumeToSave;
+    const savedResume: ResumeData = await response.json();
+    return savedResume;
 }
 
 /**
@@ -169,12 +155,15 @@ export async function deleteResume(resumeId: string, userId?: string): Promise<v
         return localStore.deleteResume("anonymous", resumeId);
     }
 
-    const supabase = createClient();
-    const { error } = await supabase.from("resumes").delete().eq("id", resumeId);
+    const response = await fetch(`/api/resumes/${resumeId}`, {
+        method: "DELETE",
+        credentials: "include",
+    });
 
-    if (error) {
+    if (!response.ok) {
+        const error = await response.json();
         console.error("Error deleting resume:", error);
-        throw error;
+        throw new Error(error.error || "Failed to delete resume");
     }
 }
 
@@ -189,16 +178,9 @@ export async function syncLocalToRemote(userId: string): Promise<void> {
 
     // Upload each local resume
     for (const resume of localResumes) {
-        // We might want to check if it already exists or just overwrite?
-        // Upsert is safest.
-
-        // Ensure it has a valid UUID (local storage might have weird ids?)
-        // The type says id is string.
-
         await saveResume(resume, userId);
     }
 
     // Optionally clear local storage after sync
     // localStorage.removeItem("cv_gen_resumes_anonymous");
-    // Or keep them? Let's keep them for now, maybe prompt user to clear later.
 }

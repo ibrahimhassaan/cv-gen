@@ -119,14 +119,14 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Why a Great CV Matters */}
+            {/* Why a Great Resume Matters */}
             <section className="relative z-10 container mx-auto px-6 py-24">
                 <div className="max-w-4xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-display font-bold text-center mb-6">
-                        {t('whyCvMatters.title')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">{t('whyCvMatters.titleHighlight')}</span>
+                        {t('whyResumeMatters.title')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">{t('whyResumeMatters.titleHighlight')}</span>
                     </h2>
                     <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-                        {t('whyCvMatters.subtitle')}
+                        {t('whyResumeMatters.subtitle')}
                     </p>
 
                     <div className="grid md:grid-cols-4 gap-8">
@@ -134,29 +134,29 @@ export default function Home() {
                             <div className="w-12 h-12 bg-orange-100 rounded-2xl flex items-center justify-center text-orange-600 mb-6 group-hover:scale-110 transition-transform">
                                 <Timer className="w-6 h-6" />
                             </div>
-                            <h3 className="text-lg font-bold mb-2">{t('whyCvMatters.sixSeconds.title')}</h3>
-                            <p className="text-muted-foreground text-sm">{t('whyCvMatters.sixSeconds.description')}</p>
+                            <h3 className="text-lg font-bold mb-2">{t('whyResumeMatters.sixSeconds.title')}</h3>
+                            <p className="text-muted-foreground text-sm">{t('whyResumeMatters.sixSeconds.description')}</p>
                         </div>
                         <div className="glass-card p-6 rounded-xl hover:shadow-lg transition-shadow">
                             <div className="w-12 h-12 bg-blue-100 rounded-2xl flex items-center justify-center text-blue-600 mb-6 group-hover:scale-110 transition-transform">
                                 <Bot className="w-6 h-6" />
                             </div>
-                            <h3 className="text-lg font-bold mb-2">{t('whyCvMatters.beatAts.title')}</h3>
-                            <p className="text-muted-foreground text-sm">{t('whyCvMatters.beatAts.description')}</p>
+                            <h3 className="text-lg font-bold mb-2">{t('whyResumeMatters.beatAts.title')}</h3>
+                            <p className="text-muted-foreground text-sm">{t('whyResumeMatters.beatAts.description')}</p>
                         </div>
                         <div className="glass-card p-6 rounded-xl hover:shadow-lg transition-shadow">
                             <div className="w-12 h-12 bg-purple-100 rounded-2xl flex items-center justify-center text-purple-600 mb-6 group-hover:scale-110 transition-transform">
                                 <Trophy className="w-6 h-6" />
                             </div>
-                            <h3 className="text-lg font-bold mb-2">{t('whyCvMatters.standOut.title')}</h3>
-                            <p className="text-muted-foreground text-sm">{t('whyCvMatters.standOut.description')}</p>
+                            <h3 className="text-lg font-bold mb-2">{t('whyResumeMatters.standOut.title')}</h3>
+                            <p className="text-muted-foreground text-sm">{t('whyResumeMatters.standOut.description')}</p>
                         </div>
                         <div className="glass-card p-6 rounded-xl hover:shadow-lg transition-shadow">
                             <div className="w-12 h-12 bg-green-100 rounded-2xl flex items-center justify-center text-green-600 mb-6 group-hover:scale-110 transition-transform">
                                 <TrendingUp className="w-6 h-6" />
                             </div>
-                            <h3 className="text-lg font-bold mb-2">{t('whyCvMatters.higherSalary.title')}</h3>
-                            <p className="text-muted-foreground text-sm">{t('whyCvMatters.higherSalary.description')}</p>
+                            <h3 className="text-lg font-bold mb-2">{t('whyResumeMatters.higherSalary.title')}</h3>
+                            <p className="text-muted-foreground text-sm">{t('whyResumeMatters.higherSalary.description')}</p>
                         </div>
                     </div>
                 </div>

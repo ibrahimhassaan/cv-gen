@@ -9,13 +9,78 @@ import { getTemplate } from "@/features/templates/registry";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Download, Share2, LayoutTemplate, RotateCcw, Loader2 } from "lucide-react";
-import { useReactToPrint } from "react-to-print";
 import { GradientBlobs } from "@/components/GradientBlobs";
 import { useTranslations } from "next-intl";
 import { useAuth, SignInModal } from "@/features/auth";
 import { setPendingAction, generateShareableLink } from "@/lib/resumeStorage";
 import { saveResume, getResume } from "@/lib/resumeService";
 import { ShareModal } from "@/components/ShareModal";
+
+interface PreviewWrapperProps {
+    view: "editor" | "templates";
+    resumeData: any;
+    templateRef: React.RefObject<HTMLDivElement | null>;
+    TemplateComponent: any;
+}
+
+function PreviewWrapper({
+    view,
+    resumeData,
+    templateRef,
+    TemplateComponent
+}: PreviewWrapperProps) {
+    const [scale, setScale] = useState(0.55);
+    const [height, setHeight] = useState(0);
+
+    // Calculate scale on resize
+    useEffect(() => {
+        const handleResize = () => {
+            const width = window.innerWidth;
+            if (view === "editor") {
+                if (width >= 1536) setScale(0.75);
+                else if (width >= 1280) setScale(0.65);
+                else setScale(0.55);
+            } else {
+                if (width >= 1536) setScale(0.85);
+                else if (width >= 1280) setScale(0.75);
+                else setScale(0.65);
+            }
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [view]);
+
+    // Measure height
+    useEffect(() => {
+        const element = templateRef.current;
+        if (!element) return;
+
+        const observer = new ResizeObserver((entries) => {
+            for (const entry of entries) {
+                setHeight(entry.contentRect.height);
+            }
+        });
+
+        observer.observe(element);
+        return () => observer.disconnect();
+    }, [templateRef, resumeData]);
+
+    return (
+        <div
+            style={{
+                transform: `scale(${scale})`,
+                marginBottom: `-${height * (1 - scale)}px`
+            }}
+            className="origin-top transition-all duration-500 shadow-2xl h-fit rounded-[2px] ring-1 ring-black/5 mb-8"
+        >
+            <div ref={templateRef} className="w-[210mm] bg-white shadow-2xl min-h-[297mm]">
+                <TemplateComponent data={resumeData} />
+            </div>
+        </div>
+    );
+}
 
 function BuilderContent() {
     const { resumeData, setResumeData } = useResume();
@@ -35,7 +100,7 @@ function BuilderContent() {
 
     // ... (existing code)
 
-    // Handle download click using html2pdf
+    // Handle download click using html-to-image and jsPDF
     const handleDownloadClick = async () => {
         setIsDownloading(true);
         try {
@@ -44,18 +109,28 @@ function BuilderContent() {
                 await saveResume(resumeData, user.id);
 
                 if (templateRef.current) {
-                    const element = templateRef.current;
-                    const opt = {
-                        margin: 0,
-                        filename: `${resumeData.personalInfo.fullName || "Resume"}_CV.pdf`,
-                        image: { type: 'jpeg' as const, quality: 0.98 },
-                        html2canvas: { scale: 2, useCORS: true },
-                        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const }
-                    };
+                    // Check if we need to dynamic import to avoid SSR issues
+                    const { toPng } = await import('html-to-image');
+                    const { jsPDF } = await import('jspdf');
 
-                    // Dynamic import for html2pdf
-                    const html2pdf = (await import('html2pdf.js')).default;
-                    await html2pdf().set(opt).from(element).save();
+                    const element = templateRef.current;
+
+                    // Generate high-quality image from the element
+                    // pixelRatio 2 ensures good quality for print
+                    const dataUrl = await toPng(element, { quality: 0.95, pixelRatio: 2 });
+
+                    const pdf = new jsPDF({
+                        orientation: 'portrait',
+                        unit: 'mm',
+                        format: 'a4'
+                    });
+
+                    const imgProps = pdf.getImageProperties(dataUrl);
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                    pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                    pdf.save(`${resumeData.personalInfo.fullName || "Resume"}_Resume.pdf`);
                 }
             } else {
                 // Show sign in modal and set pending action
@@ -209,16 +284,7 @@ function BuilderContent() {
 
                         {/* Preview Area */}
                         <div className="w-full flex justify-center px-8 py-4 flex-grow overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-track-transparent">
-                            <div className={cn(
-                                "origin-top transform transition-transform duration-500 shadow-2xl h-fit rounded-[2px] ring-1 ring-black/5 mb-8",
-                                view === "editor"
-                                    ? "scale-[0.55] xl:scale-[0.65] 2xl:scale-[0.75]"
-                                    : "scale-[0.65] xl:scale-[0.75] 2xl:scale-[0.85]"
-                            )}>
-                                <div ref={templateRef} className="w-[210mm] bg-white shadow-2xl">
-                                    <TemplateComponent data={resumeData} />
-                                </div>
-                            </div>
+                            <PreviewWrapper view={view} resumeData={resumeData} templateRef={templateRef} TemplateComponent={TemplateComponent} />
                         </div>
                     </div>
                 </div>

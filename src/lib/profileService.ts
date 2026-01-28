@@ -1,7 +1,3 @@
-import { createClient } from "@/lib/supabase";
-
-const supabase = createClient();
-
 export interface UserProfile {
     id: string;
     full_name: string;
@@ -11,26 +7,31 @@ export interface UserProfile {
 }
 
 export async function getUserProfile(userId: string): Promise<UserProfile | null> {
-    const { data, error } = await supabase
-        .from("profiles")
-        .select("*")
-        .eq("id", userId);
+    const response = await fetch("/api/profile", {
+        method: "GET",
+        credentials: "include",
+    });
 
-    if (error) {
-        console.error("Error fetching profile:", error);
+    if (!response.ok) {
+        console.error("Error fetching profile:", response.statusText);
         return null;
     }
 
-    return (data && data.length > 0) ? (data[0] as UserProfile) : null;
+    const profile: UserProfile | null = await response.json();
+    return profile;
 }
 
 export async function updateUserLanguage(userId: string, language: string): Promise<void> {
-    const { error } = await supabase
-        .from("profiles")
-        .update({ preferred_language: language, updated_at: new Date().toISOString() })
-        .eq("id", userId);
+    const response = await fetch("/api/profile", {
+        method: "PATCH",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ preferred_language: language }),
+    });
 
-    if (error) {
-        console.error("Error updating language preference:", error);
+    if (!response.ok) {
+        console.error("Error updating language preference:", response.statusText);
     }
 }

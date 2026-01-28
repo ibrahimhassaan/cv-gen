@@ -19,6 +19,7 @@ export function RenameModal({
     onRename,
     currentTitle,
 }: RenameModalProps) {
+    const t = useTranslations('modals.rename');
     const [title, setTitle] = useState(currentTitle);
     const [loading, setLoading] = useState(false);
 
@@ -58,14 +59,14 @@ export function RenameModal({
                     <X className="h-5 w-5 text-gray-500" />
                 </button>
 
-                <h2 className="mb-4 text-2xl font-bold text-gray-900 font-display">Rename Resume</h2>
+                <h2 className="mb-4 text-2xl font-bold text-gray-900 font-display">{t('title')}</h2>
 
                 <form onSubmit={handleSubmit}>
                     <div className="mb-6">
                         <Input
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            placeholder="Enter resume name"
+                            placeholder={t('placeholder')}
                             className="bg-gray-50/50 border-gray-200 text-lg"
                             autoFocus
                         />
@@ -78,16 +79,16 @@ export function RenameModal({
                             onClick={onClose}
                             disabled={loading}
                         >
-                            Cancel
+                            {t('cancel')}
                         </Button>
                         <Button type="submit" disabled={loading || !title.trim()}>
                             {loading ? (
                                 <span className="flex items-center gap-2">
                                     <span className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                                    Saving...
+                                    {t('saving')}
                                 </span>
                             ) : (
-                                "Save Changes"
+                                t('save')
                             )}
                         </Button>
                     </div>

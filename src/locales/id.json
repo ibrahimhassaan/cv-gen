@@ -6,15 +6,16 @@
         "dashboard": "Dasbor",
         "login": "Masuk",
         "getStarted": "Mulai Sekarang",
-        "brandName": "CV Gen"
+        "brandName": "Resume Gen",
+        "signOut": "Keluar"
     },
     "home": {
         "badge": "Pembuat Resume Berbasis AI",
         "title": "Buat Resume Sempurna",
         "titleHighlight": "Dalam Hitungan Detik",
-        "subtitle": "Buat resume profesional yang lolos ATS dengan template premium kami. Gunakan AI untuk mengekstrak data dari CV lama atau buat dari awal.",
+        "subtitle": "Buat resume profesional yang lolos ATS dengan template premium kami. Gunakan AI untuk mengekstrak data dari resume lama atau buat dari awal.",
         "ctaPrimary": "Mulai Gratis",
-        "ctaSecondary": "Unggah CV Anda →"
+        "ctaSecondary": "memperbaiki resume saya →"
     },
     "features": {
         "aiParsing": {
@@ -38,15 +39,15 @@
         },
         "enterDetails": {
             "title": "Isi Detail",
-            "description": "Isi manual atau impor otomatis dari CV yang ada."
+            "description": "Isi manual atau impor otomatis dari resume yang ada."
         },
         "downloadPdf": {
             "title": "Unduh PDF",
             "description": "Dapatkan resume Anda yang sudah rapi secara instan."
         }
     },
-    "whyCvMatters": {
-        "title": "Mengapa CV yang Bagus",
+    "whyResumeMatters": {
+        "title": "Mengapa Resume yang Bagus",
         "titleHighlight": "Penting",
         "subtitle": "Resume Anda sering kali menjadi kesan pertama yang Anda berikan kepada calon pemberi kerja. Inilah mengapa penting untuk membuatnya dengan benar.",
         "sixSeconds": {
@@ -68,9 +69,9 @@
     },
     "faq": {
         "title": "Pertanyaan yang Sering Diajukan",
-        "subtitle": "Semua yang perlu Anda ketahui tentang CV Gen",
+        "subtitle": "Semua yang perlu Anda ketahui tentang Resume Gen",
         "q1": {
-            "question": "Apakah CV Gen benar-benar gratis?",
+            "question": "Apakah Resume Gen benar-benar gratis?",
             "answer": "Ya! Anda dapat membuat dan mengunduh resume sepenuhnya gratis. Kami menawarkan template dan fitur premium bagi pengguna yang menginginkan opsi kustomisasi ekstra."
         },
         "q2": {
@@ -92,12 +93,12 @@
     },
     "cta": {
         "title": "Siap Mendapatkan Pekerjaan Impian",
-        "subtitle": "Bergabunglah dengan ribuan pencari kerja yang telah membuat resume menakjubkan dengan CV Gen. Hanya butuh beberapa menit.",
+        "subtitle": "Bergabunglah dengan ribuan pencari kerja yang telah membuat resume menakjubkan dengan Resume Gen. Hanya butuh beberapa menit.",
         "button": "Buat Resume Anda Sekarang",
         "trustSignals": "✓ Gratis digunakan · ✓ Tidak perlu akun · ✓ Unduh langsung"
     },
     "footer": {
-        "copyright": "© 2026 CV Gen. Raih masa depan Anda.",
+        "copyright": "© 2026 Resume Gen. Raih masa depan Anda.",
         "privacy": "Privasi",
         "terms": "Ketentuan",
         "contact": "Kontak"
@@ -167,9 +168,24 @@
         },
         "skillsForm": {
             "addSkills": "Tambah Keahlian",
-            "skillPlaceholder": "contoh: JavaScript, React, System Design",
+            "skillName": "Nama Keahlian",
+            "skillPlaceholder": "Nama",
             "noSkills": "Belum ada keahlian ditambahkan."
-        }
+        },
+        "languagesForm": {
+            "addLanguage": "Tambah Bahasa",
+            "languageName": "Bahasa",
+            "languagePlaceholder": "contoh: Indonesia",
+            "level": "Tingkat Kemahiran",
+            "noLanguages": "Belum ada bahasa ditambahkan.",
+            "levels": {
+                "Beginner": "Pemula",
+                "Moderate": "Menengah",
+                "Advanced": "Lanjutan",
+                "Fluent": "Fasih"
+            }
+        },
+        "languages": "Bahasa"
     },
     "notFound": {
         "title": "Halaman Tidak Ditemukan",
@@ -218,5 +234,47 @@
         "labelSkills": "Keahlian",
         "labelProjects": "Proyek",
         "labelPresent": "Sekarang"
+    },
+    "dashboardPage": {
+        "title": "Dasbor Anda",
+        "subtitle": "Kelola resume Anda dan buat yang baru",
+        "createNew": "Buat Resume Baru",
+        "createNewSubtitle": "Mulai dari awal dengan salah satu template profesional kami",
+        "untitled": "Resume Tanpa Judul",
+        "edited": "Diedit",
+        "editResume": "Edit Resume",
+        "rename": "Ganti Nama",
+        "duplicate": "Duplikasi",
+        "delete": "Hapus",
+        "download": "Unduh",
+        "share": "Bagikan",
+        "deleteConfirm": "Apakah Anda yakin ingin menghapus resume ini?",
+        "errorGenerateLink": "Gagal membuat tautan",
+        "errorDuplicate": "Gagal menduplikasi resume",
+        "errorRename": "Gagal mengganti nama resume"
+    },
+    "view": {
+        "notFoundTitle": "Resume Tidak Ditemukan",
+        "notFoundMessage": "Resume yang Anda cari tidak ada atau tidak tersedia.",
+        "createYourOwn": "Buat Resume Anda Sendiri",
+        "expiredTitle": "Tautan Kadaluarsa",
+        "expiredMessage": "Tautan resume yang dibagikan ini telah kadaluarsa.",
+        "builtWith": "Dibuat dengan"
+    },
+    "modals": {
+        "rename": {
+            "title": "Ganti Nama Resume",
+            "placeholder": "Masukkan nama resume",
+            "cancel": "Batal",
+            "saving": "Menyimpan...",
+            "save": "Simpan Perubahan"
+        },
+        "share": {
+            "title": "Bagikan Resume Anda",
+            "description": "Siapa saja dengan tautan ini dapat melihat resume Anda.",
+            "copied": "Disalin",
+            "copy": "Salin",
+            "close": "Tutup"
+        }
     }
 }

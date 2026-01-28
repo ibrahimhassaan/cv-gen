@@ -80,9 +80,46 @@ export const TemplateSidebar = ({
             {skills.length > 0 && (
                 <section>
                     <h3 className={cn("uppercase tracking-widest text-sm font-bold mb-4 border-b pb-1 opacity-80", borderClass)}>{l.skills}</h3>
-                    <div className="flex flex-wrap gap-2">
-                        {skills.map((skill, i) => (
-                            <span key={i} className="text-sm block w-full">• {skill}</span>
+                    <div className="space-y-3">
+                        {skills.map((skill) => (
+                            <div key={skill.id}>
+                                <div className="flex justify-between text-sm mb-0.5">
+                                    <span>{skill.name}</span>
+                                    <span className="opacity-50 text-xs">{skill.level}</span>
+                                </div>
+                                <div className={cn("h-1 w-full rounded-full opacity-50", featureThemeBg ? "bg-white/20" : "bg-slate-200")}>
+                                    <div
+                                        className={cn("h-full rounded-full", featureThemeBg ? "bg-white" : "bg-slate-600")}
+                                        style={{
+                                            width: skill.level === "Beginner" ? "25%" : skill.level === "Intermediate" ? "50%" : skill.level === "Advanced" ? "75%" : "100%",
+                                        }}
+                                    />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+            )}
+
+            {data.languages && data.languages.length > 0 && (
+                <section>
+                    <h3 className={cn("uppercase tracking-widest text-sm font-bold mb-4 border-b pb-1 opacity-80", borderClass)}>{labels?.languages || "Languages"}</h3>
+                    <div className="space-y-3">
+                        {data.languages.map((lang) => (
+                            <div key={lang.id}>
+                                <div className="flex justify-between text-sm mb-0.5">
+                                    <span>{lang.name}</span>
+                                    <span className="opacity-50 text-xs">{lang.level}</span>
+                                </div>
+                                <div className={cn("h-1 w-full rounded-full opacity-50", featureThemeBg ? "bg-white/20" : "bg-slate-200")}>
+                                    <div
+                                        className={cn("h-full rounded-full", featureThemeBg ? "bg-white" : "bg-slate-600")}
+                                        style={{
+                                            width: lang.level === "Beginner" ? "25%" : lang.level === "Moderate" ? "50%" : lang.level === "Advanced" ? "75%" : "100%",
+                                        }}
+                                    />
+                                </div>
+                            </div>
                         ))}
                     </div>
                 </section>

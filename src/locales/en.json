@@ -6,15 +6,16 @@
         "dashboard": "Dashboard",
         "login": "Login",
         "getStarted": "Get Started",
-        "brandName": "CV Gen"
+        "brandName": "Resume Gen",
+        "signOut": "Sign Out"
     },
     "home": {
         "badge": "AI-Powered Resume Builder",
         "title": "Craft Your Perfect",
         "titleHighlight": "Resume in Seconds",
-        "subtitle": "Create professional, ATS-friendly resumes with our premium templates. Use AI to extract data from your existing CV or build one from scratch.",
+        "subtitle": "Create professional, ATS-friendly resumes with our premium templates. Use AI to extract data from your existing resume or build one from scratch.",
         "ctaPrimary": "Get Started Free",
-        "ctaSecondary": "Upload Your CV →"
+        "ctaSecondary": "Improve my resume →"
     },
     "features": {
         "aiParsing": {
@@ -38,15 +39,15 @@
         },
         "enterDetails": {
             "title": "Enter Details",
-            "description": "Fill manually or auto-import from existing CV."
+            "description": "Fill manually or auto-import from existing resume."
         },
         "downloadPdf": {
             "title": "Download PDF",
             "description": "Get your polished resume instantly."
         }
     },
-    "whyCvMatters": {
-        "title": "Why a Great CV",
+    "whyResumeMatters": {
+        "title": "Why a Great Resume",
         "titleHighlight": "Matters",
         "subtitle": "Your resume is often the first impression you make on a potential employer. Here's why it's crucial to get it right.",
         "sixSeconds": {
@@ -68,9 +69,9 @@
     },
     "faq": {
         "title": "Frequently Asked Questions",
-        "subtitle": "Everything you need to know about CV Gen",
+        "subtitle": "Everything you need to know about Resume Gen",
         "q1": {
-            "question": "Is CV Gen really free to use?",
+            "question": "Is Resume Gen really free to use?",
             "answer": "Yes! You can create and download your resume completely free. We offer premium templates and features for users who want extra customization options."
         },
         "q2": {
@@ -92,12 +93,12 @@
     },
     "cta": {
         "title": "Ready to Land Your Dream Job",
-        "subtitle": "Join thousands of job seekers who have already created stunning resumes with CV Gen. It only takes a few minutes.",
+        "subtitle": "Join thousands of job seekers who have already created stunning resumes with Resume Gen. It only takes a few minutes.",
         "button": "Create Your Resume Now",
         "trustSignals": "✓ Free to use · ✓ No account required · ✓ Download instantly"
     },
     "footer": {
-        "copyright": "© 2026 CV Gen. Craft your future.",
+        "copyright": "© 2026 Resume Gen. Craft your future.",
         "privacy": "Privacy",
         "terms": "Terms",
         "contact": "Contact"
@@ -167,10 +168,32 @@
             "addEducation": "Add Education"
         },
         "skillsForm": {
-            "addSkills": "Add Skills",
-            "skillPlaceholder": "e.g. JavaScript, React, System Design",
-            "noSkills": "No skills added yet."
-        }
+            "addSkills": "Add Skill",
+            "skillName": "Skill Name",
+            "skillPlaceholder": "Name",
+            "level": "Proficiency Level",
+            "noSkills": "No skills added yet.",
+            "levels": {
+                "Beginner": "Beginner",
+                "Intermediate": "Intermediate",
+                "Advanced": "Advanced",
+                "Expert": "Expert"
+            }
+        },
+        "languagesForm": {
+            "addLanguage": "Add Language",
+            "languageName": "Language",
+            "languagePlaceholder": "e.g. English",
+            "level": "Proficiency Level",
+            "noLanguages": "No languages added yet.",
+            "levels": {
+                "Beginner": "Beginner",
+                "Moderate": "Moderate",
+                "Advanced": "Advanced",
+                "Fluent": "Fluent"
+            }
+        },
+        "languages": "Languages"
     },
     "notFound": {
         "title": "Page Not Found",
@@ -219,5 +242,47 @@
         "labelSkills": "Skills",
         "labelProjects": "Projects",
         "labelPresent": "Present"
+    },
+    "dashboardPage": {
+        "title": "Your Dashboard",
+        "subtitle": "Manage your resumes and create new ones",
+        "createNew": "Create new Resume",
+        "createNewSubtitle": "Start from scratch with one of our professional templates",
+        "untitled": "Untitled Resume",
+        "edited": "Edited",
+        "editResume": "Edit Resume",
+        "rename": "Rename",
+        "duplicate": "Duplicate",
+        "delete": "Delete",
+        "download": "Download",
+        "share": "Share",
+        "deleteConfirm": "Are you sure you want to delete this resume?",
+        "errorGenerateLink": "Failed to generate link",
+        "errorDuplicate": "Failed to duplicate resume",
+        "errorRename": "Failed to rename resume"
+    },
+    "view": {
+        "notFoundTitle": "Resume Not Found",
+        "notFoundMessage": "The resume you are looking for does not exist or is not available.",
+        "createYourOwn": "Create Your Own Resume",
+        "expiredTitle": "Link Expired",
+        "expiredMessage": "This shared resume link has expired.",
+        "builtWith": "Built with"
+    },
+    "modals": {
+        "rename": {
+            "title": "Rename Resume",
+            "placeholder": "Enter resume name",
+            "cancel": "Cancel",
+            "saving": "Saving...",
+            "save": "Save Changes"
+        },
+        "share": {
+            "title": "Share Your Resume",
+            "description": "Anyone with this link can view your resume.",
+            "copied": "Copied",
+            "copy": "Copy",
+            "close": "Close"
+        }
     }
 }

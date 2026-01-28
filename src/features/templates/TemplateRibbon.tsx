@@ -79,11 +79,48 @@ export const TemplateRibbon = ({ data }: { data: ResumeData }) => {
                     {skills.length > 0 && (
                         <section className="text-center">
                             <h3 className="text-sm font-bold uppercase tracking-widest text-slate-900 border-b border-slate-200 pb-3 mb-6">{l.skills}</h3>
-                            <div className="flex flex-wrap justify-center gap-2">
-                                {skills.map((skill, i) => (
-                                    <span key={i} className="text-sm text-slate-600">
-                                        • {skill}
-                                    </span>
+                            <div className="space-y-4 text-left">
+                                {skills.map((skill) => (
+                                    <div key={skill.id} className="space-y-1">
+                                        <div className="flex justify-between text-xs font-medium text-slate-600">
+                                            <span>{skill.name}</span>
+                                            <span className="opacity-70">{skill.level}</span>
+                                        </div>
+                                        <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                                            <div
+                                                className="h-full rounded-full"
+                                                style={{
+                                                    width: skill.level === "Beginner" ? "25%" : skill.level === "Intermediate" ? "50%" : skill.level === "Advanced" ? "75%" : "100%",
+                                                    backgroundColor: themeColor
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+                    )}
+
+                    {data.languages && data.languages.length > 0 && (
+                        <section className="text-center">
+                            <h3 className="text-sm font-bold uppercase tracking-widest text-slate-900 border-b border-slate-200 pb-3 mb-6">{labels?.languages || "Languages"}</h3>
+                            <div className="space-y-4 text-left">
+                                {data.languages.map((lang) => (
+                                    <div key={lang.id} className="space-y-1">
+                                        <div className="flex justify-between text-xs font-medium text-slate-600">
+                                            <span>{lang.name}</span>
+                                            <span className="opacity-70">{lang.level}</span>
+                                        </div>
+                                        <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                                            <div
+                                                className="h-full rounded-full"
+                                                style={{
+                                                    width: lang.level === "Beginner" ? "25%" : lang.level === "Moderate" ? "50%" : lang.level === "Advanced" ? "75%" : "100%",
+                                                    backgroundColor: themeColor
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
                                 ))}
                             </div>
                         </section>
