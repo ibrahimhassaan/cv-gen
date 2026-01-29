@@ -6,7 +6,7 @@
         "dashboard": "Dasbor",
         "login": "Masuk",
         "getStarted": "Mulai Sekarang",
-        "brandName": "Resume Gen",
+        "brandName": "cvGenfy",
         "signOut": "Keluar"
     },
     "home": {
@@ -74,9 +74,9 @@
     },
     "faq": {
         "title": "Pertanyaan yang Sering Diajukan",
-        "subtitle": "Semua yang perlu Anda ketahui tentang Resume Gen",
+        "subtitle": "Semua yang perlu Anda ketahui tentang cvGenfy",
         "q1": {
-            "question": "Apakah Resume Gen benar-benar gratis?",
+            "question": "Apakah cvGenfy benar-benar gratis?",
             "answer": "Ya! Anda dapat membuat dan mengunduh resume sepenuhnya gratis. Kami menawarkan template dan fitur premium bagi pengguna yang menginginkan opsi kustomisasi ekstra."
         },
         "q2": {
@@ -98,12 +98,12 @@
     },
     "cta": {
         "title": "Siap Mendapatkan Pekerjaan Impian",
-        "subtitle": "Bergabunglah dengan ribuan pencari kerja yang telah membuat resume menakjubkan dengan Resume Gen. Hanya butuh beberapa menit.",
+        "subtitle": "Bergabunglah dengan ribuan pencari kerja yang telah membuat resume menakjubkan dengan cvGenfy. Hanya butuh beberapa menit.",
         "button": "Buat Resume Anda Sekarang",
         "trustSignals": "✓ Gratis digunakan · ✓ Tidak perlu akun · ✓ Unduh langsung"
     },
     "footer": {
-        "copyright": "© 2026 Resume Gen. Raih masa depan Anda.",
+        "copyright": "© 2026 cvGenfy. Raih masa depan Anda.",
         "privacy": "Privasi",
         "terms": "Ketentuan",
         "contact": "Kontak"
@@ -303,12 +303,17 @@
             "copied": "Disalin",
             "copy": "Salin",
             "close": "Tutup"
+        },
+        "reset": {
+            "title": "Reset Resume",
+            "description": "Are you sure you want to completely clear your resume? This action cannot be undone and you will lose all filled data.",
+            "confirm": "Yes, Reset All"
         }
     },
     "privacyPage": {
         "title": "Kebijakan Privasi",
         "lastUpdated": "Terakhir diperbarui",
-        "intro": "Harap baca Kebijakan Privasi ini dengan seksama sebelum menggunakan layanan Resume Generator.",
+        "intro": "Harap baca Kebijakan Privasi ini dengan seksama sebelum menggunakan layanan cvGenfy.",
         "section1Title": "1. Interpretasi dan Definisi",
         "section1Content": "Kata-kata yang huruf awalnya dikapitalisasi memiliki arti yang didefinisikan dalam kondisi berikut. Definisi berikut akan memiliki arti yang sama terlepas dari apakah mereka muncul dalam bentuk tunggal atau jamak.",
         "section2Title": "2. Pengumpulan dan Penggunaan Data Pribadi Anda",

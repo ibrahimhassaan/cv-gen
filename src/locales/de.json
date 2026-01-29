@@ -6,7 +6,7 @@
         "dashboard": "Dashboard",
         "login": "Anmelden",
         "getStarted": "Loslegen",
-        "brandName": "Resume Gen",
+        "brandName": "cvGenfy",
         "signOut": "Abmelden"
     },
     "home": {
@@ -69,9 +69,9 @@
     },
     "faq": {
         "title": "Häufig gestellte Fragen",
-        "subtitle": "Alles, was Sie über Resume Gen wissen müssen",
+        "subtitle": "Alles, was Sie über cvGenfy wissen müssen",
         "q1": {
-            "question": "Ist Resume Gen wirklich kostenlos nutzbar?",
+            "question": "Ist cvGenfy wirklich kostenlos nutzbar?",
             "answer": "Ja! Sie können Ihren Lebenslauf vollständig kostenlos erstellen und herunterladen. Wir bieten Premium-Vorlagen und -Funktionen für Nutzer an, die zusätzliche Anpassungsoptionen wünschen."
         },
         "q2": {
@@ -93,12 +93,12 @@
     },
     "cta": {
         "title": "Bereit für Ihren Traumjob?",
-        "subtitle": "Treten Sie Tausenden von Arbeitssuchenden bei, die bereits beeindruckende Lebensläufe mit Resume Gen erstellt haben. Es dauert nur wenige Minuten.",
+        "subtitle": "Treten Sie Tausenden von Arbeitssuchenden bei, die bereits beeindruckende Lebensläufe mit cvGenfy erstellt haben. Es dauert nur wenige Minuten.",
         "button": "Erstellen Sie jetzt Ihren Lebenslauf",
         "trustSignals": "✓ Kostenlos nutzbar · ✓ Keine Registrierung erforderlich · ✓ Sofort herunterladen"
     },
     "footer": {
-        "copyright": "© 2026 Resume Gen. Gestalten Sie Ihre Zukunft.",
+        "copyright": "© 2026 cvGenfy. Gestalten Sie Ihre Zukunft.",
         "privacy": "Datenschutz",
         "terms": "AGB",
         "contact": "Kontakt"
@@ -300,12 +300,17 @@
             "copied": "Kopiert",
             "copy": "Kopieren",
             "close": "Schließen"
+        },
+        "reset": {
+            "title": "Reset Resume",
+            "description": "Are you sure you want to completely clear your resume? This action cannot be undone and you will lose all filled data.",
+            "confirm": "Yes, Reset All"
         }
     },
     "privacyPage": {
         "title": "Datenschutzerklärung",
         "lastUpdated": "Zuletzt aktualisiert",
-        "intro": "Bitte lesen Sie diese Datenschutzerklärung sorgfältig durch, bevor Sie den Resume Generator-Dienst nutzen.",
+        "intro": "Bitte lesen Sie diese Datenschutzerklärung sorgfältig durch, bevor Sie den cvGenfy-Dienst nutzen.",
         "section1Title": "1. Auslegung und Definitionen",
         "section1Content": "Die Wörter, deren Anfangsbuchstabe großgeschrieben ist, haben die unter den folgenden Bedingungen definierten Bedeutungen. Die folgenden Definitionen haben dieselbe Bedeutung, unabhängig davon, ob sie im Singular oder Plural erscheinen.",
         "section2Title": "2. Erfassung und Verwendung Ihrer personenbezogenen Daten",
@@ -365,5 +370,12 @@
         "sendMessage": "Nachricht senden",
         "successTitle": "Nachricht gesendet!",
         "sendAnother": "Weitere Nachricht senden"
+    },
+    "cookieBanner": {
+        "title": "Cookie Consent",
+        "description": "We use essential cookies to ensure you get the best experience on our website. By continuing to use our site, you accept our use of cookies.",
+        "accept": "Got it",
+        "learnMore": "Learn more",
+        "close": "Close"
     }
 }

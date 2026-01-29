@@ -23,7 +23,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-    title: "Resume Gen - Create Stunning Resumes",
+    title: "cvGenfy - Create Stunning Resumes",
     description: "AI-powered professional resume generator with premium aesthetics.",
 };
 

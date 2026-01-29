@@ -8,7 +8,7 @@ export function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div className="col-span-1 md:col-span-2">
                         <Link href="/" className="text-xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                            Resume Gen
+                            cvGenfy
                         </Link>
                         <p className="mt-4 text-sm text-muted-foreground max-w-xs">
                             Create professional, ATS-friendly resumes in minutes. Choose from our premium templates and land your dream job.
@@ -69,7 +69,7 @@ export function Footer() {
             </div>
             <div className="mt-12 border-t border-border border-t-gray-200 pt-8">
                 <p className="text-xs text-muted-foreground text-center">
-                    &copy; {new Date().getFullYear()} Resume Gen. All rights reserved.
+                    &copy; {new Date().getFullYear()} cvGenfy. All rights reserved.
                 </p>
             </div>
         </footer>

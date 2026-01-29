@@ -6,7 +6,7 @@
         "dashboard": "डैशबोर्ड",
         "login": "लॉगिन",
         "getStarted": "शुरू करें",
-        "brandName": "Resume Gen",
+        "brandName": "cvGenfy",
         "signOut": "साइन आउट"
     },
     "home": {
@@ -69,9 +69,9 @@
     },
     "faq": {
         "title": "अक्सर पूछे जाने वाले प्रश्न",
-        "subtitle": "Resume Gen के बारे में आपको जो कुछ भी जानने की जरूरत है",
+        "subtitle": "cvGenfy के बारे में आपको जो कुछ भी जानने की जरूरत है",
         "q1": {
-            "question": "क्या Resume Gen वाकई मुफ्त में उपयोग करने के लिए है?",
+            "question": "क्या cvGenfy वाकई मुफ्त में उपयोग करने के लिए है?",
             "answer": "हाँ! आप अपना रिज्यूमे पूरी तरह से मुफ्त में बना और डाउनलोड कर सकते हैं। हम उन यूजर्स के लिए प्रीमियम टेम्पलेट और फीचर्स ऑफर करते हैं जो अतिरिक्त कस्टमाइज़ेशन ऑप्शन चाहते हैं।"
         },
         "q2": {
@@ -93,12 +93,12 @@
     },
     "cta": {
         "title": "अपनी ड्रीम जॉब पाने के लिए तैयार हैं?",
-        "subtitle": "हजारों जॉब सीकर्स से जुड़ें जिन्होंने पहले से ही Resume Gen के साथ शानदार रिज्यूमे बनाए हैं। इसमें केवल कुछ मिनट लगते हैं।",
+        "subtitle": "हजारों जॉब सीकर्स से जुड़ें जिन्होंने पहले से ही cvGenfy के साथ शानदार रिज्यूमे बनाए हैं। इसमें केवल कुछ मिनट लगते हैं।",
         "button": "अभी अपना रिज्यूमे बनाएं",
         "trustSignals": "✓ मुफ्त में उपयोग करें · ✓ खाता आवश्यक नहीं · ✓ तुरंत डाउनलोड करें"
     },
     "footer": {
-        "copyright": "© 2026 Resume Gen. अपना भविष्य बनाएं।",
+        "copyright": "© 2026 cvGenfy. अपना भविष्य बनाएं।",
         "privacy": "प्राइवेसी",
         "terms": "शर्तें",
         "contact": "संपर्क"
@@ -300,12 +300,17 @@
             "copied": "कॉपी हो गया",
             "copy": "कॉपी करें",
             "close": "बंद करें"
+        },
+        "reset": {
+            "title": "Reset Resume",
+            "description": "Are you sure you want to completely clear your resume? This action cannot be undone and you will lose all filled data.",
+            "confirm": "Yes, Reset All"
         }
     },
     "privacyPage": {
         "title": "प्राइवेसी पॉलिसी",
         "lastUpdated": "अंतिम अपडेट",
-        "intro": "कृपया Resume Generator सेवा का उपयोग करने से पहले इस प्राइवेसी पॉलिसी को ध्यान से पढ़ें।",
+        "intro": "कृपया cvGenfy सेवा का उपयोग करने से पहले इस प्राइवेसी पॉलिसी को ध्यान से पढ़ें।",
         "section1Title": "1. व्याख्या और परिभाषाएं",
         "section1Content": "जिन शब्दों का प्रारंभिक अक्षर बड़ा है, उनके अर्थ निम्नलिखित शर्तों के तहत परिभाषित हैं। निम्नलिखित परिभाषाओं का एक ही अर्थ होगा, चाहे वे एकवचन में दिखाई दें या बहुवचन में।",
         "section2Title": "2. आपके व्यक्तिगत डेटा को एकत्रित करना और उपयोग करना",
@@ -365,5 +370,12 @@
         "sendMessage": "संदेश भेजें",
         "successTitle": "संदेश भेज दिया गया!",
         "sendAnother": "एक और संदेश भेजें"
+    },
+    "cookieBanner": {
+        "title": "Cookie Consent",
+        "description": "We use essential cookies to ensure you get the best experience on our website. By continuing to use our site, you accept our use of cookies.",
+        "accept": "Got it",
+        "learnMore": "Learn more",
+        "close": "Close"
     }
 }

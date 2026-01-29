@@ -6,7 +6,7 @@
         "dashboard": "Dashboard",
         "login": "Login",
         "getStarted": "Get Started",
-        "brandName": "Resume Gen",
+        "brandName": "cvGenfy",
         "signOut": "Sign Out"
     },
     "common": {
@@ -78,9 +78,9 @@
     },
     "faq": {
         "title": "Frequently Asked Questions",
-        "subtitle": "Everything you need to know about Resume Gen",
+        "subtitle": "Everything you need to know about cvGenfy",
         "q1": {
-            "question": "Is Resume Gen really free to use?",
+            "question": "Is cvGenfy really free to use?",
             "answer": "Yes! You can create and download your resume completely free. We offer premium templates and features for users who want extra customization options."
         },
         "q2": {
@@ -102,12 +102,12 @@
     },
     "cta": {
         "title": "Ready to Land Your Dream Job",
-        "subtitle": "Join thousands of job seekers who have already created stunning resumes with Resume Gen. It only takes a few minutes.",
+        "subtitle": "Join thousands of job seekers who have already created stunning resumes with cvGenfy. It only takes a few minutes.",
         "button": "Create Your Resume Now",
         "trustSignals": "✓ Free to use · ✓ No account required · ✓ Download instantly"
     },
     "footer": {
-        "copyright": "© 2026 Resume Gen. Craft your future.",
+        "copyright": "© 2026 cvGenfy. Craft your future.",
         "privacy": "Privacy",
         "terms": "Terms",
         "contact": "Contact"
@@ -325,7 +325,7 @@
     "privacyPage": {
         "title": "Privacy Policy",
         "lastUpdated": "Last updated",
-        "intro": "Please read this Privacy Policy carefully before using the Resume Generator service.",
+        "intro": "Please read this Privacy Policy carefully before using the cvGenfy service.",
         "section1Title": "1. Interpretation and Definitions",
         "section1Content": "The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.",
         "section2Title": "2. Collecting and Using Your Personal Data",
