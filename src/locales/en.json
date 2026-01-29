@@ -385,5 +385,12 @@
         "sendMessage": "Send Message",
         "successTitle": "Message Sent!",
         "sendAnother": "Send Another Message"
+    },
+    "cookieBanner": {
+        "title": "Cookie Consent",
+        "description": "We use essential cookies to ensure you get the best experience on our website. By continuing to use our site, you accept our use of cookies.",
+        "accept": "Got it",
+        "learnMore": "Learn more",
+        "close": "Close"
     }
 }

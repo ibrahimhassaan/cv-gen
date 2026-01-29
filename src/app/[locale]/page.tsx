@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/Card";
 import { FileText, Upload, Sparkles, Download, Share2, Wand2, MousePointerClick, Keyboard, TrendingUp, Timer, Trophy, Bot } from "lucide-react";
 import Link from "next/link";
@@ -40,7 +40,7 @@ export default function Home() {
 
                         <div className="flex flex-col sm:flex-row gap-4 animate-[slide-up_1.4s_ease-out]">
                             <Link href="/templates">
-                                <Button size="lg" variant="gradient" className="w-full sm:w-auto relative overflow-hidden group shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 transition-shadow duration-300">
+                                <Button size="lg" variant="default" className="w-full sm:w-auto relative overflow-hidden group shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 transition-shadow duration-300">
                                     <span className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shine" />
                                     <Sparkles className="mr-2 w-4 h-4" />
                                     {t('home.ctaPrimary')}
@@ -248,7 +248,7 @@ export default function Home() {
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link href="/templates">
-                                <Button size="lg" variant="gradient" className="relative overflow-hidden group shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300">
+                                <Button size="lg" variant="default" className="relative overflow-hidden group shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300">
                                     <span className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shine" />
                                     <Sparkles className="mr-2 w-5 h-5" />
                                     {t('cta.button')}

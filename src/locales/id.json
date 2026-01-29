@@ -368,5 +368,12 @@
         "sendMessage": "Kirim Pesan",
         "successTitle": "Pesan Terkirim!",
         "sendAnother": "Kirim Pesan Lain"
+    },
+    "cookieBanner": {
+        "title": "Persetujuan Cookie",
+        "description": "Kami menggunakan cookie penting untuk memastikan Anda mendapatkan pengalaman terbaik di situs web kami. Dengan terus menggunakan situs kami, Anda menyetujui penggunaan cookie kami.",
+        "accept": "Mengerti",
+        "learnMore": "Pelajari selengkapnya",
+        "close": "Tutup"
     }
 }

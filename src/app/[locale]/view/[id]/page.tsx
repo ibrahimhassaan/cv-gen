@@ -1,7 +1,7 @@
 import { getPublicResume } from "@/lib/resumeService";
 import { getTemplate } from "@/features/templates/registry";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { getTranslations } from "next-intl/server";
 
 interface PageProps {

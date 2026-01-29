@@ -6,7 +6,7 @@ import { templates, TemplateCategory, categories } from "@/features/templates/re
 import { getDummyData } from "@/lib/dummyData";
 import { cn } from "@/lib/utils";
 import { Check, ChevronDown, Palette, Type } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { FitPreview } from "@/components/FitPreview";
 import { useTranslations, useLocale } from "next-intl";
 import {

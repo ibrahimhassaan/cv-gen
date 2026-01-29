@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/features/auth";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { GradientBlobs } from "@/components/GradientBlobs";
 import { LogOut, User } from "lucide-react";
 import { loadAllResumes, getPendingAction, generateShareableLink } from "@/lib/resumeStorage";

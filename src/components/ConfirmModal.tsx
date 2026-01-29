@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { X, AlertTriangle } from "lucide-react";
 
 interface ConfirmModalProps {

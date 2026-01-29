@@ -3,7 +3,7 @@
 import { useActionState } from 'react';
 import { submitContact, type ContactState } from '@/features/contact/actions';
 import { Loader2, Send } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
 
 const initialState: ContactState = {

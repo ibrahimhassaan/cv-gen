@@ -33,6 +33,7 @@ export async function POST(req: NextRequest) {
         Return ONLY the summary text, no quotes or additional formatting.
         `;
 
+
         const result = await summaryModel.generateContent(prompt);
         const response = await result.response;
         const summary = response.text().trim();

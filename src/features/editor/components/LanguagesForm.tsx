@@ -2,7 +2,7 @@
 
 import { useResume } from "@/features/editor/ResumeContext";
 import { Input } from "@/components/ui/Input";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Plus, X, ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import {

@@ -1,7 +1,7 @@
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Sparkles, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ButtonProps } from "@/components/ui/Button";
+import { ButtonProps } from "@/components/ui/button";
 
 interface AiButtonProps extends ButtonProps {
     isLoading?: boolean;

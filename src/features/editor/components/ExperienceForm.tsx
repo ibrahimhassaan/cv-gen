@@ -5,17 +5,20 @@ import { useResume } from "@/features/editor/ResumeContext";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { Textarea } from "@/components/ui/Textarea";
-import { Button } from "@/components/ui/Button";
-import { Plus, Trash2, ChevronDown, ChevronUp } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Plus, Trash2, ChevronDown, ChevronUp, Sparkles, RefreshCw } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/Card";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { cn } from "@/lib/utils";
+import { AiButton } from "@/components/ui/AiButton";
 
 export function ExperienceForm() {
     const { resumeData, addExperience, updateExperience, removeExperience } = useResume();
     const t = useTranslations('editor.experienceForm');
     const [expandedId, setExpandedId] = useState<string | null>(null);
     const prevCount = useRef(resumeData.experience.length);
+    const [generatingIds, setGeneratingIds] = useState<Record<string, boolean>>({});
+    const locale = useLocale();
 
     // Auto-expand new items
     useEffect(() => {
@@ -28,6 +31,32 @@ export function ExperienceForm() {
 
     const handleToggle = (id: string) => {
         setExpandedId(current => current === id ? null : id);
+    };
+
+    const handleGenerateDescription = async (id: string, role: string, company: string) => {
+        if (!role) return;
+
+        setGeneratingIds(prev => ({ ...prev, [id]: true }));
+        try {
+            const response = await fetch('/api/ai/generate-description', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ role, company, locale }),
+            });
+
+            if (!response.ok) throw new Error('Failed to generate description');
+
+            const data = await response.json();
+            if (data.description) {
+                updateExperience(id, "description", data.description);
+            }
+        } catch (error) {
+            console.error("Error generating description:", error);
+        } finally {
+            setGeneratingIds(prev => ({ ...prev, [id]: false }));
+        }
     };
 
     return (
@@ -109,7 +138,21 @@ export function ExperienceForm() {
                             </div>
 
                             <div className="space-y-2">
-                                <Label>{t('description')}</Label>
+                                <div className="flex justify-between items-center">
+                                    <Label>{t('description')}</Label>
+                                    <AiButton
+                                        size="sm"
+                                        onClick={() => handleGenerateDescription(exp.id, exp.role, exp.company)}
+                                        isLoading={generatingIds[exp.id]}
+                                        loadingText="Generating..."
+                                        variant="ghost"
+                                        className="h-6 text-xs px-2"
+                                        disabled={!exp.role}
+                                        icon={exp.description ? <RefreshCw className="w-3 h-3 mr-1" /> : <Sparkles className="w-3 h-3 mr-1" />}
+                                    >
+                                        {exp.description ? "Regenerate" : "Generate with AI"}
+                                    </AiButton>
+                                </div>
                                 <Textarea
                                     value={exp.description}
                                     onChange={(e) => updateExperience(exp.id, "description", e.target.value)}

@@ -9,7 +9,7 @@ import { LanguagesForm } from "./components/LanguagesForm";
 import { cn } from "@/lib/utils";
 import { SummaryForm } from "./components/SummaryForm";
 import { User, Briefcase, GraduationCap, Code, Globe, ChevronRight, ChevronLeft, Check, Loader2, FileText } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 
 type Section = "personal" | "experience" | "education" | "skills" | "languages" | "summary";
@@ -110,7 +110,7 @@ export function EditorForm({ onDownload, isDownloading }: EditorFormProps) {
 
                 {activeIndex === sections.length - 1 ? (
                     <Button
-                        variant="gradient"
+                        variant="default"
                         onClick={onDownload}
                         disabled={isDownloading}
                         className="shadow-lg shadow-green-500/20 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white rounded-full px-8"
@@ -127,7 +127,7 @@ export function EditorForm({ onDownload, isDownloading }: EditorFormProps) {
                         )}
                     </Button>
                 ) : (
-                    <Button onClick={handleNext} variant="gradient" className="rounded-full px-8 shadow-lg shadow-primary/25 hover:shadow-primary/40">
+                    <Button onClick={handleNext} variant="default" className="rounded-full px-8 shadow-lg shadow-primary/25 hover:shadow-primary/40">
                         {t('nextStep')} <ChevronRight className="w-4 h-4 ml-2" />
                     </Button>
                 )}

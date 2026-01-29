@@ -3,7 +3,7 @@
 import { useResume } from "@/features/editor/ResumeContext";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Plus, X, ChevronDown, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";

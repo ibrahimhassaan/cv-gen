@@ -14,7 +14,7 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator
 } from "@/components/ui/DropdownMenu";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { getDummyData } from "@/lib/dummyData";
 
 export function TemplateSelector() {

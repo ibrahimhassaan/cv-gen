@@ -1,7 +1,7 @@
 "use client";
 
 import { FitPreview } from "@/components/FitPreview";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { templates } from "@/features/templates/registry";
 import { getDummyData } from "@/lib/dummyData";
 import { cn } from "@/lib/utils";

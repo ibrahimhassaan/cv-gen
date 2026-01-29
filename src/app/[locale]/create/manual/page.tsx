@@ -7,7 +7,7 @@ import { EditorForm } from "@/features/editor/EditorForm";
 import { TemplateSelector } from "@/features/templates/TemplateSelector";
 import { getTemplate } from "@/features/templates/registry";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Download, Share2, LayoutTemplate, RotateCcw, Loader2, Eye, ChevronLeft } from "lucide-react";
 import { GradientBlobs } from "@/components/GradientBlobs";
 import { useTranslations } from "next-intl";
@@ -331,7 +331,7 @@ function BuilderContent() {
                             {view === "editor" && (
                                 <Button
                                     variant="outline"
-                                    size="xs"
+                                    size="sm"
                                     className="px-2 py-1 bg-white/50 border-white/40 hover:bg-white/80 shadow-sm backdrop-blur-sm"
                                     onClick={() => setView("templates")}
                                 >
@@ -342,14 +342,14 @@ function BuilderContent() {
                             <Button
                                 onClick={handleDownloadClick}
                                 variant="default"
-                                size="xs"
+                                size="sm"
                                 className="px-2 py-1 shadow-lg shadow-primary/20"
                                 disabled={isDownloading}
                             >
                                 {isDownloading ? <Loader2 className="w-4 h-4 mr-2 animate-spin" /> : <Download className="w-4 h-4 mr-2" />}
                                 {t('pdf')}
                             </Button>
-                            <Button onClick={handleShareClick} variant="secondary" size="xs" className="px-2 py-1 shadow-md bg-white/80 hover:bg-white">
+                            <Button onClick={handleShareClick} variant="secondary" size="sm" className="px-2 py-1 shadow-md bg-white/80 hover:bg-white">
                                 <Share2 className="w-4 h-4 mr-2" /> {t('share')}
                             </Button>
                         </div>
