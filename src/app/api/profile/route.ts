@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabaseServer";
+import { auth } from "@clerk/nextjs/server";
 
 export interface UserProfile {
     id: string;
@@ -14,18 +15,18 @@ export interface UserProfile {
  * Get current user's profile
  */
 export async function GET() {
-    const supabase = await createClient();
+    const { userId } = await auth();
 
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-    if (authError || !user) {
+    if (!userId) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const supabase = await createClient();
 
     const { data, error } = await supabase
         .from("profiles")
         .select("*")
-        .eq("id", user.id);
+        .eq("id", userId);
 
     if (error) {
         console.error("Error fetching profile:", error);
@@ -41,13 +42,13 @@ export async function GET() {
  * Update current user's profile (e.g., language preference)
  */
 export async function PATCH(request: NextRequest) {
-    const supabase = await createClient();
+    const { userId } = await auth();
 
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-    if (authError || !user) {
+    if (!userId) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const supabase = await createClient();
 
     let body: { preferred_language?: string };
     try {
@@ -67,7 +68,7 @@ export async function PATCH(request: NextRequest) {
     const { error } = await supabase
         .from("profiles")
         .update(updateData)
-        .eq("id", user.id);
+        .eq("id", userId);
 
     if (error) {
         console.error("Error updating profile:", error);

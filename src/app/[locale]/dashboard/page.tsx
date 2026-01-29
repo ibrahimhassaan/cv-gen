@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/features/auth";
+import { useUser, useClerk } from "@clerk/nextjs";
+import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { GradientBlobs } from "@/components/GradientBlobs";
 import { LogOut, User } from "lucide-react";
@@ -15,11 +16,13 @@ import { RenameModal } from "@/components/RenameModal";
 import { CVCard } from "@/app/[locale]/dashboard/CVCard";
 import { CreateCVCard } from "@/app/[locale]/dashboard/CreateCVCard";
 import { CVCardSkeleton } from "@/app/[locale]/dashboard/CVCardSkeleton";
-import { useTranslations } from "next-intl";
 
 export default function DashboardPage() {
     const t = useTranslations('dashboardPage');
-    const { user, loading, signOut } = useAuth();
+    const locale = useLocale();
+    const { user, isLoaded } = useUser();
+    const { signOut } = useClerk();
+    const loading = !isLoaded;
     const router = useRouter();
     const [resumes, setResumes] = useState<ResumeData[]>([]);
     const [resumesLoading, setResumesLoading] = useState(true);
@@ -177,8 +180,7 @@ export default function DashboardPage() {
     };
 
     const handleSignOut = async () => {
-        await signOut();
-        router.push("/");
+        await signOut({ redirectUrl: `/${locale}` });
     };
 
     if (loading) {

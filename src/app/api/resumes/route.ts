@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@/lib/supabaseServer";
+import { auth } from "@clerk/nextjs/server";
 import { ResumeData, SkillItem, LanguageItem } from "@/features/editor/types";
 
 // Helper to ensure all items have IDs
@@ -47,18 +48,18 @@ function ensureResumeIds(resume: ResumeData): ResumeData {
  * List all resumes for authenticated user
  */
 export async function GET() {
-    const supabase = await createClient();
+    const { userId } = await auth();
 
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-    if (authError || !user) {
+    if (!userId) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const supabase = await createClient();
 
     const { data, error } = await supabase
         .from("resumes")
         .select("data")
-        .eq("user_id", user.id)
+        .eq("user_id", userId)
         .order("updated_at", { ascending: false });
 
     if (error) {
@@ -75,13 +76,13 @@ export async function GET() {
  * Create or update a resume (upsert)
  */
 export async function POST(request: NextRequest) {
-    const supabase = await createClient();
+    const { userId } = await auth();
 
-    const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-    if (authError || !user) {
+    if (!userId) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
+
+    const supabase = await createClient();
 
     let resume: ResumeData;
     try {
@@ -101,7 +102,7 @@ export async function POST(request: NextRequest) {
     // Prepare payload
     const payload = {
         id: resume.id,
-        user_id: user.id,
+        user_id: userId,
         title: resume.title || "Untitled Resume",
         data: resume,
         updated_at: new Date().toISOString(),

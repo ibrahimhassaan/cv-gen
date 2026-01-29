@@ -14,6 +14,7 @@ import { CookieBanner } from "@/components/CookieBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import { MicrosoftClarity } from "@/components/MicrosoftClarity";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -76,47 +77,44 @@ export default async function LocaleLayout({ children, params }: Props) {
     const messages = await getMessages();
 
     return (
-        <html lang={locale} suppressHydrationWarning>
-            <body
-                className={`${inter.variable} ${outfit.variable} antialiased bg-background text-foreground selection:bg-primary/30`}
-            >
-                <NextIntlClientProvider messages={messages}>
-                    <AuthWrapper>
+        <ClerkProvider>
+            <html lang={locale} suppressHydrationWarning>
+                <body
+                    className={`${inter.variable} ${outfit.variable} antialiased bg-background text-foreground selection:bg-primary/30`}
+                >
+                    <NextIntlClientProvider messages={messages}>
                         <Navbar />
-                        <Suspense fallback={null}>
-                            <AuthFeedback />
-                        </Suspense>
                         {children}
                         <CookieBanner />
                         <FooterWrapper />
-                    </AuthWrapper>
+                    </NextIntlClientProvider>
                     <GoogleAnalytics />
                     <MicrosoftClarity />
-                </NextIntlClientProvider>
-                <JsonLd
-                    data={{
-                        '@context': 'https://schema.org',
-                        '@type': 'SoftwareApplication',
-                        'name': 'cvGenfy',
-                        'applicationCategory': 'BusinessApplication',
-                        'operatingSystem': 'Web',
-                        'url': 'https://cvgenfy.com',
-                        'sameAs': [
-                            'https://twitter.com/cvgenfy',
-                            'https://www.linkedin.com/company/cvgenfy',
-                            'https://www.instagram.com/cvgenfy',
-                            'https://www.facebook.com/cvgenfy',
-                            'https://www.youtube.com/@cvgenfy'
-                        ],
-                        'offers': {
-                            '@type': 'Offer',
-                            'price': '0',
-                            'priceCurrency': 'USD'
-                        },
-                        'description': 'AI-powered professional resume generator.'
-                    }}
-                />
-            </body>
-        </html>
+                    <JsonLd
+                        data={{
+                            '@context': 'https://schema.org',
+                            '@type': 'SoftwareApplication',
+                            'name': 'cvGenfy',
+                            'applicationCategory': 'BusinessApplication',
+                            'operatingSystem': 'Web',
+                            'url': 'https://cvgenfy.com',
+                            'sameAs': [
+                                'https://twitter.com/cvgenfy',
+                                'https://www.linkedin.com/company/cvgenfy',
+                                'https://www.instagram.com/cvgenfy',
+                                'https://www.facebook.com/cvgenfy',
+                                'https://www.youtube.com/@cvgenfy'
+                            ],
+                            'offers': {
+                                '@type': 'Offer',
+                                'price': '0',
+                                'priceCurrency': 'USD'
+                            },
+                            'description': 'AI-powered professional resume generator.'
+                        }}
+                    />
+                </body>
+            </html>
+        </ClerkProvider>
     );
 }
