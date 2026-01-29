@@ -15,6 +15,7 @@ import {
     DropdownMenuSeparator
 } from "@/components/ui/DropdownMenu";
 import { Button } from "@/components/ui/Button";
+import { getDummyData } from "@/lib/dummyData";
 
 export function TemplateSelector() {
 
@@ -42,40 +43,7 @@ export function TemplateSelector() {
     const activeFont = fonts.find(f => f.value === resumeData.font) || fonts[0];
 
     // Localized dummy data for preview
-    const dummyData: any = {
-        templateId: "",
-        themeColor: "",
-        labels: {
-            profile: tp('labelProfile'),
-            experience: tp('labelExperience'),
-            education: tp('labelEducation'),
-            skills: tp('labelSkills'),
-            projects: tp('labelProjects'),
-            present: tp('labelPresent')
-        },
-        personalInfo: {
-            fullName: tp('fullName'),
-            title: tp('title'),
-            email: tp('email'),
-            phone: tp('phone'),
-            link: tp('link'),
-            summary: tp('summary')
-        },
-        experience: [
-            { id: "1", role: tp('exp1Role'), company: tp('exp1Company'), startDate: tp('exp1Start'), endDate: tp('exp1End'), current: true, description: tp('exp1Desc') },
-            { id: "2", role: tp('exp2Role'), company: tp('exp2Company'), startDate: tp('exp2Start'), endDate: tp('exp2End'), current: false, description: tp('exp2Desc') }
-        ],
-        education: [
-            { id: "1", institution: tp('eduInstitution'), degree: tp('eduDegree'), field: tp('eduField'), year: tp('eduYear') }
-        ],
-        skills: [
-            { id: "1", name: tp('skill1'), level: "Expert" },
-            { id: "2", name: tp('skill2'), level: "Advanced" },
-            { id: "3", name: tp('skill3'), level: "Intermediate" },
-            { id: "4", name: tp('skill4'), level: "Beginner" }
-        ],
-        projects: []
-    };
+    const dummyData = getDummyData(tp);
 
     return (
         <div className="flex flex-col h-full gap-6 animate-[fade-in_0.3s]">

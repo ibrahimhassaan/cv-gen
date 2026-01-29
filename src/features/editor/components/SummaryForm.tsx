@@ -4,7 +4,7 @@ import { useResume } from "@/features/editor/ResumeContext";
 import { Label } from "@/components/ui/Label";
 import { Textarea } from "@/components/ui/Textarea";
 import { AiButton } from "@/components/ui/AiButton";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useState } from "react";
 import { Sparkles, RefreshCw } from "lucide-react";
 
@@ -12,6 +12,7 @@ export function SummaryForm() {
     const { resumeData, updatePersonalInfo } = useResume();
     const { personalInfo } = resumeData;
     const t = useTranslations('editor.summaryForm');
+    const locale = useLocale();
     const [isGenerating, setIsGenerating] = useState(false);
 
     const handleGenerateSummary = async () => {
@@ -22,7 +23,7 @@ export function SummaryForm() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ resumeData }),
+                body: JSON.stringify({ resumeData, locale }),
             });
 
             if (!response.ok) throw new Error('Failed to generate summary');

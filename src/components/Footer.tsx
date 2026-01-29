@@ -3,8 +3,8 @@ import { Github, Twitter, Linkedin } from 'lucide-react';
 
 export function Footer() {
     return (
-        <footer className="border-t border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <footer className="relative z-10 border-t border-gray-100 py-12">
+            <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div className="col-span-1 md:col-span-2">
                         <Link href="/" className="text-xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
@@ -13,7 +13,7 @@ export function Footer() {
                         <p className="mt-4 text-sm text-muted-foreground max-w-xs">
                             Create professional, ATS-friendly resumes in minutes. Choose from our premium templates and land your dream job.
                         </p>
-                        <div className="mt-6 flex space-x-4">
+                        {/* <div className="mt-6 flex space-x-4">
                             <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                                 <span className="sr-only">GitHub</span>
                                 <Github className="h-5 w-5" />
@@ -26,7 +26,7 @@ export function Footer() {
                                 <span className="sr-only">LinkedIn</span>
                                 <Linkedin className="h-5 w-5" />
                             </a>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div>
@@ -66,12 +66,13 @@ export function Footer() {
                         </ul>
                     </div>
                 </div>
-                <div className="mt-12 border-t border-border pt-8">
-                    <p className="text-xs text-muted-foreground text-center">
-                        &copy; {new Date().getFullYear()} Resume Gen. All rights reserved.
-                    </p>
-                </div>
+            </div>
+            <div className="mt-12 border-t border-border border-t-gray-200 pt-8">
+                <p className="text-xs text-muted-foreground text-center">
+                    &copy; {new Date().getFullYear()} Resume Gen. All rights reserved.
+                </p>
             </div>
         </footer>
+
     );
 }

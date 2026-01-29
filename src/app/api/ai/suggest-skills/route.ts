@@ -1,53 +1,43 @@
 import { NextRequest, NextResponse } from "next/server";
-import { model } from "@/lib/gemini";
+import { skillsModel } from "@/lib/gemini";
+import { withRateLimit } from "@/lib/ratelimit";
 
 export async function POST(req: NextRequest) {
+    // Check rate limit (10 requests per minute per IP)
+    const rateLimitResponse = withRateLimit(req);
+    if (rateLimitResponse) {
+        return rateLimitResponse;
+    }
+
     try {
         const body = await req.json();
-        const { experience, education } = body;
+        const { experience, education, locale = 'en' } = body;
 
-        // Construct a prompt based on the user's experience and education
-        const prompt = `
-        Based on the following resume information, suggest 8-12 relevant technical and soft skills.
-        Return ONLY a JSON array of objects with "name" and "level" properties. 
-        Level should be one of: "Beginner", "Intermediate", "Advanced", "Expert".
-        
-        Experience:
-        ${JSON.stringify(experience)}
-        
-        Education:
-        ${JSON.stringify(education)}
-        
-        Example output format:
-        [
-            { "name": "React", "level": "Advanced" },
-            { "name": "Project Management", "level": "Intermediate" }
-        ]
-        `;
+        // Map locale to language name for clearer AI instructions
+        const languageMap: Record<string, string> = {
+            'en': 'English',
+            'id': 'Indonesian (Bahasa Indonesia)',
+        };
+        const language = languageMap[locale] || 'English';
 
-        const result = await model.generateContent(prompt);
+        const prompt = `Based on the following resume information, suggest 7-10 relevant technical and soft skills.
+IMPORTANT: Return the skill names in ${language}.
+
+Experience: ${JSON.stringify(experience)}
+Education: ${JSON.stringify(education)}`;
+
+        const result = await skillsModel.generateContent(prompt);
         const response = await result.response;
         const text = response.text();
 
-        // Clean up the response to ensure it's valid JSON
-        let cleanJson = text;
-
-        // generic cleanup: remove markdown code block syntax if present
-        const markdownMatch = text.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
-        if (markdownMatch) {
-            cleanJson = markdownMatch[1];
+        // Parse the JSON response
+        let skills;
+        try {
+            skills = JSON.parse(text);
+        } catch (parseError) {
+            console.error("JSON parse failed. Response text:", text);
+            return NextResponse.json({ error: "AI returned invalid JSON" }, { status: 500 });
         }
-
-        const jsonStart = cleanJson.indexOf('[');
-        const jsonEnd = cleanJson.lastIndexOf(']') + 1;
-
-        if (jsonStart === -1 || jsonEnd === -1) {
-            console.error("Invalid JSON response from AI:", text);
-            return NextResponse.json({ error: "Failed to parse AI response" }, { status: 500 });
-        }
-
-        const jsonString = cleanJson.substring(jsonStart, jsonEnd);
-        const skills = JSON.parse(jsonString);
 
         return NextResponse.json({ skills });
     } catch (error: any) {

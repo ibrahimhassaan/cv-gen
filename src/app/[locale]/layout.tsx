@@ -3,7 +3,7 @@ import { Inter, Outfit } from "next/font/google";
 import "../globals.css";
 import { Navbar } from "@/components/Navbar";
 import { AuthWrapper } from "@/components/AuthWrapper";
-import { Footer } from "@/components/Footer";
+import { FooterWrapper } from "@/components/FooterWrapper";
 import { AuthFeedback } from "@/features/auth";
 import { Suspense } from "react";
 import { NextIntlClientProvider } from "next-intl";
@@ -52,7 +52,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                             <AuthFeedback />
                         </Suspense>
                         {children}
-                        <Footer />
+                        <FooterWrapper />
                     </AuthWrapper>
                 </NextIntlClientProvider>
             </body>

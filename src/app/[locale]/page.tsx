@@ -3,6 +3,8 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/Ca
 import { FileText, Upload, Sparkles, Download, Share2, Wand2, MousePointerClick, Keyboard, TrendingUp, Timer, Trophy, Bot } from "lucide-react";
 import Link from "next/link";
 import { GradientBlobs } from "@/components/GradientBlobs";
+import { HeroResumes } from "@/components/HeroResumes";
+import { TemplateSlider } from "@/components/TemplateSlider";
 // import { FloatingElements } from "@/components/FloatingElements";
 import { useTranslations } from "next-intl";
 
@@ -15,38 +17,48 @@ export default function Home() {
             <GradientBlobs />
 
             {/* Hero Section */}
-            <section className="relative z-10 container mx-auto px-6 pt-20 pb-32 flex flex-col items-center text-center">
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-none text-sm font-medium text-primary mb-8 animate-[fade-in_1s_ease-out]">
-                    <Sparkles className="w-4 h-4" />
-                    <span>{t('home.badge')}</span>
-                </div>
+            <section className="relative z-10 container mx-auto px-6 pt-12 pb-24 md:pt-20 md:pb-32">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    {/* Left Column: Content */}
+                    <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-none text-sm font-medium text-primary mb-8 animate-[fade-in_1s_ease-out]">
+                            <Sparkles className="w-4 h-4" />
+                            <span>{t('home.badge')}</span>
+                        </div>
 
-                <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight animate-[slide-up_1s_ease-out]">
-                    {t('home.title')} <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-[#06b6d4] bg-[length:200%_auto] animate-gradient">
-                        {t('home.titleHighlight')}
-                    </span>
-                    <span className="text-[#facc15]">.</span>
-                </h1>
+                        <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight animate-[slide-up_1s_ease-out]">
+                            {t('home.title')} <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-[#06b6d4] bg-[length:200%_auto] animate-gradient">
+                                {t('home.titleHighlight')}
+                            </span>
+                            <span className="text-[#facc15]">.</span>
+                        </h1>
 
-                <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 animate-[slide-up_1.2s_ease-out]">
-                    {t('home.subtitle')}
-                </p>
+                        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 animate-[slide-up_1.2s_ease-out]">
+                            {t('home.subtitle')}
+                        </p>
 
-                <div className="flex flex-col sm:flex-row gap-4 animate-[slide-up_1.4s_ease-out]">
-                    <Link href="/templates">
-                        <Button size="lg" variant="gradient" className="w-full sm:w-auto relative overflow-hidden group shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 transition-shadow duration-300">
-                            <span className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shine" />
-                            <Sparkles className="mr-2 w-4 h-4" />
-                            {t('home.ctaPrimary')}
-                        </Button>
-                    </Link>
-                    <Link href="/coming-soon">
-                        <Button size="lg" variant="ghost" className="w-full sm:w-auto hover:text-primary transition-colors duration-300 underline-offset-4 hover:underline">
-                            <Upload className="mr-2 w-4 h-4" />
-                            {t('home.ctaSecondary')}
-                        </Button>
-                    </Link>
+                        <div className="flex flex-col sm:flex-row gap-4 animate-[slide-up_1.4s_ease-out]">
+                            <Link href="/templates">
+                                <Button size="lg" variant="gradient" className="w-full sm:w-auto relative overflow-hidden group shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-primary/40 transition-shadow duration-300">
+                                    <span className="absolute inset-0 w-full h-full bg-linear-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shine" />
+                                    <Sparkles className="mr-2 w-4 h-4" />
+                                    {t('home.ctaPrimary')}
+                                </Button>
+                            </Link>
+                            <Link href="/coming-soon">
+                                <Button size="lg" variant="ghost" className="w-full sm:w-auto hover:text-primary transition-colors duration-300 underline-offset-4 hover:underline">
+                                    <Upload className="mr-2 w-4 h-4" />
+                                    {t('home.ctaSecondary')}
+                                </Button>
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Right Column: Animated Resumes */}
+                    <div className="hidden lg:block relative z-10 animate-[fade-in_1.5s_ease-out]">
+                        <HeroResumes />
+                    </div>
                 </div>
             </section>
 
@@ -117,6 +129,15 @@ export default function Home() {
                         <p className="text-muted-foreground leading-relaxed">{t('howItWorks.downloadPdf.description')}</p>
                     </div>
                 </div>
+            </section>
+
+            {/* Template Slider */}
+            <section className="relative z-10 w-full bg-slate-50/50 border-y border-gray-100 py-20">
+                <div className="container mx-auto px-6 mb-10 text-center">
+                    <h2 className="text-3xl font-display font-bold mb-4">{t('home.chooseTemplate.title')}</h2>
+                    <p className="text-muted-foreground max-w-2xl mx-auto">{t('home.chooseTemplate.subtitle')}</p>
+                </div>
+                <TemplateSlider />
             </section>
 
             {/* Why a Great Resume Matters */}
@@ -239,23 +260,6 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* Footer */}
-            <footer className="relative z-10 border-t border-gray-100 py-12">
-                <div className="container mx-auto px-6">
-                    <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                        <div className="flex items-center gap-2">
-                            <FileText className="w-6 h-6 text-primary" />
-                            <span className="font-display font-bold text-xl">{t('nav.brandName')}</span>
-                        </div>
-                        <p className="text-sm text-muted-foreground">{t('footer.copyright')}</p>
-                        <div className="flex gap-6 text-sm text-muted-foreground">
-                            <a href="#" className="hover:text-primary transition-colors">{t('footer.privacy')}</a>
-                            <a href="#" className="hover:text-primary transition-colors">{t('footer.terms')}</a>
-                            <a href="#" className="hover:text-primary transition-colors">{t('footer.contact')}</a>
-                        </div>
-                    </div>
-                </div>
-            </footer>
         </main>
     );
 }

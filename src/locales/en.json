@@ -13,9 +13,14 @@
         "badge": "AI-Powered Resume Builder",
         "title": "Craft Your Perfect",
         "titleHighlight": "Resume in Seconds",
-        "subtitle": "Create professional, ATS-friendly resumes with our premium templates. Use AI to extract data from your existing resume or build one from scratch.",
+        "subtitle": "Create professional, ATS-friendly resumes with premium templates and AI writing assistance—perfect for fresh starts or career upgrades.",
         "ctaPrimary": "Get Started Free",
-        "ctaSecondary": "Improve my resume →"
+        "ctaSecondary": "Improve my resume →",
+        "chooseTemplate": {
+            "title": "Choose your template",
+            "subtitle": "Select from our wide variety of premium templates to get started.",
+            "useTemplate": "Use this template"
+        }
     },
     "features": {
         "aiParsing": {
@@ -174,6 +179,7 @@
             "level": "Proficiency Level",
             "noSkills": "No skills added yet.",
             "levels": {
+                "Beginner": "Beginner",
                 "Intermediate": "Intermediate",
                 "Advanced": "Advanced",
                 "Expert": "Expert"
@@ -217,11 +223,18 @@
     "comingSoon": {
         "title": "Coming Soon",
         "subtitle": "We're working hard to bring you this feature. Stay tuned!",
-        "backHome": "Back to Home"
+        "backHome": "Back to Home",
+        "emailPlaceholder": "Enter your email",
+        "notifyMe": "Notify Me",
+        "subscribing": "Subscribing...",
+        "success": "Thanks for subscribing!",
+        "error": "Something went wrong."
     },
     "language": {
         "en": "English",
-        "id": "Bahasa Indonesia"
+        "id": "Indonesia",
+        "de": "Deutsch",
+        "hi": "हिंदी"
     },
     "templatePreview": {
         "fullName": "Chloe Anderson",

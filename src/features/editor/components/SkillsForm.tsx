@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/Label";
 import { Button } from "@/components/ui/Button";
 import { Plus, X, ChevronDown, Sparkles } from "lucide-react";
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -21,6 +21,7 @@ import { SkillChip } from "@/components/ui/SkillChip";
 export function SkillsForm() {
     const { resumeData, addSkill, updateSkill, removeSkill } = useResume();
     const t = useTranslations('editor.skillsForm');
+    const locale = useLocale();
     const [expandedId, setExpandedId] = useState<string | null>(null);
     const [suggestedSkills, setSuggestedSkills] = useState<{ name: string; level: "Beginner" | "Intermediate" | "Advanced" | "Expert" }[]>([]);
     const [isSuggesting, setIsSuggesting] = useState(false);
@@ -39,7 +40,8 @@ export function SkillsForm() {
                 },
                 body: JSON.stringify({
                     experience: resumeData.experience,
-                    education: resumeData.education
+                    education: resumeData.education,
+                    locale
                 }),
             });
 

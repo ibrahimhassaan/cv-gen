@@ -3,11 +3,20 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { templates, TemplateCategory, categories } from "@/features/templates/registry";
+import { getDummyData } from "@/lib/dummyData";
 import { cn } from "@/lib/utils";
-import { Check } from "lucide-react";
+import { Check, ChevronDown, Palette, Type } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { FitPreview } from "@/components/FitPreview";
 import { useTranslations, useLocale } from "next-intl";
+import {
+    DropdownMenu,
+    DropdownMenuTrigger,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator
+} from "@/components/ui/DropdownMenu";
 
 export default function TemplatesPage() {
     const router = useRouter();
@@ -16,45 +25,28 @@ export default function TemplatesPage() {
     const tp = useTranslations('templatePreview');
     const [activeCategory, setActiveCategory] = useState<TemplateCategory | "All">("All");
 
+    const colors = [
+        { name: "Violet", value: "#7c3aed", class: "bg-violet-600" },
+        { name: "Blue", value: "#2563eb", class: "bg-blue-600" },
+        { name: "Green", value: "#059669", class: "bg-emerald-600" },
+        { name: "Red", value: "#dc2626", class: "bg-red-600" },
+        { name: "Orange", value: "#d97706", class: "bg-amber-600" },
+        { name: "Slate", value: "#475569", class: "bg-slate-600" },
+        { name: "Black", value: "#000000", class: "bg-black" },
+        { name: "Teal", value: "#0d9488", class: "bg-teal-600" },
+    ];
+
+    const fonts = [
+        { name: "Sans Serif", value: "sans", class: "font-sans" },
+        { name: "Serif", value: "serif", class: "font-serif" },
+        { name: "Monospace", value: "mono", class: "font-mono" },
+    ];
+
+    const [selectedColor, setSelectedColor] = useState(colors[1].value); // Default Blue
+    const [selectedFont, setSelectedFont] = useState(fonts[0].value); // Default Sans
+
     // Localized dummy data for preview
-    const dummyData: any = {
-        templateId: "",
-        themeColor: "",
-        labels: {
-            profile: tp('labelProfile'),
-            experience: tp('labelExperience'),
-            education: tp('labelEducation'),
-            skills: tp('labelSkills'),
-            projects: tp('labelProjects'),
-            present: tp('labelPresent')
-        },
-        personalInfo: {
-            fullName: tp('fullName'),
-            title: tp('title'),
-            email: tp('email'),
-            phone: tp('phone'),
-            link: tp('link'),
-            summary: tp('summary')
-        },
-        experience: [
-            { id: "1", role: tp('exp1Role'), company: tp('exp1Company'), startDate: tp('exp1Start'), endDate: tp('exp1End'), current: true, description: tp('exp1Desc') },
-            { id: "2", role: tp('exp2Role'), company: tp('exp2Company'), startDate: tp('exp2Start'), endDate: tp('exp2End'), current: false, description: tp('exp2Desc') }
-        ],
-        education: [
-            { id: "1", institution: tp('eduInstitution'), degree: tp('eduDegree'), field: tp('eduField'), year: tp('eduYear') }
-        ],
-        skills: [
-            { id: "1", name: tp('skill1'), level: "Expert" },
-            { id: "2", name: tp('skill2'), level: "Advanced" },
-            { id: "3", name: tp('skill3'), level: "Intermediate" },
-            { id: "4", name: tp('skill4'), level: "Beginner" }
-        ],
-        languages: [
-            { id: "1", name: "English", level: "Fluent" },
-            { id: "2", name: "Bahasa Indonesia", level: "Advanced" }
-        ],
-        projects: []
-    };
+    const dummyData = getDummyData(tp);
 
     // Filter templates
     const filteredTemplates = activeCategory === "All"
@@ -69,8 +61,13 @@ export default function TemplatesPage() {
             try { daata = JSON.parse(saved); } catch { }
         }
 
-        // Update template ID
-        localStorage.setItem("cv-gen-data", JSON.stringify({ ...daata, templateId }));
+        // Update template ID, color, and font
+        localStorage.setItem("cv-gen-data", JSON.stringify({
+            ...daata,
+            templateId,
+            themeColor: selectedColor,
+            font: selectedFont
+        }));
 
         // Navigate to editor
         router.push(`/${locale}/create/manual`);
@@ -86,35 +83,111 @@ export default function TemplatesPage() {
                     <p className="text-slate-500">{t('subtitle')}</p>
                 </div>
 
-                {/* Filter Tabs */}
-                <div className="flex justify-center flex-wrap gap-2 mb-12">
-                    <button
-                        onClick={() => setActiveCategory("All")}
-                        className={cn(
-                            "px-6 py-2.5 rounded-full text-sm font-semibold transition-all border",
-                            activeCategory === "All"
-                                ? "bg-slate-900 text-white border-slate-900 shadow-lg"
-                                : "bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:bg-slate-50"
-                        )}
-                    >
-                        <div className="flex items-center gap-2">
-                            <span>{t('allTemplates')}</span>
-                        </div>
-                    </button>
-                    {categories.map((cat) => (
+                {/* Filter Tabs & Customization Controls */}
+                <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-6 mb-12">
+
+                    {/* Category Tabs */}
+                    <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                         <button
-                            key={cat}
-                            onClick={() => setActiveCategory(cat)}
+                            onClick={() => setActiveCategory("All")}
                             className={cn(
                                 "px-6 py-2.5 rounded-full text-sm font-semibold transition-all border",
-                                activeCategory === cat
+                                activeCategory === "All"
                                     ? "bg-slate-900 text-white border-slate-900 shadow-lg"
                                     : "bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:bg-slate-50"
                             )}
                         >
-                            {cat}
+                            <div className="flex items-center gap-2">
+                                <span>{t('allTemplates')}</span>
+                            </div>
                         </button>
-                    ))}
+                        {categories.map((cat) => (
+                            <button
+                                key={cat}
+                                onClick={() => setActiveCategory(cat)}
+                                className={cn(
+                                    "px-6 py-2.5 rounded-full text-sm font-semibold transition-all border",
+                                    activeCategory === cat
+                                        ? "bg-slate-900 text-white border-slate-900 shadow-lg"
+                                        : "bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+                                )}
+                            >
+                                {cat}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Customization Controls */}
+                    <div className="bg-white p-2 rounded-full border border-gray-200 shadow-sm flex gap-4 items-center">
+                        {/* Font Selector */}
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" size="sm" className="gap-1.5 px-3 rounded-full text-slate-700 hover:bg-slate-100">
+                                    <Type className="w-4 h-4" />
+                                    <ChevronDown className="w-3 h-3 text-slate-400" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-[180px]">
+                                <DropdownMenuLabel className="text-xs text-muted-foreground uppercase tracking-wider">Font Style</DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                {fonts.map((font) => (
+                                    <DropdownMenuItem
+                                        key={font.value}
+                                        onClick={() => setSelectedFont(font.value)}
+                                        className="flex justify-between items-center cursor-pointer"
+                                    >
+                                        <span className={cn(font.class)}>{font.name}</span>
+                                        {selectedFont === font.value && <Check className="w-3.5 h-3.5 text-primary" />}
+                                    </DropdownMenuItem>
+                                ))}
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+
+                        {/* Color Selector */}
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" size="sm" className="gap-1.5 px-3 rounded-full text-slate-700 hover:bg-slate-100">
+                                    <div
+                                        className="w-4 h-4 rounded-full border border-slate-200 shadow-sm"
+                                        style={{ backgroundColor: selectedColor }}
+                                    />
+                                    <ChevronDown className="w-3 h-3 text-slate-400" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end" className="w-[220px]">
+                                <DropdownMenuLabel className="text-xs text-muted-foreground uppercase tracking-wider">Theme Color</DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                <div className="p-2 grid grid-cols-4 gap-2">
+                                    {colors.map((c) => (
+                                        <button
+                                            key={c.name}
+                                            onClick={() => setSelectedColor(c.value)}
+                                            className={cn(
+                                                "w-8 h-8 rounded-full border-2 transition-all hover:scale-110",
+                                                selectedColor === c.value
+                                                    ? "border-slate-900 ring-2 ring-slate-100 ring-offset-2"
+                                                    : "border-transparent opacity-80 hover:opacity-100",
+                                                c.class
+                                            )}
+                                            title={c.name}
+                                        />
+                                    ))}
+                                    <div className="relative group">
+                                        <input
+                                            type="color"
+                                            value={selectedColor}
+                                            onChange={(e) => setSelectedColor(e.target.value)}
+                                            className="w-8 h-8 opacity-0 absolute inset-0 cursor-pointer z-10"
+                                        />
+                                        <div className="w-8 h-8 rounded-full border-2 border-gray-200 bg-gradient-to-br from-red-500 via-green-500 to-blue-500 flex items-center justify-center pointer-events-none group-hover:scale-110 transition-transform">
+                                            <span className="text-[10px] font-bold text-white drop-shadow">+</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </div>
+
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -132,7 +205,8 @@ export default function TemplatesPage() {
                                             <template.component
                                                 data={{
                                                     ...dummyData,
-                                                    themeColor: "#4f46e5", // Default Indigo
+                                                    themeColor: selectedColor,
+                                                    font: selectedFont,
                                                     templateId: template.id
                                                 }}
                                             />

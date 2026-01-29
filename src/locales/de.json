@@ -1,0 +1,369 @@
+{
+    "nav": {
+        "home": "Startseite",
+        "resume": "Lebenslauf",
+        "templates": "Vorlagen",
+        "dashboard": "Dashboard",
+        "login": "Anmelden",
+        "getStarted": "Loslegen",
+        "brandName": "Resume Gen",
+        "signOut": "Abmelden"
+    },
+    "home": {
+        "badge": "KI-gestützter Lebenslauf-Generator",
+        "title": "Erstellen Sie Ihren perfekten",
+        "titleHighlight": "Lebenslauf in Sekunden",
+        "subtitle": "Erstellen Sie professionelle, ATS-freundliche Lebensläufe mit unseren Premium-Vorlagen. Nutzen Sie KI, um Daten aus Ihrem bestehenden Lebenslauf zu extrahieren oder erstellen Sie einen von Grund auf neu.",
+        "ctaPrimary": "Kostenlos starten",
+        "ctaSecondary": "Lebenslauf verbessern →"
+    },
+    "features": {
+        "aiParsing": {
+            "title": "KI-Analyse",
+            "description": "Laden Sie Ihr altes PDF hoch und lassen Sie unsere KI Ihre Daten sofort extrahieren."
+        },
+        "premiumTemplates": {
+            "title": "Premium-Vorlagen",
+            "description": "Wählen Sie aus professionell gestalteten Layouts, die herausstechen."
+        },
+        "instantSharing": {
+            "title": "Sofortiges Teilen",
+            "description": "Als PDF herunterladen oder einen einzigartigen Link mit Personalvermittlern teilen."
+        }
+    },
+    "howItWorks": {
+        "title": "So funktioniert's",
+        "chooseTemplate": {
+            "title": "Vorlage wählen",
+            "description": "Durchsuchen Sie unsere Sammlung ATS-freundlicher Designs."
+        },
+        "enterDetails": {
+            "title": "Details eingeben",
+            "description": "Manuell ausfüllen oder automatisch aus bestehendem Lebenslauf importieren."
+        },
+        "downloadPdf": {
+            "title": "PDF herunterladen",
+            "description": "Erhalten Sie Ihren professionellen Lebenslauf sofort."
+        }
+    },
+    "whyResumeMatters": {
+        "title": "Warum ein großartiger Lebenslauf",
+        "titleHighlight": "wichtig ist",
+        "subtitle": "Ihr Lebenslauf ist oft der erste Eindruck, den Sie bei einem potenziellen Arbeitgeber hinterlassen. Deshalb ist es entscheidend, ihn richtig zu gestalten.",
+        "sixSeconds": {
+            "title": "6 Sekunden",
+            "description": "Durchschnittliche Zeit, die Personaler für das Scannen eines Lebenslaufs aufwenden."
+        },
+        "beatAts": {
+            "title": "ATS überwinden",
+            "description": "75% der Lebensläufe werden sofort von Software abgelehnt."
+        },
+        "standOut": {
+            "title": "Herausstechen",
+            "description": "Unverwechselbares Design hebt sich von 250+ Bewerbern ab."
+        },
+        "higherSalary": {
+            "title": "Höheres Gehalt",
+            "description": "Professionelle Lebensläufe verhandeln 7-15% höhere Bezahlung."
+        }
+    },
+    "faq": {
+        "title": "Häufig gestellte Fragen",
+        "subtitle": "Alles, was Sie über Resume Gen wissen müssen",
+        "q1": {
+            "question": "Ist Resume Gen wirklich kostenlos nutzbar?",
+            "answer": "Ja! Sie können Ihren Lebenslauf vollständig kostenlos erstellen und herunterladen. Wir bieten Premium-Vorlagen und -Funktionen für Nutzer an, die zusätzliche Anpassungsoptionen wünschen."
+        },
+        "q2": {
+            "question": "Was ist ATS und warum ist es wichtig?",
+            "answer": "ATS (Applicant Tracking System) ist eine Software, die Unternehmen zum Filtern von Lebensläufen verwenden. Viele Lebensläufe werden abgelehnt, bevor sie von einem Menschen gesehen werden. Unsere Vorlagen sind so gestaltet, dass sie ATS-Scans bestehen und dennoch schön aussehen."
+        },
+        "q3": {
+            "question": "Kann ich meinen bestehenden Lebenslauf hochladen?",
+            "answer": "Absolut! Unser KI-gestützter Parser kann Informationen aus Ihrem bestehenden PDF-Lebenslauf extrahieren und die Felder automatisch ausfüllen, was Ihnen Zeit und Mühe spart."
+        },
+        "q4": {
+            "question": "Welche Dateiformate kann ich herunterladen?",
+            "answer": "Sie können Ihren Lebenslauf als hochwertiges PDF herunterladen, das von Arbeitgebern am häufigsten akzeptiert wird. Wir bieten auch einen teilbaren Link, den Sie direkt an Personaler senden können."
+        },
+        "q5": {
+            "question": "Wie viele Lebensläufe kann ich erstellen?",
+            "answer": "Erstellen Sie so viele Lebensläufe, wie Sie benötigen! Wir empfehlen, Ihren Lebenslauf für jede Bewerbung anzupassen, um Ihre Chancen auf ein Vorstellungsgespräch zu maximieren."
+        }
+    },
+    "cta": {
+        "title": "Bereit für Ihren Traumjob?",
+        "subtitle": "Treten Sie Tausenden von Arbeitssuchenden bei, die bereits beeindruckende Lebensläufe mit Resume Gen erstellt haben. Es dauert nur wenige Minuten.",
+        "button": "Erstellen Sie jetzt Ihren Lebenslauf",
+        "trustSignals": "✓ Kostenlos nutzbar · ✓ Keine Registrierung erforderlich · ✓ Sofort herunterladen"
+    },
+    "footer": {
+        "copyright": "© 2026 Resume Gen. Gestalten Sie Ihre Zukunft.",
+        "privacy": "Datenschutz",
+        "terms": "AGB",
+        "contact": "Kontakt"
+    },
+    "templates": {
+        "pageTitle": "Wählen Sie eine erfolgreiche Lebenslauf-Vorlage",
+        "subtitle": "Sie können Ihre Vorlage später jederzeit ändern.",
+        "allTemplates": "Alle Vorlagen",
+        "recommended": "EMPFOHLEN",
+        "useThisTemplate": "Diese Vorlage verwenden"
+    },
+    "editor": {
+        "personal": "Persönlich",
+        "experience": "Erfahrung",
+        "education": "Bildung",
+        "skills": "Fähigkeiten",
+        "back": "Zurück",
+        "nextStep": "Nächster Schritt",
+        "finishDownload": "Fertigstellen & Herunterladen",
+        "reset": "Zurücksetzen",
+        "editor": "Editor",
+        "selectTemplate": "Vorlage auswählen",
+        "switchTemplate": "Vorlage wechseln",
+        "pdf": "PDF",
+        "downloading": "Wird heruntergeladen...",
+        "share": "Teilen",
+        "resetConfirm": "Alle Daten zurücksetzen?",
+        "personalInfo": {
+            "fullName": "Vollständiger Name",
+            "fullNamePlaceholder": "Max Mustermann",
+            "jobTitle": "Berufsbezeichnung",
+            "jobTitlePlaceholder": "Softwareentwickler",
+            "email": "E-Mail",
+            "emailPlaceholder": "max@beispiel.de",
+            "phone": "Telefon",
+            "phonePlaceholder": "+49 123 456 789",
+            "portfolio": "Portfolio / LinkedIn",
+            "portfolioPlaceholder": "linkedin.com/in/maxmustermann",
+            "summary": "Berufliche Zusammenfassung",
+            "summaryPlaceholder": "Beschreiben Sie kurz Ihren beruflichen Hintergrund und Ihre Ziele...",
+            "profilePhoto": "Profilfoto",
+            "noPhoto": "Kein Foto",
+            "remove": "Entfernen",
+            "photoHint": "Empfohlen: Quadratisches JPG oder PNG, max. 1 MB."
+        },
+        "experienceForm": {
+            "company": "Unternehmen",
+            "companyPlaceholder": "Firmenname",
+            "role": "Position",
+            "rolePlaceholder": "Berufsbezeichnung",
+            "startDate": "Startdatum",
+            "endDate": "Enddatum",
+            "datePlaceholder": "MMM JJJJ",
+            "description": "Beschreibung",
+            "descriptionPlaceholder": "• Erfolge...",
+            "addExperience": "Erfahrung hinzufügen"
+        },
+        "educationForm": {
+            "institution": "Institution",
+            "institutionPlaceholder": "Universität / Schule",
+            "degree": "Abschluss",
+            "degreePlaceholder": "Bachelor, Master",
+            "field": "Studienfach",
+            "fieldPlaceholder": "Informatik",
+            "year": "Jahr",
+            "yearPlaceholder": "2020 - 2024",
+            "addEducation": "Bildung hinzufügen"
+        },
+        "skillsForm": {
+            "addSkills": "Fähigkeit hinzufügen",
+            "skillName": "Fähigkeitsbezeichnung",
+            "skillPlaceholder": "Name",
+            "level": "Kenntnisstufe",
+            "noSkills": "Noch keine Fähigkeiten hinzugefügt.",
+            "levels": {
+                "Beginner": "Anfänger",
+                "Intermediate": "Fortgeschritten",
+                "Advanced": "Erweitert",
+                "Expert": "Experte"
+            },
+            "suggestSkills": "Fähigkeiten vorschlagen",
+            "suggesting": "Erfahrung wird analysiert...",
+            "suggestedSkills": "Vorgeschlagene Fähigkeiten",
+            "addSuggested": "Hinzufügen",
+            "noSuggestions": "Fügen Sie zuerst Erfahrung und Bildung hinzu, um Vorschläge zu erhalten.",
+            "error": "Vorschläge konnten nicht abgerufen werden"
+        },
+        "summaryForm": {
+            "title": "Berufliche Zusammenfassung",
+            "description": "Fassen Sie Ihren beruflichen Hintergrund und Ihre Karriereziele zusammen",
+            "generateWithAI": "Mit KI generieren",
+            "generating": "Zusammenfassung wird erstellt...",
+            "placeholder": "Schreiben Sie eine kurze Zusammenfassung Ihres beruflichen Hintergrunds...",
+            "regenerate": "Neu generieren"
+        },
+        "summary": "Zusammenfassung",
+        "languagesForm": {
+            "addLanguage": "Sprache hinzufügen",
+            "languageName": "Sprache",
+            "languagePlaceholder": "z.B. Deutsch",
+            "level": "Kenntnisstufe",
+            "noLanguages": "Noch keine Sprachen hinzugefügt.",
+            "levels": {
+                "Beginner": "Anfänger",
+                "Moderate": "Mittelstufe",
+                "Advanced": "Fortgeschritten",
+                "Fluent": "Fließend"
+            }
+        },
+        "languages": "Sprachen"
+    },
+    "notFound": {
+        "title": "Seite nicht gefunden",
+        "message": "Hoppla! Die Seite, die Sie suchen, existiert nicht oder wurde verschoben.",
+        "returnHome": "Zurück zur Startseite"
+    },
+    "comingSoon": {
+        "title": "Demnächst verfügbar",
+        "subtitle": "Wir arbeiten hart daran, Ihnen diese Funktion zur Verfügung zu stellen. Bleiben Sie dran!",
+        "backHome": "Zurück zur Startseite"
+    },
+    "language": {
+        "en": "English",
+        "id": "Indonesia",
+        "de": "Deutsch",
+        "hi": "हिंदी"
+    },
+    "templatePreview": {
+        "fullName": "Anna Schmidt",
+        "title": "Leitende Einzelhandelsmanagerin",
+        "email": "anna.schmidt@email.de",
+        "phone": "(030) 123-4567",
+        "link": "linkedin.com/anna",
+        "summary": "Proaktive Einzelhandelsfachkraft mit über 5 Jahren Erfahrung in hochfrequentierten Geschäften. Nachgewiesene Erfolgsbilanz bei der Übererfüllung von Verkaufszielen.",
+        "exp1Role": "Filialleitung",
+        "exp1Company": "Mode Boutique",
+        "exp1Start": "2019",
+        "exp1End": "Heute",
+        "exp1Desc": "Leitung eines Teams von 15 Mitarbeitern zur Steigerung von Verkauf und Kundenzufriedenheit.",
+        "exp2Role": "Verkaufsmitarbeiter",
+        "exp2Company": "Einzelhandelskette",
+        "exp2Start": "2016",
+        "exp2End": "2019",
+        "exp2Desc": "Gewinner des Kundenservice-Exzellenz-Awards für 3 aufeinanderfolgende Jahre.",
+        "eduInstitution": "Städtische Hochschule",
+        "eduDegree": "BA Marketing",
+        "eduField": "Marketing",
+        "eduYear": "2016",
+        "skill1": "Vertriebsmanagement",
+        "skill2": "Kundenservice",
+        "skill3": "Visual Merchandising",
+        "skill4": "Bestandskontrolle",
+        "accentColor": "Designfarbe",
+        "all": "Alle",
+        "labelProfile": "Profil",
+        "labelExperience": "Erfahrung",
+        "labelEducation": "Bildung",
+        "labelSkills": "Fähigkeiten",
+        "labelProjects": "Projekte",
+        "labelPresent": "Heute"
+    },
+    "dashboardPage": {
+        "title": "Ihr Dashboard",
+        "subtitle": "Verwalten Sie Ihre Lebensläufe und erstellen Sie neue",
+        "createNew": "Neuen Lebenslauf erstellen",
+        "createNewSubtitle": "Von Grund auf neu beginnen mit einer unserer professionellen Vorlagen",
+        "untitled": "Unbenannter Lebenslauf",
+        "edited": "Bearbeitet",
+        "editResume": "Lebenslauf bearbeiten",
+        "rename": "Umbenennen",
+        "duplicate": "Duplizieren",
+        "delete": "Löschen",
+        "download": "Herunterladen",
+        "share": "Teilen",
+        "deleteConfirm": "Sind Sie sicher, dass Sie diesen Lebenslauf löschen möchten?",
+        "errorGenerateLink": "Link konnte nicht generiert werden",
+        "errorDuplicate": "Lebenslauf konnte nicht dupliziert werden",
+        "errorRename": "Lebenslauf konnte nicht umbenannt werden"
+    },
+    "view": {
+        "notFoundTitle": "Lebenslauf nicht gefunden",
+        "notFoundMessage": "Der gesuchte Lebenslauf existiert nicht oder ist nicht verfügbar.",
+        "createYourOwn": "Erstellen Sie Ihren eigenen Lebenslauf",
+        "expiredTitle": "Link abgelaufen",
+        "expiredMessage": "Dieser geteilte Lebenslauf-Link ist abgelaufen.",
+        "builtWith": "Erstellt mit"
+    },
+    "modals": {
+        "rename": {
+            "title": "Lebenslauf umbenennen",
+            "placeholder": "Lebenslaufname eingeben",
+            "cancel": "Abbrechen",
+            "saving": "Wird gespeichert...",
+            "save": "Änderungen speichern"
+        },
+        "share": {
+            "title": "Ihren Lebenslauf teilen",
+            "description": "Jeder mit diesem Link kann Ihren Lebenslauf ansehen.",
+            "copied": "Kopiert",
+            "copy": "Kopieren",
+            "close": "Schließen"
+        }
+    },
+    "privacyPage": {
+        "title": "Datenschutzerklärung",
+        "lastUpdated": "Zuletzt aktualisiert",
+        "intro": "Bitte lesen Sie diese Datenschutzerklärung sorgfältig durch, bevor Sie den Resume Generator-Dienst nutzen.",
+        "section1Title": "1. Auslegung und Definitionen",
+        "section1Content": "Die Wörter, deren Anfangsbuchstabe großgeschrieben ist, haben die unter den folgenden Bedingungen definierten Bedeutungen. Die folgenden Definitionen haben dieselbe Bedeutung, unabhängig davon, ob sie im Singular oder Plural erscheinen.",
+        "section2Title": "2. Erfassung und Verwendung Ihrer personenbezogenen Daten",
+        "section2Subtitle1": "Arten der erfassten Daten",
+        "section2Content1": "<strong>Personenbezogene Daten:</strong> Bei der Nutzung unseres Dienstes bitten wir Sie möglicherweise, uns bestimmte persönlich identifizierbare Informationen zur Verfügung zu stellen, die zur Kontaktaufnahme oder Identifizierung verwendet werden können. Persönlich identifizierbare Informationen können unter anderem umfassen: E-Mail-Adresse, Vor- und Nachname, Nutzungsdaten.",
+        "section2Subtitle2": "Nutzungsdaten",
+        "section2Content2": "Nutzungsdaten werden automatisch bei der Nutzung des Dienstes erfasst. Nutzungsdaten können Informationen wie die Internet-Protokoll-Adresse Ihres Geräts (z. B. IP-Adresse), Browsertyp, Browserversion, die von Ihnen besuchten Seiten unseres Dienstes, die Uhrzeit und das Datum Ihres Besuchs, die auf diesen Seiten verbrachte Zeit, eindeutige Gerätekennungen und andere Diagnosedaten umfassen.",
+        "section3Title": "3. Aufbewahrung Ihrer personenbezogenen Daten",
+        "section3Content": "Das Unternehmen wird Ihre personenbezogenen Daten nur so lange aufbewahren, wie es für die in dieser Datenschutzerklärung dargelegten Zwecke erforderlich ist. Wir werden Ihre personenbezogenen Daten in dem Umfang aufbewahren und verwenden, der erforderlich ist, um unseren gesetzlichen Verpflichtungen nachzukommen (z. B. wenn wir verpflichtet sind, Ihre Daten aufzubewahren, um geltende Gesetze einzuhalten), Streitigkeiten beizulegen und unsere rechtlichen Vereinbarungen und Richtlinien durchzusetzen.",
+        "section4Title": "4. Offenlegung Ihrer personenbezogenen Daten",
+        "section4Content1": "<strong>Geschäftstransaktionen:</strong> Wenn das Unternehmen an einer Fusion, Übernahme oder einem Verkauf von Vermögenswerten beteiligt ist, können Ihre personenbezogenen Daten übertragen werden. Wir werden Sie benachrichtigen, bevor Ihre personenbezogenen Daten übertragen werden und einer anderen Datenschutzerklärung unterliegen.",
+        "section4Content2": "<strong>Strafverfolgung:</strong> Unter bestimmten Umständen kann das Unternehmen verpflichtet sein, Ihre personenbezogenen Daten offenzulegen, wenn dies gesetzlich vorgeschrieben ist oder als Reaktion auf gültige Anfragen von Behörden (z. B. ein Gericht oder eine Regierungsbehörde).",
+        "section5Title": "5. Sicherheit Ihrer personenbezogenen Daten",
+        "section5Content": "Die Sicherheit Ihrer personenbezogenen Daten ist uns wichtig, aber denken Sie daran, dass keine Übertragungsmethode über das Internet oder elektronische Speichermethode zu 100% sicher ist. Obwohl wir uns bemühen, kommerziell akzeptable Mittel zum Schutz Ihrer personenbezogenen Daten zu verwenden, können wir deren absolute Sicherheit nicht garantieren.",
+        "section6Title": "6. Kontaktieren Sie uns",
+        "section6Content": "Wenn Sie Fragen zu dieser Datenschutzerklärung haben, können Sie uns kontaktieren:",
+        "contactLink": "Besuchen Sie unsere Kontaktseite"
+    },
+    "termsPage": {
+        "title": "Allgemeine Geschäftsbedingungen",
+        "lastUpdated": "Zuletzt aktualisiert",
+        "intro": "Bitte lesen Sie diese Allgemeinen Geschäftsbedingungen sorgfältig durch, bevor Sie unseren Dienst nutzen.",
+        "section1Title": "1. Anerkennung",
+        "section1Content1": "Dies sind die Allgemeinen Geschäftsbedingungen für die Nutzung dieses Dienstes und die Vereinbarung, die zwischen Ihnen und dem Unternehmen besteht. Diese Allgemeinen Geschäftsbedingungen legen die Rechte und Pflichten aller Nutzer in Bezug auf die Nutzung des Dienstes fest.",
+        "section1Content2": "Ihr Zugang zu und die Nutzung des Dienstes ist an Ihre Annahme und Einhaltung dieser Allgemeinen Geschäftsbedingungen geknüpft. Diese Allgemeinen Geschäftsbedingungen gelten für alle Besucher, Nutzer und andere, die auf den Dienst zugreifen oder ihn nutzen.",
+        "section2Title": "2. Benutzerkonten",
+        "section2Content": "Wenn Sie ein Konto bei uns erstellen, müssen Sie uns Informationen zur Verfügung stellen, die jederzeit korrekt, vollständig und aktuell sind. Die Nichteinhaltung stellt einen Verstoß gegen die Bedingungen dar, der zur sofortigen Kündigung Ihres Kontos bei unserem Dienst führen kann.",
+        "section3Title": "3. Inhalte",
+        "section3Content": "Unser Dienst ermöglicht es Ihnen, bestimmte Informationen, Texte, Grafiken, Videos oder andere Materialien (\"Inhalte\") zu veröffentlichen, zu verlinken, zu speichern, zu teilen und anderweitig verfügbar zu machen. Sie sind für die Inhalte verantwortlich, die Sie im Dienst veröffentlichen, einschließlich deren Rechtmäßigkeit, Zuverlässigkeit und Angemessenheit.",
+        "section4Title": "4. Geistiges Eigentum",
+        "section4Content": "Der Dienst und seine ursprünglichen Inhalte (ausgenommen von Ihnen oder anderen Nutzern bereitgestellte Inhalte), Funktionen und Funktionalität sind und bleiben das ausschließliche Eigentum des Unternehmens und seiner Lizenzgeber.",
+        "section5Title": "5. Kündigung",
+        "section5Content": "Wir können Ihr Konto sofort und ohne vorherige Ankündigung oder Haftung aus beliebigem Grund kündigen oder aussetzen, einschließlich ohne Einschränkung, wenn Sie gegen diese Allgemeinen Geschäftsbedingungen verstoßen.",
+        "section6Title": "6. Haftungsbeschränkung",
+        "section6Content": "Ungeachtet etwaiger Schäden, die Ihnen entstehen könnten, ist die gesamte Haftung des Unternehmens und seiner Lieferanten gemäß einer Bestimmung dieser Bedingungen und Ihr ausschließlicher Rechtsbehelf für alle vorstehend genannten Fälle auf den von Ihnen über den Dienst tatsächlich gezahlten Betrag oder 100 USD beschränkt, wenn Sie über den Dienst nichts gekauft haben.",
+        "section7Title": "7. Anwendbares Recht",
+        "section7Content": "Die Gesetze des Landes, ausgenommen seiner Kollisionsnormen, regeln diese Bedingungen und Ihre Nutzung des Dienstes. Ihre Nutzung der Anwendung kann auch anderen lokalen, staatlichen, nationalen oder internationalen Gesetzen unterliegen.",
+        "section8Title": "8. Änderungen dieser Allgemeinen Geschäftsbedingungen",
+        "section8Content": "Wir behalten uns das Recht vor, diese Bedingungen jederzeit nach eigenem Ermessen zu ändern oder zu ersetzen. Wenn eine Überarbeitung wesentlich ist, werden wir angemessene Anstrengungen unternehmen, um mindestens 30 Tage im Voraus vor dem Inkrafttreten neuer Bedingungen zu informieren. Was eine wesentliche Änderung darstellt, wird nach unserem alleinigen Ermessen bestimmt.",
+        "section9Title": "9. Kontaktieren Sie uns",
+        "section9Content": "Wenn Sie Fragen zu diesen Allgemeinen Geschäftsbedingungen haben, können Sie uns kontaktieren:",
+        "contactLink": "Besuchen Sie unsere Kontaktseite"
+    },
+    "contactPage": {
+        "title": "Kontaktieren Sie uns",
+        "subtitle": "Haben Sie Fragen zu unserem Lebenslauf-Generator? Wir helfen Ihnen gerne, den perfekten Lebenslauf zu erstellen.",
+        "formTitle": "Senden Sie uns eine Nachricht",
+        "name": "Name",
+        "namePlaceholder": "Max Mustermann",
+        "email": "E-Mail",
+        "emailPlaceholder": "max@beispiel.de",
+        "subject": "Betreff",
+        "subjectPlaceholder": "Wie können wir helfen?",
+        "message": "Nachricht",
+        "messagePlaceholder": "Erzählen Sie uns mehr über Ihr Anliegen...",
+        "sending": "Wird gesendet...",
+        "sendMessage": "Nachricht senden",
+        "successTitle": "Nachricht gesendet!",
+        "sendAnother": "Weitere Nachricht senden"
+    }
+}
