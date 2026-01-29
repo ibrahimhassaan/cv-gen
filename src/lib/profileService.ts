@@ -6,7 +6,7 @@ export interface UserProfile {
     preferred_language: string | null;
 }
 
-export async function getUserProfile(userId: string): Promise<UserProfile | null> {
+export async function getUserProfile(): Promise<UserProfile | null> {
     const response = await fetch("/api/profile", {
         method: "GET",
         credentials: "include",
@@ -21,7 +21,7 @@ export async function getUserProfile(userId: string): Promise<UserProfile | null
     return profile;
 }
 
-export async function updateUserLanguage(userId: string, language: string): Promise<void> {
+export async function updateUserLanguage(language: string): Promise<void> {
     const response = await fetch("/api/profile", {
         method: "PATCH",
         credentials: "include",

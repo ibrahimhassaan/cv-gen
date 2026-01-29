@@ -1,19 +1,29 @@
 import * as localStore from "@/lib/resumeStorage";
-import { ResumeData } from "@/features/editor/types";
+import { ResumeData, SkillItem, LanguageItem } from "@/features/editor/types";
 
 // Helper to ensure all items have IDs
 function ensureResumeIds(resume: ResumeData): ResumeData {
     const newData = { ...resume };
 
     if (newData.skills) {
-        newData.skills = newData.skills.map((s: any) => {
-            if (typeof s === 'string') return { id: crypto.randomUUID(), name: s, level: "Intermediate" };
-            return { ...s, id: s.id || crypto.randomUUID() };
+        newData.skills = newData.skills.map((s: string | Partial<SkillItem>) => {
+            if (typeof s === 'string') return { id: crypto.randomUUID(), name: s, level: "Intermediate" } as SkillItem;
+            return {
+                ...s,
+                id: (s as SkillItem).id || crypto.randomUUID(),
+                name: (s as SkillItem).name || "",
+                level: (s as SkillItem).level || "Intermediate"
+            } as SkillItem;
         });
     }
 
     if (newData.languages) {
-        newData.languages = newData.languages.map((l: any) => ({ ...l, id: l.id || crypto.randomUUID() }));
+        newData.languages = newData.languages.map((l: Partial<LanguageItem>) => ({
+            ...l,
+            id: l.id || crypto.randomUUID(),
+            name: l.name || "",
+            level: l.level || "Beginner"
+        } as LanguageItem));
     }
 
     if (newData.experience) {

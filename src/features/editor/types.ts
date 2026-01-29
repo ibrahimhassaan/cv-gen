@@ -95,20 +95,4 @@ export const initialResumeState: ResumeData = {
     projects: [],
 };
 
-interface ResumeContextType {
-    resumeData: ResumeData;
-    setResumeData: (data: ResumeData) => void;
-    setTemplate: (id: string) => void;
-    // ... existing methods
-    updatePersonalInfo: (field: string, value: string) => void;
-    addExperience: () => void;
-    updateExperience: (id: string, field: string, value: any) => void;
-    removeExperience: (id: string) => void;
-    addEducation: () => void;
-    updateEducation: (id: string, field: string, value: any) => void;
-    removeEducation: (id: string) => void;
-    addSkill: (skill: Omit<SkillItem, "id">) => void;
-    removeSkill: (id: string) => void;
-    addLanguage: (lang: Omit<LanguageItem, "id">) => void;
-    removeLanguage: (id: string) => void;
-}
+

@@ -26,7 +26,8 @@ export default async function ViewResumePage({ params }: PageProps) {
     }
 
     // Check for expiration
-    if (resume.shareConfig && resume.shareConfig.expiresAt < Date.now()) {
+    const now = new Date().getTime();
+    if (resume.shareConfig && resume.shareConfig.expiresAt < now) {
         return (
             <div className="flex flex-col items-center justify-center min-h-screen p-4 text-center">
                 <h1 className="text-2xl font-bold mb-4">{t('expiredTitle')}</h1>

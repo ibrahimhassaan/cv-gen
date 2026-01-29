@@ -39,10 +39,11 @@ export async function POST(req: NextRequest) {
         const summary = response.text().trim();
 
         return NextResponse.json({ summary });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error generating summary:", error);
+        const errorMessage = error instanceof Error ? error.message : "Failed to generate summary";
         return NextResponse.json(
-            { error: error.message || "Failed to generate summary" },
+            { error: errorMessage },
             { status: 500 }
         );
     }

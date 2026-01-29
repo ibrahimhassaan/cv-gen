@@ -17,11 +17,13 @@ import { saveResume, getResume } from "@/lib/resumeService";
 import { ShareModal } from "@/components/ShareModal";
 import { ConfirmModal } from "@/components/ConfirmModal";
 
+import { ResumeData } from "@/features/editor/types";
+
 interface PreviewWrapperProps {
     view: "editor" | "templates" | "preview";
-    resumeData: any;
+    resumeData: ResumeData;
     templateRef: React.RefObject<HTMLDivElement | null>;
-    TemplateComponent: any;
+    TemplateComponent: React.ComponentType<{ data: ResumeData }>;
 }
 
 function PreviewWrapper({

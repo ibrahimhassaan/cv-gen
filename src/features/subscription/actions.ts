@@ -1,7 +1,6 @@
 "use server";
 
 import { createClient } from "@/lib/supabase";
-import { revalidatePath } from "next/cache";
 import { z } from "zod";
 
 const subscribeSchema = z.object({
@@ -55,7 +54,7 @@ export async function subscribeToFeature(prevState: SubscribeState, formData: Fo
             message: "Thanks for subscribing! We'll notify you when this feature is ready.",
         };
 
-    } catch (error) {
+    } catch {
         return {
             success: false,
             error: "Something went wrong. Please try again later.",

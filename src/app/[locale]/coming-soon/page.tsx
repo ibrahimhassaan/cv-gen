@@ -4,12 +4,12 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ArrowLeft, Rocket, CheckCircle2, AlertCircle } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
-import { subscribeToFeature } from "@/features/subscription/actions";
+import { subscribeToFeature, type SubscribeState } from "@/features/subscription/actions";
 import { useFormStatus } from "react-dom";
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useState } from "react";
 import { Input } from "@/components/ui/Input";
 
-function SubmitButton({ t }: { t: any }) {
+function SubmitButton({ t }: { t: (key: string) => string }) {
     const { pending } = useFormStatus();
     return (
         <Button
@@ -26,14 +26,14 @@ function SubmitButton({ t }: { t: any }) {
 export default function ComingSoon() {
     const t = useTranslations('comingSoon');
     const locale = useLocale();
-    const [state, formAction] = useActionState(subscribeToFeature, {});
     const [inputValue, setInputValue] = useState("");
-
-    useEffect(() => {
-        if (state.success) {
+    const [state, formAction] = useActionState(async (prevState: SubscribeState, formData: FormData) => {
+        const result = await subscribeToFeature(prevState, formData);
+        if (result.success) {
             setInputValue("");
         }
-    }, [state.success]);
+        return result;
+    }, { success: false });
 
     return (
         <main className="min-h-screen flex items-center justify-center relative overflow-hidden bg-background">

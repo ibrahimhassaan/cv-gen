@@ -11,16 +11,20 @@ export function AuthFeedback() {
 
     useEffect(() => {
         const err = searchParams.get("error");
-        if (err === "auth_failed") {
-            setError("Authentication failed. Please make sure you have configured your environment variables and enabled social login in Supabase.");
-        } else if (err) {
-            setError(err);
-        }
-
         const msg = searchParams.get("message");
-        if (msg) {
-            setMessage(msg);
-        }
+
+        requestAnimationFrame(() => {
+            if (err === "auth_failed") {
+                const authFailedMsg = "Authentication failed. Please make sure you have configured your environment variables and enabled social login in Supabase.";
+                setError(prev => prev !== authFailedMsg ? authFailedMsg : prev);
+            } else if (err) {
+                setError(prev => prev !== err ? err : prev);
+            }
+
+            if (msg) {
+                setMessage(prev => prev !== msg ? msg : prev);
+            }
+        });
     }, [searchParams]);
 
     if (!error && !message) return null;

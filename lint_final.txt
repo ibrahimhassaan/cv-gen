@@ -1,0 +1,97 @@
+
+> cv-genfy@0.1.0 lint
+> eslint
+
+
+/Users/hassaan/Development/web/cv-gen/src/app/[locale]/create/manual/page.tsx
+   16:22  warning  'getResume' is defined but never used                   @typescript-eslint/no-unused-vars
+   96:19  warning  'loading' is assigned a value but never used            @typescript-eslint/no-unused-vars
+   97:11  warning  'router' is assigned a value but never used             @typescript-eslint/no-unused-vars
+   99:11  warning  'id' is assigned a value but never used                 @typescript-eslint/no-unused-vars
+  104:12  warning  'pendingActionType' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  108:12  warning  'isSharing' is assigned a value but never used          @typescript-eslint/no-unused-vars
+
+/Users/hassaan/Development/web/cv-gen/src/app/[locale]/dashboard/page.tsx
+    6:10  warning  'Button' is defined but never used                                                                                     @typescript-eslint/no-unused-vars
+    8:10  warning  'LogOut' is defined but never used                                                                                     @typescript-eslint/no-unused-vars
+    8:18  warning  'User' is defined but never used                                                                                       @typescript-eslint/no-unused-vars
+    9:10  warning  'loadAllResumes' is defined but never used                                                                             @typescript-eslint/no-unused-vars
+  118:8   warning  React Hook useEffect has a missing dependency: 'handleGenerateLink'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  179:11  warning  'handleSignOut' is assigned a value but never used                                                                     @typescript-eslint/no-unused-vars
+
+/Users/hassaan/Development/web/cv-gen/src/app/[locale]/templates/page.tsx
+  8:30  warning  'Palette' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/hassaan/Development/web/cv-gen/src/app/api/ai/suggest-skills/route.ts
+  37:18  warning  'parseError' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/hassaan/Development/web/cv-gen/src/app/api/resumes/public/[id]/route.ts
+  3:10  warning  'cookies' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/hassaan/Development/web/cv-gen/src/app/layout.tsx
+   5:7  warning  'inter' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  10:7  warning  'outfit' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/hassaan/Development/web/cv-gen/src/components/Footer.tsx
+  2:10  warning  'Github' is defined but never used    @typescript-eslint/no-unused-vars
+  2:18  warning  'Twitter' is defined but never used   @typescript-eslint/no-unused-vars
+  2:27  warning  'Linkedin' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/hassaan/Development/web/cv-gen/src/components/Navbar.tsx
+  151:41  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  259:49  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/hassaan/Development/web/cv-gen/src/components/RenameModal.tsx
+  7:13  warning  'Check' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/hassaan/Development/web/cv-gen/src/components/TemplateSlider.tsx
+  8:33  warning  'Check' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/hassaan/Development/web/cv-gen/src/features/editor/ResumeContext.tsx
+  3:44  warning  'useEffect' is defined but never used    @typescript-eslint/no-unused-vars
+  4:73  warning  'ProjectItem' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/hassaan/Development/web/cv-gen/src/features/editor/components/EducationForm.tsx
+  30:8  warning  React Hook useEffect has a missing dependency: 'resumeData.education'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+/Users/hassaan/Development/web/cv-gen/src/features/editor/components/PersonalInfoForm.tsx
+  45:29  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/hassaan/Development/web/cv-gen/src/features/templates/TemplateBold.tsx
+   3:30  warning  'MapPin' is defined but never used                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  61:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/hassaan/Development/web/cv-gen/src/features/templates/TemplateClassic.tsx
+  27:29  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/hassaan/Development/web/cv-gen/src/features/templates/TemplateHeaderCols.tsx
+  21:5   warning  'accentColor' is assigned a value but never used                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+  53:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/hassaan/Development/web/cv-gen/src/features/templates/TemplateModern.tsx
+   3:30  warning  'MapPin' is defined but never used                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  46:29  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/hassaan/Development/web/cv-gen/src/features/templates/TemplateRibbon.tsx
+  34:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/hassaan/Development/web/cv-gen/src/features/templates/TemplateSelector.tsx
+   7:30  warning  'Type' is defined but never used                  @typescript-eslint/no-unused-vars
+  42:11  warning  'activeColor' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  43:11  warning  'activeFont' is assigned a value but never used   @typescript-eslint/no-unused-vars
+
+/Users/hassaan/Development/web/cv-gen/src/features/templates/TemplateSerif.tsx
+   3:10  warning  'Mail' is defined but never used                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+   3:16  warning  'Phone' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+   3:23  warning  'Globe' is defined but never used                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+   3:30  warning  'MapPin' is defined but never used                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+  39:29  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+/Users/hassaan/Development/web/cv-gen/src/features/templates/TemplateSidebar.tsx
+    3:30  warning  'MapPin' is defined but never used                                                                                                                                                                                                                                                       @typescript-eslint/no-unused-vars
+   23:5   warning  'accentColor' is assigned a value but never used                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+   57:37  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  208:37  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+✖ 48 problems (0 errors, 48 warnings)
+

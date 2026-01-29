@@ -24,10 +24,14 @@ export function ExperienceForm() {
     useEffect(() => {
         if (resumeData.experience.length > prevCount.current) {
             const lastItem = resumeData.experience[resumeData.experience.length - 1];
-            setExpandedId(lastItem.id);
+            if (expandedId !== lastItem.id) {
+                requestAnimationFrame(() => {
+                    setExpandedId(lastItem.id);
+                });
+            }
         }
         prevCount.current = resumeData.experience.length;
-    }, [resumeData.experience.length]);
+    }, [resumeData.experience, expandedId]); // Added resumeData.experience as dependency
 
     const handleToggle = (id: string) => {
         setExpandedId(current => current === id ? null : id);

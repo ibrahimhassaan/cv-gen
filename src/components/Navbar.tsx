@@ -10,7 +10,6 @@ import { useAuth, SignInModal } from "@/features/auth";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
-// Extracted NavLinks component to prevent re-creation and handle closing
 const NavLinks = ({
     mobile = false,
     locale,
@@ -20,8 +19,8 @@ const NavLinks = ({
 }: {
     mobile?: boolean;
     locale: string;
-    t: any;
-    user: any;
+    t: (key: string) => string;
+    user: unknown;
     onNavigate?: () => void;
 }) => {
     const handleClick = () => {
@@ -66,8 +65,12 @@ export function Navbar() {
 
     // Close mobile menu when route changes
     useEffect(() => {
-        setIsMobileMenuOpen(false);
-    }, [pathname]);
+        if (isMobileMenuOpen) {
+            requestAnimationFrame(() => {
+                setIsMobileMenuOpen(false);
+            });
+        }
+    }, [pathname, isMobileMenuOpen]);
 
     // Prevent scrolling when mobile menu is open
     useEffect(() => {

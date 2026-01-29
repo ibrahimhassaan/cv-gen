@@ -54,7 +54,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
                 // 2. Handle Localization
                 try {
-                    const profile = await getUserProfile(userId);
+                    const profile = await getUserProfile();
 
                     if (profile?.preferred_language && profile.preferred_language !== locale) {
                         // User has a different language preference, switch to it
@@ -62,13 +62,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                         router.replace(newPath);
                     } else if (profile && !profile.preferred_language) {
                         // User has no preference set, save current locale
-                        updateUserLanguage(userId, locale);
+                        updateUserLanguage(locale);
                     } else if (!profile) {
                         // Profile might not exist yet if trigger failed or race condition
                         // We can try to update anyway if the table exists
                         // But usually handle_new_user trigger creates it.
                         // Let's just try to update language
-                        updateUserLanguage(userId, locale);
+                        updateUserLanguage(locale);
                     }
                 } catch (e) {
                     console.error("Error handling localization preference", e);

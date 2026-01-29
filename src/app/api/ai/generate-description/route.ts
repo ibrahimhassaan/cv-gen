@@ -45,10 +45,11 @@ export async function POST(req: NextRequest) {
         const description = response.text().trim();
 
         return NextResponse.json({ description });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Error generating job description:", error);
+        const errorMessage = error instanceof Error ? error.message : "Failed to generate job description";
         return NextResponse.json(
-            { error: error.message || "Failed to generate job description" },
+            { error: errorMessage },
             { status: 500 }
         );
     }

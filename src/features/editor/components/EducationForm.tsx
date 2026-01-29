@@ -20,10 +20,14 @@ export function EducationForm() {
     useEffect(() => {
         if (resumeData.education.length > prevCount.current) {
             const lastItem = resumeData.education[resumeData.education.length - 1];
-            setExpandedId(lastItem.id);
+            if (expandedId !== lastItem.id) {
+                requestAnimationFrame(() => {
+                    setExpandedId(lastItem.id);
+                });
+            }
         }
         prevCount.current = resumeData.education.length;
-    }, [resumeData.education.length]);
+    }, [resumeData.education.length, expandedId]);
 
     const handleToggle = (id: string) => {
         setExpandedId(current => current === id ? null : id);

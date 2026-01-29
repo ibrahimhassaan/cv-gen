@@ -11,13 +11,17 @@ import React from "react";
 export type TemplateId = string;
 export type TemplateCategory = "Minimalist" | "Professional" | "Modern" | "Creative" | "Corporate";
 
+export interface TemplateProps extends Record<string, unknown> {
+    data: ResumeData;
+}
+
 export interface TemplateConfig {
     id: TemplateId;
     name: string;
     category: TemplateCategory;
     thumbnail: string; // Tailwind bg class for now
-    component: React.ComponentType<{ data: ResumeData }>;
-    props?: Record<string, any>;
+    component: React.ComponentType<TemplateProps>;
+    props?: Record<string, unknown>;
 }
 
 export const categories: TemplateCategory[] = ["Minimalist", "Professional", "Modern", "Creative", "Corporate"];
@@ -28,15 +32,15 @@ const createVariant = (
     suffix: string,
     name: string,
     category: TemplateCategory,
-    Component: React.ComponentType<any>,
-    props: Record<string, any>,
+    Component: React.ComponentType<TemplateProps>,
+    props: Record<string, unknown>,
     thumbnailClass: string
 ): TemplateConfig => ({
     id: `${baseId}-${suffix}`,
     name,
     category,
     thumbnail: thumbnailClass,
-    component: (compProps) => <Component {...compProps} {...props} />,
+    component: (compProps: TemplateProps) => <Component {...compProps} {...props} />,
     props
 });
 

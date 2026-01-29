@@ -23,7 +23,7 @@ export function EditorForm({ onDownload, isDownloading }: EditorFormProps) {
     const [activeSection, setActiveSection] = useState<Section>("personal");
     const t = useTranslations('editor');
 
-    const sections: { id: Section; label: string; icon: any }[] = [
+    const sections: { id: Section; label: string; icon: React.ElementType }[] = [
         { id: "personal", label: t('personal'), icon: User },
         { id: "experience", label: t('experience'), icon: Briefcase },
         { id: "education", label: t('education'), icon: GraduationCap },

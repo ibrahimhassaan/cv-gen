@@ -56,7 +56,7 @@ export async function PATCH(request: NextRequest) {
         return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
     }
 
-    const updateData: any = {
+    const updateData: { updated_at: string; preferred_language?: string } = {
         updated_at: new Date().toISOString(),
     };
 

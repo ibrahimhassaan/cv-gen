@@ -1,6 +1,7 @@
 "use client";
 
 import { useResume } from "@/features/editor/ResumeContext";
+import { SkillItem } from "@/features/editor/types";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 import { Button } from "@/components/ui/button";
@@ -51,7 +52,7 @@ export function SkillsForm() {
             if (data.skills && Array.isArray(data.skills)) {
                 // Filter out skills that are already added
                 const existingNames = new Set(resumeData.skills.map(s => s.name.toLowerCase()));
-                const newSuggestions = data.skills.filter((s: any) => !existingNames.has(s.name.toLowerCase()));
+                const newSuggestions = data.skills.filter((s: SkillItem) => !existingNames.has(s.name.toLowerCase()));
                 setSuggestedSkills(newSuggestions);
             }
         } catch (error) {
@@ -110,7 +111,7 @@ export function SkillsForm() {
             </div>
 
             <div className="flex flex-col gap-3">
-                {resumeData.skills.map((skill, i) => (
+                {resumeData.skills.map((skill) => (
                     <Card key={skill.id} className={cn("transition-all duration-300 group overflow-hidden border-white/40 shadow-sm hover:shadow-md bg-white/50 backdrop-blur-sm", expandedId === skill.id ? "ring-1 ring-primary/30 border-primary/50 shadow-primary/5 bg-white/80" : "hover:border-primary/30")}>
                         <div
                             className={cn("p-4 flex items-center justify-between cursor-pointer select-none transition-colors", expandedId === skill.id ? "bg-primary/5" : "group-hover:bg-white/40")}

@@ -11,16 +11,16 @@ interface ResumeContextType {
     setFont: (font: string) => void;
     updatePersonalInfo: (field: string, value: string) => void;
     addExperience: () => void;
-    updateExperience: (id: string, field: string, value: any) => void;
+    updateExperience: (id: string, field: string, value: string | boolean) => void;
     removeExperience: (id: string) => void;
     addEducation: () => void;
-    updateEducation: (id: string, field: string, value: any) => void;
+    updateEducation: (id: string, field: string, value: string) => void;
     removeEducation: (id: string) => void;
     addSkill: (skill?: { name: string; level: "Beginner" | "Intermediate" | "Advanced" | "Expert" }) => string;
-    updateSkill: (id: string, field: string, value: any) => void;
+    updateSkill: (id: string, field: string, value: string) => void;
     removeSkill: (id: string) => void;
     addLanguage: () => string;
-    updateLanguage: (id: string, field: string, value: any) => void;
+    updateLanguage: (id: string, field: string, value: string) => void;
     removeLanguage: (id: string) => void;
 }
 
@@ -64,7 +64,7 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
         }));
     };
 
-    const updateExperience = (id: string, field: string, value: any) => {
+    const updateExperience = (id: string, field: string, value: string | boolean) => {
         setResumeData((prev) => ({
             ...prev,
             experience: prev.experience.map((item) =>
@@ -94,7 +94,7 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
         }));
     };
 
-    const updateEducation = (id: string, field: string, value: any) => {
+    const updateEducation = (id: string, field: string, value: string) => {
         setResumeData((prev) => ({
             ...prev,
             education: prev.education.map((item) =>
@@ -123,7 +123,7 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
         return id;
     };
 
-    const updateSkill = (id: string, field: string, value: any) => {
+    const updateSkill = (id: string, field: string, value: string) => {
         setResumeData((prev) => ({
             ...prev,
             skills: prev.skills.map((item) =>
@@ -145,7 +145,7 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
         return id;
     };
 
-    const updateLanguage = (id: string, field: string, value: any) => {
+    const updateLanguage = (id: string, field: string, value: string) => {
         setResumeData((prev) => ({
             ...prev,
             languages: (prev.languages || []).map((item) =>
