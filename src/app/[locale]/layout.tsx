@@ -11,6 +11,8 @@ import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { locales, type Locale } from "@/i18n";
 import { CookieBanner } from "@/components/CookieBanner";
+import { JsonLd } from "@/components/JsonLd";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -35,7 +37,6 @@ export async function generateMetadata({ params }: Props) {
         description: t('description'),
         keywords: t('keywords'),
         alternates: {
-            canonical: `/${locale}`,
             languages: {
                 'en': `/en`,
                 'de': `/de`,
@@ -88,32 +89,29 @@ export default async function LocaleLayout({ children, params }: Props) {
                         <CookieBanner />
                         <FooterWrapper />
                     </AuthWrapper>
+                    <GoogleAnalytics />
                 </NextIntlClientProvider>
-                <Script
-                    id="schema-org"
-                    type="application/ld+json"
-                    dangerouslySetInnerHTML={{
-                        __html: JSON.stringify({
-                            '@context': 'https://schema.org',
-                            '@type': 'SoftwareApplication',
-                            'name': 'cvGenfy',
-                            'applicationCategory': 'BusinessApplication',
-                            'operatingSystem': 'Web',
-                            'url': 'https://cvgenfy.com',
-                            'sameAs': [
-                                'https://twitter.com/cvgenfy',
-                                'https://www.linkedin.com/company/cvgenfy',
-                                'https://www.instagram.com/cvgenfy',
-                                'https://www.facebook.com/cvgenfy',
-                                'https://www.youtube.com/@cvgenfy'
-                            ],
-                            'offers': {
-                                '@type': 'Offer',
-                                'price': '0',
-                                'priceCurrency': 'USD'
-                            },
-                            'description': 'AI-powered professional resume generator.'
-                        })
+                <JsonLd
+                    data={{
+                        '@context': 'https://schema.org',
+                        '@type': 'SoftwareApplication',
+                        'name': 'cvGenfy',
+                        'applicationCategory': 'BusinessApplication',
+                        'operatingSystem': 'Web',
+                        'url': 'https://cvgenfy.com',
+                        'sameAs': [
+                            'https://twitter.com/cvgenfy',
+                            'https://www.linkedin.com/company/cvgenfy',
+                            'https://www.instagram.com/cvgenfy',
+                            'https://www.facebook.com/cvgenfy',
+                            'https://www.youtube.com/@cvgenfy'
+                        ],
+                        'offers': {
+                            '@type': 'Offer',
+                            'price': '0',
+                            'priceCurrency': 'USD'
+                        },
+                        'description': 'AI-powered professional resume generator.'
                     }}
                 />
             </body>

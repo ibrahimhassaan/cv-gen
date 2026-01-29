@@ -1,5 +1,20 @@
 import { useTranslations } from 'next-intl';
+import { getTranslations } from 'next-intl/server';
 import { GradientBlobs } from '@/components/GradientBlobs';
+import { JsonLd } from '@/components/JsonLd';
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    const t = await getTranslations({ locale });
+
+    return {
+        title: `${t('aboutPage.title')} - cvGenfy`,
+        description: t('aboutPage.subtitle'),
+        alternates: {
+            canonical: `/${locale}/about`,
+        }
+    };
+}
 
 export default function AboutPage() {
     const t = useTranslations('aboutPage');
@@ -9,6 +24,26 @@ export default function AboutPage() {
             <GradientBlobs />
 
             {/* Hero Section */}
+            <JsonLd
+                data={{
+                    '@context': 'https://schema.org',
+                    '@type': 'BreadcrumbList',
+                    'itemListElement': [
+                        {
+                            '@type': 'ListItem',
+                            'position': 1,
+                            'name': 'Home',
+                            'item': 'https://cvgenfy.com'
+                        },
+                        {
+                            '@type': 'ListItem',
+                            'position': 2,
+                            'name': 'About',
+                            'item': 'https://cvgenfy.com/about'
+                        }
+                    ]
+                }}
+            />
             <section className="relative z-10 container mx-auto px-6 py-20 text-center">
                 <h1 className="text-4xl md:text-6xl font-display font-bold mb-6">
                     {t('title')}

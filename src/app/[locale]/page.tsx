@@ -9,6 +9,22 @@ import { HeroResumes } from "@/components/HeroResumes";
 import { useTranslations } from "next-intl";
 import { TemplateSliderLazy } from "@/components/TemplateSliderLazy";
 
+import { getTranslations } from "next-intl/server";
+import { type Locale } from "@/i18n";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    const t = await getTranslations({ locale, namespace: 'metadata' });
+
+    return {
+        title: t('title'),
+        description: t('description'),
+        alternates: {
+            canonical: `/${locale}`,
+        }
+    };
+}
+
 export default function Home() {
     const t = useTranslations();
 
