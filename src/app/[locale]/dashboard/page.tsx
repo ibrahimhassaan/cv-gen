@@ -224,8 +224,6 @@ export default function DashboardPage() {
 
                 {/* Resumes Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {/* Create New Card */}
-                    <CreateCVCard />
 
                     {/* Resume Cards */}
                     {resumesLoading ? (
@@ -247,6 +245,9 @@ export default function DashboardPage() {
                             />
                         ))
                     )}
+
+                    {/* Create New Card */}
+                    {resumesLoading ? <CVCardSkeleton /> : <CreateCVCard />}
                 </div>
             </div>
 
