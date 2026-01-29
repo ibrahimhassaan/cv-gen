@@ -15,7 +15,12 @@
         "titleHighlight": "Dalam Hitungan Detik",
         "subtitle": "Buat resume profesional yang lolos ATS dengan template premium kami. Gunakan AI untuk mengekstrak data dari resume lama atau buat dari awal.",
         "ctaPrimary": "Mulai Gratis",
-        "ctaSecondary": "memperbaiki resume saya →"
+        "ctaSecondary": "memperbaiki resume saya →",
+        "chooseTemplate": {
+            "title": "Pilih template Anda",
+            "subtitle": "Pilih dari beragam template premium kami untuk memulai.",
+            "useTemplate": "Gunakan template ini"
+        }
     },
     "features": {
         "aiParsing": {

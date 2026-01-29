@@ -9,6 +9,10 @@
         "brandName": "Resume Gen",
         "signOut": "Sign Out"
     },
+    "common": {
+        "cancel": "Cancel",
+        "confirm": "Confirm"
+    },
     "home": {
         "badge": "AI-Powered Resume Builder",
         "title": "Craft Your Perfect",
@@ -125,6 +129,7 @@
         "finishDownload": "Finish & Download",
         "reset": "Reset",
         "editor": "Editor",
+        "preview": "Preview",
         "selectTemplate": "Select Template",
         "switchTemplate": "Switch Template",
         "pdf": "PDF",
@@ -310,6 +315,11 @@
             "copied": "Copied",
             "copy": "Copy",
             "close": "Close"
+        },
+        "reset": {
+            "title": "Reset Resume",
+            "description": "Are you sure you want to completely clear your resume? This action cannot be undone and you will lose all filled data.",
+            "confirm": "Yes, Reset All"
         }
     },
     "privacyPage": {

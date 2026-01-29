@@ -8,16 +8,17 @@ import { TemplateSelector } from "@/features/templates/TemplateSelector";
 import { getTemplate } from "@/features/templates/registry";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
-import { Download, Share2, LayoutTemplate, RotateCcw, Loader2 } from "lucide-react";
+import { Download, Share2, LayoutTemplate, RotateCcw, Loader2, Eye, ChevronLeft } from "lucide-react";
 import { GradientBlobs } from "@/components/GradientBlobs";
 import { useTranslations } from "next-intl";
 import { useAuth, SignInModal } from "@/features/auth";
 import { setPendingAction, generateShareableLink } from "@/lib/resumeStorage";
 import { saveResume, getResume } from "@/lib/resumeService";
 import { ShareModal } from "@/components/ShareModal";
+import { ConfirmModal } from "@/components/ConfirmModal";
 
 interface PreviewWrapperProps {
-    view: "editor" | "templates";
+    view: "editor" | "templates" | "preview";
     resumeData: any;
     templateRef: React.RefObject<HTMLDivElement | null>;
     TemplateComponent: any;
@@ -40,10 +41,16 @@ function PreviewWrapper({
                 if (width >= 1536) setScale(0.75);
                 else if (width >= 1280) setScale(0.65);
                 else setScale(0.55);
-            } else {
+            } else if (view === "templates") {
                 if (width >= 1536) setScale(0.85);
                 else if (width >= 1280) setScale(0.75);
                 else setScale(0.65);
+            } else {
+                // Preview mode (mostly for mobile)
+                const containerWidth = width - 48; // accounting for padding
+                // 210mm is approx 794px
+                const targetScale = containerWidth / 794;
+                setScale(Math.min(targetScale, 0.6));
             }
         };
 
@@ -89,14 +96,17 @@ function BuilderContent() {
     const searchParams = useSearchParams();
     const id = searchParams.get('id');
     const templateRef = useRef<HTMLDivElement>(null);
-    const [view, setView] = useState<"editor" | "templates">("editor");
+    const mobileTemplateRef = useRef<HTMLDivElement>(null);
+    const [view, setView] = useState<"editor" | "templates" | "preview">("editor");
     const [showSignIn, setShowSignIn] = useState(false);
     const [pendingActionType, setPendingActionType] = useState<"download" | "share" | null>(null);
     const [showShareModal, setShowShareModal] = useState(false);
     const [shareUrl, setShareUrl] = useState("");
     const [isDownloading, setIsDownloading] = useState(false);
     const [isSharing, setIsSharing] = useState(false);
+    const [showResetConfirm, setShowResetConfirm] = useState(false);
     const t = useTranslations('editor');
+    const tReset = useTranslations('modals.reset');
 
     // ... (existing code)
 
@@ -108,12 +118,16 @@ function BuilderContent() {
                 // User is authenticated - save and download
                 await saveResume(resumeData, user.id);
 
-                if (templateRef.current) {
+                // Determine which ref to use based on view and screen width
+                const isMobile = window.innerWidth < 1024;
+                const activeRef = (view === "preview" && isMobile) ? mobileTemplateRef : templateRef;
+
+                if (activeRef.current) {
                     // Check if we need to dynamic import to avoid SSR issues
                     const { toPng } = await import('html-to-image');
                     const { jsPDF } = await import('jspdf');
 
-                    const element = templateRef.current;
+                    const element = activeRef.current;
 
                     // Generate high-quality image from the element
                     // pixelRatio 2 ensures good quality for print
@@ -175,7 +189,8 @@ function BuilderContent() {
     };
 
     // Simple reset for demo
-    const handleReset = () => { if (confirm(t('resetConfirm'))) window.location.reload(); };
+    const handleResetClick = () => { setShowResetConfirm(true); };
+    const handleResetConfirm = () => { window.location.reload(); };
 
     const TemplateComponent = getTemplate(resumeData.templateId).component;
 
@@ -201,6 +216,17 @@ function BuilderContent() {
                 shareUrl={shareUrl}
             />
 
+            {/* Reset Confirmation Modal */}
+            <ConfirmModal
+                isOpen={showResetConfirm}
+                onClose={() => setShowResetConfirm(false)}
+                onConfirm={handleResetConfirm}
+                title={tReset('title')}
+                description={tReset('description')}
+                confirmText={tReset('confirm')}
+                variant="danger"
+            />
+
             <div className="flex min-h-[calc(100vh-80px)] container mx-auto p-4 gap-6 relative z-10">
                 {/* Left Side: Editor Form */}
                 <div className={cn(
@@ -210,22 +236,35 @@ function BuilderContent() {
                     <div className="glass-card rounded-3xl border border-white/40 shadow-1xl flex flex-col backdrop-blur-xl bg-white/60 supports-[backdrop-filter]:bg-white/40 h-[calc(100vh-120px)]">
                         <div className="w-full px-4 py-2 border-b border-white/20 flex-shrink-0">
                             <div className="flex justify-between items-center gap-4">
-                                {view === "templates" && (
+                                {(view === "templates" || view === "preview") && (
                                     <Button
                                         variant="ghost"
                                         size="sm"
                                         onClick={() => setView("editor")}
                                         className="rounded-full hover:bg-white/50"
                                     >
-                                        ← {t('back')}
+                                        <ChevronLeft className="w-4 h-4 mr-1" /> {t('back')}
                                     </Button>
                                 )}
-                                <h2 className="text-md font-bold font-display text-gray-700 text-center">
-                                    {view === "editor" ? t('editor') : t('selectTemplate')}
+                                <h2 className="text-md font-bold font-display text-gray-700 text-center flex-1">
+                                    {view === "editor" ? t('editor') : view === "templates" ? t('selectTemplate') : t('preview')}
                                 </h2>
-                                <Button variant="ghost" size="sm" onClick={handleReset} className="text-muted-foreground hover:text-red-500 hover:bg-red-50 rounded-full">
-                                    <RotateCcw className="w-4 h-4 mr-2" />
-                                    {t('reset')}
+
+                                {view === "editor" && (
+                                    <Button
+                                        variant="ghost"
+                                        size="sm"
+                                        onClick={() => setView("preview")}
+                                        className="lg:hidden text-primary hover:bg-primary/10 rounded-full"
+                                    >
+                                        <Eye className="w-4 h-4 mr-2" />
+                                        {t('preview')}
+                                    </Button>
+                                )}
+
+                                <Button variant="ghost" size="sm" onClick={handleResetClick} className="text-muted-foreground hover:text-red-500 hover:bg-red-50 rounded-full">
+                                    <RotateCcw className="w-4 h-4" />
+                                    <span className="hidden sm:inline ml-2">{t('reset')}</span>
                                 </Button>
                             </div>
                         </div>
@@ -237,9 +276,42 @@ function BuilderContent() {
                                         onDownload={handleDownloadClick}
                                         isDownloading={isDownloading}
                                     />
-                                ) : (
+                                ) : view === "templates" ? (
                                     <div className="h-full flex flex-col">
                                         <TemplateSelector />
+                                    </div>
+                                ) : (
+                                    <div className="h-full flex flex-col relative">
+                                        {/* Mobile Preview Toolbar */}
+                                        <div className="flex justify-center gap-2 mb-4 sticky top-0 bg-white/50 backdrop-blur-sm p-2 z-10 rounded-lg">
+                                            <Button
+                                                variant="outline"
+                                                size="sm"
+                                                onClick={() => setView("templates")}
+                                                className="shadow-sm bg-white"
+                                            >
+                                                <LayoutTemplate className="w-4 h-4 mr-2" />
+                                                {t('switchTemplate')}
+                                            </Button>
+                                            <Button
+                                                onClick={handleDownloadClick}
+                                                variant="default"
+                                                size="sm"
+                                                className="shadow-lg shadow-primary/20"
+                                                disabled={isDownloading}
+                                            >
+                                                {isDownloading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4 mr-2" />}
+                                                {t('pdf')}
+                                            </Button>
+                                        </div>
+                                        <div className="flex-grow overflow-y-auto flex justify-center pb-20">
+                                            <PreviewWrapper
+                                                view={view}
+                                                resumeData={resumeData}
+                                                templateRef={mobileTemplateRef}
+                                                TemplateComponent={TemplateComponent}
+                                            />
+                                        </div>
                                     </div>
                                 )}
                             </div>
