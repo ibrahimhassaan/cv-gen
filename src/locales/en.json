@@ -32,6 +32,7 @@
         }
     },
     "features": {
+        "sectionTitle": "Powerful Features",
         "aiParsing": {
             "title": "AI Parsing",
             "description": "Upload your old PDF and let our AI extract your details instantly."

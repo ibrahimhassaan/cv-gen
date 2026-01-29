@@ -23,6 +23,7 @@
         "ctaSecondary": "Lebenslauf verbessern →"
     },
     "features": {
+        "sectionTitle": "Leistungsstarke Funktionen",
         "aiParsing": {
             "title": "KI-Analyse",
             "description": "Laden Sie Ihr altes PDF hoch und lassen Sie unsere KI Ihre Daten sofort extrahieren."

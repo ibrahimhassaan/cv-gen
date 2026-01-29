@@ -50,7 +50,7 @@ export const TemplateModern = ({ data, featureThemeBg = false }: TemplateModernP
                                 alt={personalInfo.fullName || "Profile Photo"}
                                 fill
                                 className="object-cover"
-                                sizes="(max-width: 768px) 100px, 128px"
+                                sizes="(max-width: 768px) 100vw, 300px"
                                 priority
                             />
                         </div>

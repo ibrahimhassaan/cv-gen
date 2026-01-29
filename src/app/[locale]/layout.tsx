@@ -35,18 +35,18 @@ export async function generateMetadata({ params }: Props) {
         description: t('description'),
         keywords: t('keywords'),
         alternates: {
-            canonical: `${baseUrl}/${locale}`,
+            canonical: `/${locale}`,
             languages: {
-                'en': `${baseUrl}/en`,
-                'de': `${baseUrl}/de`,
-                'id': `${baseUrl}/id`,
-                'hi': `${baseUrl}/hi`,
+                'en': `/en`,
+                'de': `/de`,
+                'id': `/id`,
+                'hi': `/hi`,
             },
         },
         openGraph: {
             title: t('title'),
             description: t('description'),
-            url: `${baseUrl}/${locale}`,
+            url: `/${locale}`,
             siteName: 'cvGenfy',
             locale: locale,
             type: 'website',
@@ -99,6 +99,14 @@ export default async function LocaleLayout({ children, params }: Props) {
                             'name': 'cvGenfy',
                             'applicationCategory': 'BusinessApplication',
                             'operatingSystem': 'Web',
+                            'url': 'https://cvgenfy.com',
+                            'sameAs': [
+                                'https://twitter.com/cvgenfy',
+                                'https://www.linkedin.com/company/cvgenfy',
+                                'https://www.instagram.com/cvgenfy',
+                                'https://www.facebook.com/cvgenfy',
+                                'https://www.youtube.com/@cvgenfy'
+                            ],
                             'offers': {
                                 '@type': 'Offer',
                                 'price': '0',

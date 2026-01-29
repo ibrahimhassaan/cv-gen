@@ -1,22 +1,40 @@
 "use client";
 
 import { FitPreview } from "@/components/FitPreview";
-import { templates } from "@/features/templates/registry";
+// import { templates } from "@/features/templates/registry"; // Removed to avoid bundling ALL templates
 import { getDummyData } from "@/lib/dummyData";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { TemplateModern } from "@/features/templates/TemplateModern";
+import { TemplateSidebar } from "@/features/templates/TemplateSidebar";
+import { TemplateClassic } from "@/features/templates/TemplateClassic";
+import { TemplateConfig, TemplateProps } from "@/features/templates/registry";
 
 export const HeroResumes = () => {
     const t = useTranslations('templatePreview');
     const dummyData = getDummyData(t);
     const [activeIndex, setActiveIndex] = useState(0);
 
-    // Pick 3 diverse templates to show off
-    const featuredTemplates = [
-        templates.find(t => t.id === "modern-standard") || templates[0],
-        templates.find(t => t.id === "sidebar-dark") || templates[1],
-        templates.find(t => t.id === "classic-standard") || templates[2]
+    // Manually define only the featured templates to safe bundle size
+    const featuredTemplates: (Partial<TemplateConfig> & { component: React.ComponentType<TemplateProps>, id: string, props?: Record<string, unknown> })[] = [
+        {
+            id: "modern-standard",
+            component: TemplateModern,
+            props: { featureThemeBg: true }
+        },
+        {
+            id: "sidebar-dark",
+            component: TemplateSidebar,
+            props: {
+                sidebarSide: "left", sidebarBg: "bg-slate-900", sidebarText: "text-white", font: "sans", accentColor: "text-slate-900", featureThemeBg: true
+            }
+        },
+        {
+            id: "classic-standard",
+            component: TemplateClassic,
+            props: { color: "black" }
+        }
     ];
 
     useEffect(() => {

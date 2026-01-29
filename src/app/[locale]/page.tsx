@@ -4,9 +4,10 @@ import { FileText, Upload, Sparkles, Download, Share2, Wand2, MousePointerClick,
 import Link from "next/link";
 import { GradientBlobs } from "@/components/GradientBlobs";
 import { HeroResumes } from "@/components/HeroResumes";
-import { TemplateSlider } from "@/components/TemplateSlider";
+// import { TemplateSlider } from "@/components/TemplateSlider";
 // import { FloatingElements } from "@/components/FloatingElements";
 import { useTranslations } from "next-intl";
+import { TemplateSliderLazy } from "@/components/TemplateSliderLazy";
 
 export default function Home() {
     const t = useTranslations();
@@ -26,7 +27,7 @@ export default function Home() {
                             <span>{t('home.badge')}</span>
                         </div>
 
-                        <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight animate-[slide-up_1s_ease-out]">
+                        <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight">
                             {t('home.title')} <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-accent to-[#06b6d4] bg-[length:200%_auto] animate-gradient">
                                 {t('home.titleHighlight')}
@@ -64,6 +65,9 @@ export default function Home() {
 
             {/* Features Grid */}
             <section className="relative z-10 container mx-auto px-6 py-20">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl font-display font-bold mb-4">{t('features.sectionTitle')}</h2>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <Card className="glass-card hover:scale-105 hover:shadow-xl transition-all duration-300 border-white/20">
                         <CardHeader>
@@ -137,7 +141,7 @@ export default function Home() {
                     <h2 className="text-3xl font-display font-bold mb-4">{t('home.chooseTemplate.title')}</h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto">{t('home.chooseTemplate.subtitle')}</p>
                 </div>
-                <TemplateSlider />
+                <TemplateSliderLazy />
             </section>
 
             {/* Why a Great Resume Matters */}

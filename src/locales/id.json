@@ -28,6 +28,7 @@
         }
     },
     "features": {
+        "sectionTitle": "Fitur-fitur Canggih",
         "aiParsing": {
             "title": "Parsing AI",
             "description": "Unggah PDF lama Anda dan biarkan AI kami mengekstrak detailnya secara instan."
