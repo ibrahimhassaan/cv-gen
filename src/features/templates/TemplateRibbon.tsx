@@ -80,8 +80,8 @@ export const TemplateRibbon = ({ data }: { data: ResumeData }) => {
                         <section className="text-center">
                             <h3 className="text-sm font-bold uppercase tracking-widest text-slate-900 border-b border-slate-200 pb-3 mb-6">{l.skills}</h3>
                             <div className="space-y-4 text-left">
-                                {skills.map((skill) => (
-                                    <div key={skill.id} className="space-y-1">
+                                {skills.map((skill, index) => (
+                                    <div key={`${skill.id}-${index}`} className="space-y-1">
                                         <div className="flex justify-between text-xs font-medium text-slate-600">
                                             <span>{skill.name}</span>
                                             <span className="opacity-70">{skill.level}</span>

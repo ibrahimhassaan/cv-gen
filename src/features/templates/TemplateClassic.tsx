@@ -110,8 +110,8 @@ export const TemplateClassic = ({ data }: { data: ResumeData }) => {
                     <section>
                         <h2 className="text-lg font-bold uppercase border-b mb-4 font-sans tracking-wide" style={{ color: themeColor, borderColor: themeColor }}>{l.skills}</h2>
                         <div className="space-y-3">
-                            {skills.map((skill) => (
-                                <div key={skill.id} className="space-y-1">
+                            {skills.map((skill, index) => (
+                                <div key={`${skill.id}-${index}`} className="space-y-1">
                                     <div className="flex justify-between items-baseline font-sans">
                                         <span className="font-bold text-gray-800">{skill.name}</span>
                                         <span className="text-sm text-gray-500 italic">{skill.level}</span>

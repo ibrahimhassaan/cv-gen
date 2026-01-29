@@ -139,8 +139,8 @@ export const TemplateBold = ({ data }: { data: ResumeData }) => {
                                 {l.skills}
                             </h2>
                             <div className="flex flex-col gap-3">
-                                {skills.map((skill) => (
-                                    <div key={skill.id} className="p-3 bg-white border-2 rounded shadow-sm" style={{ borderColor: themeColor }}>
+                                {skills.map((skill, index) => (
+                                    <div key={`${skill.id}-${index}`} className="p-3 bg-white border-2 rounded shadow-sm" style={{ borderColor: themeColor }}>
                                         <div className="flex justify-between items-center mb-1.5">
                                             <span className="text-sm font-bold text-slate-700">{skill.name}</span>
                                             <span className="text-xs font-medium text-slate-400">{skill.level}</span>

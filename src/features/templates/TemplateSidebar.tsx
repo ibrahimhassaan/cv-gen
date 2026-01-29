@@ -83,8 +83,8 @@ export const TemplateSidebar = ({
                         <section>
                             <h3 className={cn("uppercase tracking-widest text-sm font-bold mb-4 border-b pb-1 opacity-80", borderClass)}>{l.skills}</h3>
                             <div className="space-y-3">
-                                {skills.map((skill) => (
-                                    <div key={skill.id}>
+                                {skills.map((skill, index) => (
+                                    <div key={`${skill.id}-${index}`}>
                                         <div className="flex justify-between text-sm mb-0.5">
                                             <span>{skill.name}</span>
                                             <span className="opacity-50 text-xs">{skill.level}</span>
@@ -234,8 +234,8 @@ export const TemplateSidebar = ({
                         <section>
                             <h3 className={cn("uppercase tracking-widest text-sm font-bold mb-4 border-b pb-1 opacity-80", borderClass)}>{l.skills}</h3>
                             <div className="space-y-3">
-                                {skills.map((skill) => (
-                                    <div key={skill.id}>
+                                {skills.map((skill, index) => (
+                                    <div key={`${skill.id}-${index}`}>
                                         <div className="flex justify-between text-sm mb-0.5">
                                             <span>{skill.name}</span>
                                             <span className="opacity-50 text-xs">{skill.level}</span>

@@ -76,7 +76,7 @@ export interface ProjectItem {
 export const initialResumeState: ResumeData = {
     id: "default",
     title: "",
-    lastModified: Date.now(),
+    lastModified: 0,
     templateId: "modern",
     themeColor: "#7c3aed", // Default Violet
     font: "sans",

@@ -1,11 +1,12 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ResumeData, initialResumeState, ExperienceItem, EducationItem, ProjectItem } from "./types";
 
 interface ResumeContextType {
     resumeData: ResumeData;
-    setResumeData: (data: ResumeData) => void;
+    setResumeData: React.Dispatch<React.SetStateAction<ResumeData>>;
     setTemplate: (id: string) => void;
     setThemeColor: (color: string) => void;
     setFont: (font: string) => void;
@@ -22,23 +23,94 @@ interface ResumeContextType {
     addLanguage: () => string;
     updateLanguage: (id: string, field: string, value: string) => void;
     removeLanguage: (id: string) => void;
+    isLoaded: boolean;
 }
 
 const ResumeContext = createContext<ResumeContextType | undefined>(undefined);
 
 export function ResumeProvider({ children }: { children: React.ReactNode }) {
-    const [resumeData, setResumeData] = useState<ResumeData>(initialResumeState);
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const [resumeData, setResumeData] = useState<ResumeData>(() => JSON.parse(JSON.stringify(initialResumeState)));
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    // Hydrate from local storage on mount
+    useEffect(() => {
+        const saved = localStorage.getItem("cv-gen-data");
+        console.log("[ResumeContext] Hydrating...", { saved: !!saved });
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved);
+                console.log("[ResumeContext] Parsed saved data:", parsed);
+                // Merge with initial state to ensure all fields exist
+                // URL params will override these in the next effect if present
+                setResumeData(prev => ({ ...initialResumeState, ...parsed }));
+            } catch (e) {
+                console.error("Failed to parse resume data", e);
+            }
+        }
+        setIsLoaded(true);
+        console.log("[ResumeContext] Hydration complete, isLoaded set to true");
+    }, []);
+
+    // Sync from URL params
+    useEffect(() => {
+        if (!isLoaded) return;
+
+        const templateParam = searchParams.get("template");
+        const colorParam = searchParams.get("color");
+        const fontParam = searchParams.get("font");
+
+        setResumeData(prev => {
+            // Only update if changes are needed to avoid infinite loops
+            if (
+                (templateParam && prev.templateId !== templateParam) ||
+                (colorParam && prev.themeColor !== colorParam) ||
+                (fontParam && prev.font !== fontParam)
+            ) {
+                return {
+                    ...prev,
+                    ...(templateParam && { templateId: templateParam }),
+                    ...(colorParam && { themeColor: colorParam }),
+                    ...(fontParam && { font: fontParam })
+                };
+            }
+            return prev;
+        });
+    }, [searchParams, isLoaded]);
+
+    // Autosave to local storage (excluding template, color, font)
+    useEffect(() => {
+        if (isLoaded) {
+            const { templateId, themeColor, font, ...dataToSave } = resumeData;
+            localStorage.setItem("cv-gen-data", JSON.stringify(dataToSave));
+        }
+    }, [resumeData, isLoaded]);
+
+    const updateUrlParams = (updates: Record<string, string>) => {
+        const params = new URLSearchParams(searchParams.toString());
+        Object.entries(updates).forEach(([key, value]) => {
+            if (value) params.set(key, value);
+            else params.delete(key);
+        });
+        router.replace(`?${params.toString()}`, { scroll: false });
+    };
 
     const setTemplate = (id: string) => {
         setResumeData(prev => ({ ...prev, templateId: id }));
+        updateUrlParams({ template: id });
     };
 
     const setThemeColor = (color: string) => {
+        console.log("[ResumeContext] Setting theme color:", color);
         setResumeData(prev => ({ ...prev, themeColor: color }));
+        // Encode color manually if needed, but URLSearchParams handles basic encoding
+        updateUrlParams({ color });
     };
 
     const setFont = (font: string) => {
         setResumeData(prev => ({ ...prev, font }));
+        updateUrlParams({ font });
     };
 
     const updatePersonalInfo = (field: string, value: string) => {
@@ -182,6 +254,7 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
                 setTemplate,
                 setThemeColor,
                 setFont,
+                isLoaded,
             }}
         >
             {children}

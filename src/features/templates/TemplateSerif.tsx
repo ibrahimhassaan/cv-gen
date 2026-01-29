@@ -144,8 +144,8 @@ export const TemplateSerif = ({ data }: { data: ResumeData }) => {
                         <section>
                             <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">{l.skills}</h3>
                             <div className="space-y-4">
-                                {skills.map((skill) => (
-                                    <div key={skill.id} className="space-y-1">
+                                {skills.map((skill, index) => (
+                                    <div key={`${skill.id}-${index}`} className="space-y-1">
                                         <div className="flex justify-between items-baseline mb-1">
                                             <div className="text-sm font-medium text-gray-700">{skill.name}</div>
                                             <div className="text-xs text-gray-400 italic">{skill.level}</div>

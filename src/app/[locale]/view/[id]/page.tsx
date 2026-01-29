@@ -1,4 +1,4 @@
-import { getPublicResume } from "@/lib/resumeService";
+import { getPublicResumeDTO } from "@/lib/server/resumeService";
 import { getTemplate } from "@/features/templates/registry";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
@@ -10,7 +10,7 @@ interface PageProps {
 
 export default async function ViewResumePage({ params }: PageProps) {
     const { id } = await params;
-    const resume = await getPublicResume(id);
+    const resume = await getPublicResumeDTO(id);
     const t = await getTranslations('view');
 
     if (!resume) {
@@ -18,9 +18,11 @@ export default async function ViewResumePage({ params }: PageProps) {
             <div className="flex flex-col items-center justify-center min-h-screen p-4 text-center">
                 <h1 className="text-2xl font-bold mb-4">{t('notFoundTitle')}</h1>
                 <p className="mb-6 text-muted-foreground">{t('notFoundMessage')}</p>
-                <Link href="/">
-                    <Button>{t('createYourOwn')}</Button>
-                </Link>
+                <Button asChild>
+                    <Link href="/">
+                        {t('createYourOwn')}
+                    </Link>
+                </Button>
             </div>
         );
     }
@@ -32,9 +34,11 @@ export default async function ViewResumePage({ params }: PageProps) {
             <div className="flex flex-col items-center justify-center min-h-screen p-4 text-center">
                 <h1 className="text-2xl font-bold mb-4">{t('expiredTitle')}</h1>
                 <p className="mb-6 text-muted-foreground">{t('expiredMessage')}</p>
-                <Link href="/">
-                    <Button>{t('createYourOwn')}</Button>
-                </Link>
+                <Button asChild>
+                    <Link href="/">
+                        {t('createYourOwn')}
+                    </Link>
+                </Button>
             </div>
         );
     }
@@ -48,11 +52,11 @@ export default async function ViewResumePage({ params }: PageProps) {
                 <Link href="/" className="font-display font-bold text-xl">
                     ResumeGen
                 </Link>
-                <Link href="/">
-                    <Button variant="default" className="shadow-lg shadow-primary/20 rounded-full">
+                <Button asChild variant="default" className="shadow-lg shadow-primary/20 rounded-full">
+                    <Link href="/">
                         {t('createYourOwn')}
-                    </Button>
-                </Link>
+                    </Link>
+                </Button>
             </div>
 
             {/* Resume Viewer */}

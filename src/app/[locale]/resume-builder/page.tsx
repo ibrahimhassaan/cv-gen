@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Download, Share2, LayoutTemplate, RotateCcw, Loader2, Eye, ChevronLeft } from "lucide-react";
 import { GradientBlobs } from "@/components/GradientBlobs";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useUser, useClerk } from "@clerk/nextjs";
 import { setPendingAction, generateShareableLink } from "@/lib/resumeStorage";
 import { saveResume, getResume } from "@/lib/resumeService";
@@ -92,7 +92,7 @@ function PreviewWrapper({
 }
 
 function BuilderContent() {
-    const { resumeData, setResumeData } = useResume();
+    const { resumeData, setResumeData, isLoaded } = useResume();
     const { user, isLoaded: loading } = useUser();
     const { openSignIn } = useClerk();
     const router = useRouter();
@@ -109,7 +109,14 @@ function BuilderContent() {
     const [isSharing, setIsSharing] = useState(false);
     const [showResetConfirm, setShowResetConfirm] = useState(false);
     const t = useTranslations('editor');
+    const locale = useLocale();
     const tReset = useTranslations('modals.reset');
+
+
+    // Sync from URL params on mount
+    // Sync from URL params on mount
+    // Sync from URL params logic moved to ResumeContext
+    // This effect is now removed to avoid double updates
 
     // ... (existing code)
 
@@ -153,7 +160,7 @@ function BuilderContent() {
                 // Show Clerk sign in and set pending action
                 setPendingActionType("download");
                 setPendingAction("download", resumeData);
-                openSignIn();
+                openSignIn({ forceRedirectUrl: `/${locale}/dashboard` });
             }
         } catch (error) {
             console.error("Download failed", error);
@@ -182,7 +189,7 @@ function BuilderContent() {
                 // Show Clerk sign in and set pending action
                 setPendingActionType("share");
                 setPendingAction("share", resumeData);
-                openSignIn();
+                openSignIn({ forceRedirectUrl: `/${locale}/dashboard` });
             }
         } catch (error) {
             console.error("Share failed", error);
@@ -196,6 +203,12 @@ function BuilderContent() {
     const handleResetConfirm = () => { window.location.reload(); };
 
     const TemplateComponent = getTemplate(resumeData.templateId).component;
+
+    console.log("[BuilderPage] RENDER with data:", {
+        id: resumeData.templateId,
+        color: resumeData.themeColor,
+        font: resumeData.font
+    });
 
     return (
         <div className="relative min-h-[calc(100vh-80px)]">
@@ -360,14 +373,14 @@ function BuilderContent() {
 
 export default function BuilderPage() {
     return (
-        <ResumeProvider>
-            <Suspense fallback={
-                <div className="min-h-screen flex items-center justify-center">
-                    <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
-                </div>
-            }>
+        <Suspense fallback={
+            <div className="min-h-screen flex items-center justify-center">
+                <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+            </div>
+        }>
+            <ResumeProvider>
                 <BuilderContent />
-            </Suspense>
-        </ResumeProvider>
+            </ResumeProvider>
+        </Suspense>
     );
 }

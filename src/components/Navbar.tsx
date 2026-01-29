@@ -129,7 +129,7 @@ export function Navbar() {
 
                         {/* Auth Section */}
                         <SignedOut>
-                            <SignInButton mode="modal">
+                            <SignInButton mode="modal" forceRedirectUrl={`/${locale}/dashboard`}>
                                 <Button
                                     variant="ghost"
                                     size="sm"
@@ -208,7 +208,7 @@ export function Navbar() {
                                 </div>
 
                                 <SignedOut>
-                                    <SignInButton mode="modal">
+                                    <SignInButton mode="modal" forceRedirectUrl={`/${locale}/dashboard`}>
                                         <Button
                                             variant="ghost"
                                             size="lg"

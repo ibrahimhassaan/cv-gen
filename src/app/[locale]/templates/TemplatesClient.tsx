@@ -54,23 +54,14 @@ export default function TemplatesPage() {
         : templates.filter(t => t.category === activeCategory);
 
     const handleSelectTemplate = (templateId: string) => {
-        // Save to local storage same as ResumeContext would
-        const saved = localStorage.getItem("cv-gen-data");
-        let daata = {};
-        if (saved) {
-            try { daata = JSON.parse(saved); } catch { }
-        }
+        // Construct query parameters
+        const params = new URLSearchParams();
+        params.set("template", templateId);
+        params.set("color", selectedColor);
+        params.set("font", selectedFont);
 
-        // Update template ID, color, and font
-        localStorage.setItem("cv-gen-data", JSON.stringify({
-            ...daata,
-            templateId,
-            themeColor: selectedColor,
-            font: selectedFont
-        }));
-
-        // Navigate to editor
-        router.push(`/${locale}/resume-builder`);
+        // Navigate to editor with params
+        router.push(`/${locale}/resume-builder?${params.toString()}`);
     };
 
     return (

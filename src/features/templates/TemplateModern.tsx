@@ -144,8 +144,8 @@ export const TemplateModern = ({ data, featureThemeBg = false }: TemplateModernP
                         <section>
                             <h2 className="text-sm font-bold uppercase tracking-wider text-slate-900 mb-4 pb-1" style={{ color: themeColor }}>{l.skills}</h2>
                             <div className="space-y-3">
-                                {skills.map((skill) => (
-                                    <div key={skill.id} className="space-y-1">
+                                {skills.map((skill, index) => (
+                                    <div key={`${skill.id}-${index}`} className="space-y-1">
                                         <div className="flex justify-between text-xs font-medium text-slate-700">
                                             <span>{skill.name}</span>
                                             <span className="text-slate-400">{skill.level}</span>

@@ -137,8 +137,8 @@ export const TemplateHeaderCols = ({
                                 <section>
                                     <h2 className="text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1" style={{ color: themeColor }}>{l.skills}</h2>
                                     <div className="space-y-3">
-                                        {skills.map((skill) => (
-                                            <div key={skill.id} className="space-y-1">
+                                        {skills.map((skill, index) => (
+                                            <div key={`${skill.id}-${index}`} className="space-y-1">
                                                 <div className="flex justify-between text-sm">
                                                     <span>{skill.name}</span>
                                                     <span className="text-slate-400 text-xs">{skill.level}</span>
@@ -241,8 +241,8 @@ export const TemplateHeaderCols = ({
                                 <section>
                                     <h2 className="text-xs font-bold uppercase tracking-widest mb-4 border-b pb-1" style={{ color: themeColor }}>{l.skills}</h2>
                                     <div className="space-y-3">
-                                        {skills.map((skill) => (
-                                            <div key={skill.id} className="space-y-1">
+                                        {skills.map((skill, index) => (
+                                            <div key={`${skill.id}-${index}`} className="space-y-1">
                                                 <div className="flex justify-between text-sm">
                                                     <span>{skill.name}</span>
                                                     <span className="text-slate-400 text-xs">{skill.level}</span>
