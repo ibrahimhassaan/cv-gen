@@ -56,7 +56,7 @@ export function loadAllResumes(userId: string): ResumeData[] {
  */
 export function saveResume(userId: string, data: ResumeData): ResumeData {
     const resumes = loadAllResumes(userId);
-    let updatedData = { ...data };
+    const updatedData = { ...data };
 
     if (!updatedData.id || updatedData.id === "default") {
         updatedData.id = crypto.randomUUID();
@@ -132,7 +132,8 @@ export function generateShareableLink(resumeData: ResumeData): string {
     // Return simple short link using the UUID
     // Note: The resume must be saved to the backend for this to work.
     // We assume the caller saves it before calling this.
-    return `${window.location.origin}/view/${resumeData.id}`;
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || (typeof window !== 'undefined' ? window.location.origin : '');
+    return `${baseUrl}/view/${resumeData.id}`;
 }
 
 /**
