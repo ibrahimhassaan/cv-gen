@@ -7,7 +7,7 @@ import { EditorForm } from "@/features/editor/EditorForm";
 import { TemplateSelector } from "@/features/templates/TemplateSelector";
 import { getTemplate } from "@/features/templates/registry";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { Download, Share2, LayoutTemplate, RotateCcw, Loader2, Eye, ChevronLeft } from "lucide-react";
 import { GradientBlobs } from "@/components/GradientBlobs";
 import { useTranslations } from "next-intl";

@@ -9,7 +9,7 @@ import { LanguagesForm } from "./components/LanguagesForm";
 import { cn } from "@/lib/utils";
 import { SummaryForm } from "./components/SummaryForm";
 import { User, Briefcase, GraduationCap, Code, Globe, ChevronRight, ChevronLeft, Check, Loader2, FileText } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { useTranslations } from "next-intl";
 
 type Section = "personal" | "experience" | "education" | "skills" | "languages" | "summary";

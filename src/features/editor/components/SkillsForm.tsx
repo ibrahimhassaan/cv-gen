@@ -4,7 +4,7 @@ import { useResume } from "@/features/editor/ResumeContext";
 import { SkillItem } from "@/features/editor/types";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 import { Plus, X, ChevronDown, Sparkles } from "lucide-react";
 import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
