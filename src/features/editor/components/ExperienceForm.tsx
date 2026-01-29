@@ -42,7 +42,7 @@ export function ExperienceForm() {
 
         setGeneratingIds(prev => ({ ...prev, [id]: true }));
         try {
-            const response = await fetch('/api/ai/generate-description', {
+            const response = await fetch(`${window.location.origin}/api/ai/generate-description`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

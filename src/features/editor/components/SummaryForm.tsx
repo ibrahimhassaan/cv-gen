@@ -18,7 +18,7 @@ export function SummaryForm() {
     const handleGenerateSummary = async () => {
         setIsGenerating(true);
         try {
-            const response = await fetch('/api/ai/generate-summary', {
+            const response = await fetch(`${window.location.origin}/api/ai/generate-summary`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

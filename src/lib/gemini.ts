@@ -8,7 +8,7 @@ export const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_API_KEY);
 
 // Default model for text generation
 export const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash-lite",
+    model: "gemini-2.5-flash",
     generationConfig: {
         maxOutputTokens: 800,
         temperature: 0.7,
@@ -17,7 +17,7 @@ export const model = genAI.getGenerativeModel({
 
 // Skills suggestion model with JSON schema enforcement
 export const skillsModel = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash-lite",
+    model: "gemini-2.5-flash",
     generationConfig: {
         responseMimeType: "application/json",
         responseSchema: {
@@ -43,7 +43,7 @@ export const skillsModel = genAI.getGenerativeModel({
 
 // Summary generation model (text output)
 export const summaryModel = genAI.getGenerativeModel({
-    model: "gemini-2.5-flash-lite",
+    model: "gemini-2.5-flash",
     generationConfig: {
         maxOutputTokens: 1224,
         temperature: 0.85,     // Slightly higher for more creative phrasing

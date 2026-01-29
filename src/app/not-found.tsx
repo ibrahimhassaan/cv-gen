@@ -3,7 +3,7 @@ import { ArrowLeft, Home, FileQuestion } from "lucide-react";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { FooterWrapper } from "@/components/FooterWrapper";
-import { AuthWrapper } from "@/components/AuthWrapper";
+import { ClerkProvider } from "@clerk/nextjs";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
@@ -15,7 +15,7 @@ export default async function GlobalNotFound() {
         <html lang="en" suppressHydrationWarning>
             <body className="antialiased bg-background text-foreground">
                 <NextIntlClientProvider messages={messages} locale="en">
-                    <AuthWrapper>
+                    <ClerkProvider>
                         <div className="flex flex-col min-h-screen">
                             <Navbar />
                             <main className="flex-grow flex flex-col justify-center">
@@ -78,7 +78,7 @@ export default async function GlobalNotFound() {
                             </main>
                             <FooterWrapper />
                         </div>
-                    </AuthWrapper>
+                    </ClerkProvider>
                 </NextIntlClientProvider>
             </body>
         </html>

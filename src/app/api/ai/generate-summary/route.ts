@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
 
         return NextResponse.json({ summary });
     } catch (error: unknown) {
-        console.error("Error generating summary:", error);
+        console.error("Error generating summary detailed:", JSON.stringify(error, Object.getOwnPropertyNames(error), 2));
         const errorMessage = error instanceof Error ? error.message : "Failed to generate summary";
         return NextResponse.json(
             { error: errorMessage },

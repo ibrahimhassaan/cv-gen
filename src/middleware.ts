@@ -1,6 +1,7 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import createMiddleware from 'next-intl/middleware';
 import { locales, defaultLocale } from './i18n';
+import { NextResponse } from "next/server";
 
 const intlMiddleware = createMiddleware({
     locales,
@@ -8,7 +9,13 @@ const intlMiddleware = createMiddleware({
     localePrefix: 'always'
 });
 
-export default clerkMiddleware((auth, req) => {
+const isApiRoute = createRouteMatcher(['/api(.*)']);
+
+export default clerkMiddleware(async (auth, req) => {
+    // If it is an API route, do not run intlMiddleware
+    if (isApiRoute(req)) {
+        return NextResponse.next();
+    }
     return intlMiddleware(req);
 });
 

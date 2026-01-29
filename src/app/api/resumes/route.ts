@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@/lib/supabaseServer";
+import { createAdminClient } from "@/lib/supabaseServer";
 import { auth } from "@clerk/nextjs/server";
 import { ResumeData, SkillItem, LanguageItem } from "@/features/editor/types";
 
@@ -54,7 +54,7 @@ export async function GET() {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const supabase = await createClient();
+    const supabase = createAdminClient();
 
     const { data, error } = await supabase
         .from("resumes")
@@ -63,8 +63,8 @@ export async function GET() {
         .order("updated_at", { ascending: false });
 
     if (error) {
-        console.error("Error fetching resumes:", error);
-        return NextResponse.json({ error: "Failed to fetch resumes" }, { status: 500 });
+        console.error("Error fetching resumes:", JSON.stringify(error, null, 2));
+        return NextResponse.json({ error: "Failed to fetch resumes", details: error }, { status: 500 });
     }
 
     const resumes = data.map((row) => ensureResumeIds(row.data as ResumeData));
@@ -82,7 +82,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const supabase = await createClient();
+    const supabase = createAdminClient();
 
     let resume: ResumeData;
     try {

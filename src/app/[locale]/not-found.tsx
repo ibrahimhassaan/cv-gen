@@ -3,7 +3,6 @@ import { ArrowLeft, Home, FileQuestion } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { Navbar } from "@/components/Navbar";
 import { FooterWrapper } from "@/components/FooterWrapper";
-import { AuthWrapper } from "@/components/AuthWrapper";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
@@ -76,15 +75,13 @@ export default async function NotFound() {
 
     return (
         <NextIntlClientProvider messages={messages}>
-            <AuthWrapper>
-                <div className="flex flex-col min-h-screen">
-                    <Navbar />
-                    <main className="flex-grow">
-                        <NotFoundContent />
-                    </main>
-                    <FooterWrapper />
-                </div>
-            </AuthWrapper>
+            <div className="flex flex-col min-h-screen">
+                <Navbar />
+                <main className="flex-grow">
+                    <NotFoundContent />
+                </main>
+                <FooterWrapper />
+            </div>
         </NextIntlClientProvider>
     );
 }

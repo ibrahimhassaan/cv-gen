@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/Button";
 import { Download, Share2, LayoutTemplate, RotateCcw, Loader2, Eye, ChevronLeft } from "lucide-react";
 import { GradientBlobs } from "@/components/GradientBlobs";
 import { useTranslations } from "next-intl";
-import { useAuth, SignInModal } from "@/features/auth";
+import { useUser, useClerk } from "@clerk/nextjs";
 import { setPendingAction, generateShareableLink } from "@/lib/resumeStorage";
 import { saveResume, getResume } from "@/lib/resumeService";
 import { ShareModal } from "@/components/ShareModal";
@@ -93,7 +93,8 @@ function PreviewWrapper({
 
 function BuilderContent() {
     const { resumeData, setResumeData } = useResume();
-    const { user, loading } = useAuth();
+    const { user, isLoaded: loading } = useUser();
+    const { openSignIn } = useClerk();
     const router = useRouter();
     const searchParams = useSearchParams();
     const id = searchParams.get('id');
@@ -149,10 +150,10 @@ function BuilderContent() {
                     pdf.save(`${resumeData.personalInfo.fullName || "Resume"}_Resume.pdf`);
                 }
             } else {
-                // Show sign in modal and set pending action
+                // Show Clerk sign in and set pending action
                 setPendingActionType("download");
                 setPendingAction("download", resumeData);
-                setShowSignIn(true);
+                openSignIn();
             }
         } catch (error) {
             console.error("Download failed", error);
@@ -178,10 +179,10 @@ function BuilderContent() {
                 setShareUrl(link);
                 setShowShareModal(true);
             } else {
-                // Show sign in modal and set pending action
+                // Show Clerk sign in and set pending action
                 setPendingActionType("share");
                 setPendingAction("share", resumeData);
-                setShowSignIn(true);
+                openSignIn();
             }
         } catch (error) {
             console.error("Share failed", error);
@@ -200,16 +201,6 @@ function BuilderContent() {
         <div className="relative min-h-[calc(100vh-80px)]">
             {/* Background Animation */}
             <GradientBlobs />
-
-            {/* Sign In Modal */}
-            <SignInModal
-                isOpen={showSignIn}
-                onClose={() => {
-                    setShowSignIn(false);
-                    setPendingActionType(null);
-                    setPendingAction(null);
-                }}
-            />
 
             {/* Share Modal */}
             <ShareModal
