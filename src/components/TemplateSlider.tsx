@@ -130,7 +130,7 @@ export const TemplateSlider = () => {
                                         <h3 className="text-white font-bold text-xl translate-y-4 transition-transform duration-300 group-hover:translate-y-0">
                                             {template.name}
                                         </h3>
-                                        <Link href={`/create?template=${template.id}`}>
+                                        <Link href={`/resume-builder?template=${template.id}`}>
                                             <Button className="rounded-full translate-y-4 transition-transform duration-300 group-hover:translate-y-0 delay-75 shadow-xl">
                                                 {t('home.chooseTemplate.useTemplate')} <ArrowRight className="ml-2 w-4 h-4" />
                                             </Button>

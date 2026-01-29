@@ -8,7 +8,7 @@ export function CreateCVCard() {
     const t = useTranslations('dashboardPage');
 
     return (
-        <Link href="/create/manual" className="group h-full">
+        <Link href="/resume-builder" className="group h-full">
             <div className="h-full min-h-[400px] glass-card flex flex-col items-center justify-center rounded-3xl border border-dashed border-gray-300 p-8 transition-all hover:bg-primary/5 hover:border-primary/50">
                 <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 transition-transform group-hover:scale-110">
                     <Plus className="h-8 w-8 text-primary" />

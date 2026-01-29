@@ -70,7 +70,7 @@ export default function TemplatesPage() {
         }));
 
         // Navigate to editor
-        router.push(`/${locale}/create/manual`);
+        router.push(`/${locale}/resume-builder`);
     };
 
     return (

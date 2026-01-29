@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { Footer } from "./Footer";
 
 // Routes where the footer should be hidden
-const HIDDEN_FOOTER_ROUTES = ["/create/manual"];
+const HIDDEN_FOOTER_ROUTES = ["/resume-builder"];
 
 export function FooterWrapper() {
     const pathname = usePathname();

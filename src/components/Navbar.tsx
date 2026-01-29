@@ -38,7 +38,7 @@ const NavLinks = ({
             <Link href={`/${locale}`} className={className} onClick={handleClick}>
                 {t('home')}
             </Link>
-            <Link href={`/${locale}/create/manual`} className={className} onClick={handleClick}>
+            <Link href={`/${locale}/resume-builder`} className={className} onClick={handleClick}>
                 {t('resume')}
             </Link>
             <Link href={`/${locale}/templates`} className={className} onClick={handleClick}>
@@ -194,7 +194,7 @@ export function Navbar() {
                             </Button>
                         )}
 
-                        <Link href={`/${locale}/create/manual`}>
+                        <Link href={`/${locale}/resume-builder`}>
                             <Button variant="default" size="sm" className="rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all">
                                 {t('getStarted')}
                             </Button>
@@ -302,7 +302,7 @@ export function Navbar() {
                                     </Button>
                                 )}
 
-                                <Link href={`/${locale}/create/manual`}>
+                                <Link href={`/${locale}/resume-builder`}>
                                     <Button variant="default" size="lg" className="w-full rounded-full shadow-lg shadow-primary/20" onClick={() => setIsMobileMenuOpen(false)}>
                                         {t('getStarted')}
                                     </Button>

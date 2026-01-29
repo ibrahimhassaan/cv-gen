@@ -13,6 +13,7 @@ import { locales, type Locale } from "@/i18n";
 import { CookieBanner } from "@/components/CookieBanner";
 import { JsonLd } from "@/components/JsonLd";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { MicrosoftClarity } from "@/components/MicrosoftClarity";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -75,7 +76,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     const messages = await getMessages();
 
     return (
-        <html lang={locale}>
+        <html lang={locale} suppressHydrationWarning>
             <body
                 className={`${inter.variable} ${outfit.variable} antialiased bg-background text-foreground selection:bg-primary/30`}
             >
@@ -90,6 +91,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                         <FooterWrapper />
                     </AuthWrapper>
                     <GoogleAnalytics />
+                    <MicrosoftClarity />
                 </NextIntlClientProvider>
                 <JsonLd
                     data={{

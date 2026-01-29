@@ -55,7 +55,7 @@ export function CVCard({
 
                 {/* Hover Overlay for Edit */}
                 <Link
-                    href={`/create/manual?id=${resume.id}`}
+                    href={`/resume-builder?id=${resume.id}`}
                     className="absolute inset-0 z-10 flex items-center justify-center bg-black/5 opacity-0 backdrop-blur-[1px] transition-opacity group-hover:opacity-100"
                 >
                     <Button size="lg" className="rounded-full shadow-xl font-semibold bg-white text-gray-900 hover:bg-gray-50">
