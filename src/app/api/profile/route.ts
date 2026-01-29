@@ -10,9 +10,11 @@ export interface UserProfile {
     preferred_language: string | null;
 }
 
+import { currentUser } from "@clerk/nextjs/server";
+
 /**
  * GET /api/profile
- * Get current user's profile
+ * Get current user's profile, creates one if it doesn't exist
  */
 export async function GET() {
     const { userId } = await auth();
@@ -23,6 +25,7 @@ export async function GET() {
 
     const supabase = await createClient();
 
+    // 1. Try to fetch existing profile
     const { data, error } = await supabase
         .from("profiles")
         .select("*")
@@ -33,7 +36,37 @@ export async function GET() {
         return NextResponse.json({ error: "Failed to fetch profile" }, { status: 500 });
     }
 
-    const profile = (data && data.length > 0) ? (data[0] as UserProfile) : null;
+    let profile = (data && data.length > 0) ? (data[0] as UserProfile) : null;
+
+    // 2. If profile doesn't exist, create it (Lazy Creation)
+    if (!profile) {
+        const user = await currentUser();
+        if (!user) {
+            return NextResponse.json({ error: "User not found in Clerk" }, { status: 404 });
+        }
+
+        const newProfile = {
+            id: userId,
+            full_name: `${user.firstName || ""} ${user.lastName || ""}`.trim() || user.username || "User",
+            email: user.emailAddresses[0]?.emailAddress || "",
+            avatar_url: user.imageUrl || "",
+            updated_at: new Date().toISOString(),
+        };
+
+        const { data: createdData, error: createError } = await supabase
+            .from("profiles")
+            .insert(newProfile)
+            .select()
+            .single();
+
+        if (createError) {
+            console.error("Error creating profile:", createError);
+            return NextResponse.json({ error: "Failed to create profile" }, { status: 500 });
+        }
+
+        profile = createdData as UserProfile;
+    }
+
     return NextResponse.json(profile);
 }
 

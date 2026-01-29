@@ -60,6 +60,8 @@ export async function generateMetadata({ params }: Props) {
     };
 }
 
+import { ClerkProfileSync } from "@/components/ClerkProfileSync";
+
 type Props = {
     children: React.ReactNode;
     params: Promise<{ locale: string }>;
@@ -82,6 +84,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                 >
                     <NextIntlClientProvider messages={messages}>
                         <Navbar />
+                        <ClerkProfileSync />
                         {children}
                         <CookieBanner />
                         <FooterWrapper />
