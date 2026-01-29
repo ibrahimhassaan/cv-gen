@@ -1,4 +1,9 @@
 {
+    "metadata": {
+        "title": "Kostenloser KI-Lebenslauf-Generator & Bewerbungsvorlagen | cvGenfy",
+        "description": "Erstellen Sie professionelle Lebensläufe in Minuten mit cvGenfy. Kostenloser KI-Generator, ATS-freundliche Vorlagen, PDF-Download und mehrsprachige Unterstützung.",
+        "keywords": "Lebenslauf schreiben, Lebenslauf Vorlage, KI Lebenslauf, Bewerbung, CV erstellen, Kostenlos, Online"
+    },
     "nav": {
         "home": "Startseite",
         "resume": "Lebenslauf",
@@ -101,7 +106,18 @@
         "copyright": "© 2026 cvGenfy. Gestalten Sie Ihre Zukunft.",
         "privacy": "Datenschutz",
         "terms": "AGB",
-        "contact": "Kontakt"
+        "contact": "Kontakt",
+        "about": "Über uns"
+    },
+    "aboutPage": {
+        "title": "Über cvGenfy",
+        "subtitle": "Demokratisierung des Karriereerfolgs durch KI-Technologie.",
+        "missionTitle": "Unsere Mission",
+        "missionText": "Wir glauben, dass jeder einen professionellen Lebenslauf verdient, der sein wahres Potenzial repräsentiert, unabhängig von seinen Designfähigkeiten.",
+        "teamTitle": "Unser Team",
+        "teamText": "Entwickelt von einem Team aus HR-Experten und Softwareentwicklern, die Ihnen helfen wollen, Ihren Traumjob zu finden.",
+        "transparencyTitle": "Wie wir arbeiten",
+        "transparencyText": "Wir verwenden fortschrittliche KI, um Stellenbeschreibungen zu analysieren und Ihre Lebenslauf-Schlüsselwörter zu optimieren, um eine hohe Kompatibilität mit Bewerber-Tracking-Systemen (ATS) zu gewährleisten."
     },
     "templates": {
         "pageTitle": "Wählen Sie eine erfolgreiche Lebenslauf-Vorlage",
@@ -120,6 +136,7 @@
         "finishDownload": "Fertigstellen & Herunterladen",
         "reset": "Zurücksetzen",
         "editor": "Editor",
+        "preview": "Vorschau",
         "selectTemplate": "Vorlage auswählen",
         "switchTemplate": "Vorlage wechseln",
         "pdf": "PDF",

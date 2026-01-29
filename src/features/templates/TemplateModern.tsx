@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { ResumeData } from "@/features/editor/types";
 import { Mail, Phone, Globe, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -41,9 +42,17 @@ export const TemplateModern = ({ data, featureThemeBg = false }: TemplateModernP
                 />
 
                 <div className="flex items-center gap-8 relative z-10">
+
                     {personalInfo.photoUrl && (
-                        <div className={cn("w-32 h-32 rounded-full border-4 shadow-xl overflow-hidden shrink-0", featureThemeBg ? "border-white/30" : "border-white/20")}>
-                            <img src={personalInfo.photoUrl} alt={personalInfo.fullName} className="w-full h-full object-cover" />
+                        <div className={cn("w-32 h-32 rounded-full border-4 shadow-xl overflow-hidden shrink-0 relative", featureThemeBg ? "border-white/30" : "border-white/20")}>
+                            <Image
+                                src={personalInfo.photoUrl}
+                                alt={personalInfo.fullName || "Profile Photo"}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100px, 128px"
+                                priority
+                            />
                         </div>
                     )}
                     <div>

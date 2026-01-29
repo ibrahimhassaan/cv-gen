@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { ResumeData } from "@/features/editor/types";
 import { cn } from "@/lib/utils";
 
@@ -21,10 +22,18 @@ export const TemplateClassic = ({ data }: { data: ResumeData }) => {
         <div className={cn("w-[210mm] min-h-[297mm] bg-white text-gray-900 shadow-2xl overflow-hidden p-16 print:shadow-none print:w-full print:p-12", fontClass)}>
             {/* Header */}
             <header className="border-b-2 pb-6 mb-8 text-center" style={{ borderColor: themeColor }}>
+
                 {personalInfo.photoUrl && (
                     <div className="mb-6 flex justify-center">
-                        <div className="w-32 h-32 overflow-hidden border-2 border-gray-200 shadow-sm">
-                            <img src={personalInfo.photoUrl} alt={personalInfo.fullName} className="w-full h-full object-cover" />
+                        <div className="w-32 h-32 overflow-hidden border-2 border-gray-200 shadow-sm relative">
+                            <Image
+                                src={personalInfo.photoUrl}
+                                alt={personalInfo.fullName || "Profile Photo"}
+                                fill
+                                className="object-cover"
+                                sizes="(max-width: 768px) 100px, 128px"
+                                priority
+                            />
                         </div>
                     </div>
                 )}

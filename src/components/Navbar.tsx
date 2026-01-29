@@ -64,13 +64,10 @@ export function Navbar() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     // Close mobile menu when route changes
+    // Close mobile menu when route changes
     useEffect(() => {
-        if (isMobileMenuOpen) {
-            requestAnimationFrame(() => {
-                setIsMobileMenuOpen(false);
-            });
-        }
-    }, [pathname, isMobileMenuOpen]);
+        setIsMobileMenuOpen(false);
+    }, [pathname]);
 
     // Prevent scrolling when mobile menu is open
     useEffect(() => {
@@ -128,12 +125,12 @@ export function Navbar() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
                             </button>
-                            <div className="absolute right-0 mt-1 py-2 w-40 bg-white dark:bg-zinc-900 rounded-xl shadow-lg border border-border/40 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                            <div className="absolute right-0 mt-1 py-2 w-40 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                                 {locales.map((loc) => (
                                     <button
                                         key={loc}
                                         onClick={() => switchLocale(loc)}
-                                        className={`w-full text-left px-4 py-2 text-sm hover:bg-primary/5 transition-colors ${locale === loc ? 'text-primary font-medium' : 'text-muted-foreground'}`}
+                                        className={`w-full text-left px-4 py-2 text-sm hover:bg-slate-50 transition-colors ${locale === loc ? 'text-primary font-medium' : 'text-slate-600'}`}
                                     >
                                         {tLang(loc)}
                                     </button>
@@ -146,7 +143,7 @@ export function Navbar() {
                             <div className="w-8 h-8 border-2 border-primary/20 border-t-primary rounded-full animate-spin" />
                         ) : user ? (
                             <div className="relative group">
-                                <button className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-primary/5 transition-colors">
+                                <button className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-50 transition-colors">
                                     {user.user_metadata?.avatar_url ? (
                                         <img
                                             src={user.user_metadata.avatar_url}
@@ -154,31 +151,31 @@ export function Navbar() {
                                             className="w-8 h-8 rounded-full"
                                         />
                                     ) : (
-                                        <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                                        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
                                             <User className="w-4 h-4 text-primary" />
                                         </div>
                                     )}
-                                    <svg className="w-3 h-3 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg className="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </button>
-                                <div className="absolute right-0 mt-1 py-2 w-48 bg-white dark:bg-zinc-900 rounded-xl shadow-lg border border-border/40 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                    <div className="px-4 py-2 border-b border-border/40">
-                                        <p className="text-sm font-medium truncate">
+                                <div className="absolute right-0 mt-1 py-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                    <div className="px-4 py-2 border-b border-gray-50">
+                                        <p className="text-sm font-medium truncate text-slate-900">
                                             {user.user_metadata?.full_name || user.email?.split('@')[0]}
                                         </p>
-                                        <p className="text-xs text-muted-foreground truncate">{user.email}</p>
+                                        <p className="text-xs text-slate-500 truncate">{user.email}</p>
                                     </div>
                                     <Link
                                         href={`/${locale}/dashboard`}
-                                        className="flex items-center gap-2 w-full px-4 py-2 text-sm text-muted-foreground hover:bg-primary/5 hover:text-primary transition-colors"
+                                        className="flex items-center gap-2 w-full px-4 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-primary transition-colors"
                                     >
                                         <LayoutDashboard className="w-4 h-4" />
                                         {t('dashboard')}
                                     </Link>
                                     <button
                                         onClick={handleSignOut}
-                                        className="flex items-center gap-2 w-full px-4 py-2 text-sm text-muted-foreground hover:bg-red-50 hover:text-red-500 transition-colors"
+                                        className="flex items-center gap-2 w-full px-4 py-2 text-sm text-slate-600 hover:bg-red-50 hover:text-red-600 transition-colors"
                                     >
                                         <LogOut className="w-4 h-4" />
                                         {t('signOut')}
@@ -189,7 +186,7 @@ export function Navbar() {
                             <Button
                                 variant="ghost"
                                 size="sm"
-                                className="font-medium"
+                                className="font-medium text-slate-600 hover:text-primary"
                                 onClick={() => setShowSignIn(true)}
                             >
                                 {t('login')}
@@ -205,7 +202,7 @@ export function Navbar() {
 
                     {/* Mobile Menu Button - Z-index must be higher than overlay */}
                     <button
-                        className="md:hidden p-2 text-foreground z-[120] relative"
+                        className="md:hidden p-2 text-slate-900 z-[120] relative"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         aria-label="Toggle menu"
                     >
@@ -240,16 +237,25 @@ export function Navbar() {
                             {/* Mobile Auth & Language */}
                             <div className="flex flex-col items-center space-y-6">
                                 <div className="flex items-center space-x-4">
-                                    {locales.map((loc) => (
-                                        <button
-                                            key={loc}
-                                            onClick={() => switchLocale(loc)}
-                                            className={`text-sm uppercase font-medium px-3 py-1 rounded-full transition-colors ${locale === loc ? 'bg-primary/10 text-primary' : 'text-slate-500'
-                                                }`}
-                                        >
-                                            {loc}
-                                        </button>
-                                    ))}
+                                    {locales.map((loc) => {
+                                        const flags: Record<string, string> = {
+                                            en: "🇺🇸",
+                                            de: "🇩🇪",
+                                            id: "🇮🇩",
+                                            hi: "🇮🇳"
+                                        };
+                                        return (
+                                            <button
+                                                key={loc}
+                                                onClick={() => switchLocale(loc)}
+                                                className={`text-2xl px-3 py-1 rounded-full transition-all hover:scale-110 ${locale === loc ? 'bg-primary/10 ring-2 ring-primary/20 scale-110' : 'hover:bg-slate-50'
+                                                    }`}
+                                                title={tLang(loc)}
+                                            >
+                                                {flags[loc]}
+                                            </button>
+                                        );
+                                    })}
                                 </div>
 
                                 {user ? (

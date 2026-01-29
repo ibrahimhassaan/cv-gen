@@ -1,4 +1,9 @@
 {
+    "metadata": {
+        "title": "Pembuat CV Online Gratis & Terbaik - Didukung AI | cvGenfy",
+        "description": "Buat CV profesional yang ramah ATS dalam hitungan menit dengan cvGenfy. Pembuat resume AI gratis, template ahli, unduhan PDF, dan dukungan multi-bahasa.",
+        "keywords": "Buat CV Online, Contoh Resume, Lamaran Kerja, CV Maker Gratis, Resume AI, Template CV, Profesional"
+    },
     "nav": {
         "home": "Beranda",
         "resume": "Resume",
@@ -106,7 +111,18 @@
         "copyright": "© 2026 cvGenfy. Raih masa depan Anda.",
         "privacy": "Privasi",
         "terms": "Ketentuan",
-        "contact": "Kontak"
+        "contact": "Kontak",
+        "about": "Tentang Kami"
+    },
+    "aboutPage": {
+        "title": "Tentang cvGenfy",
+        "subtitle": "Mendemokratisasikan kesuksesan karier melalui teknologi AI.",
+        "missionTitle": "Misi Kami",
+        "missionText": "Kami percaya setiap orang berhak mendapatkan resume profesional yang mewakili potensi sejati mereka, terlepas dari keterampilan desain mereka.",
+        "teamTitle": "Tim Kami",
+        "teamText": "Dibangun oleh tim ahli SDM dan insinyur perangkat lunak yang berdedikasi untuk membantu Anda mendapatkan pekerjaan impian.",
+        "transparencyTitle": "Cara Kami Bekerja",
+        "transparencyText": "Kami menggunakan AI canggih untuk menganalisis deskripsi pekerjaan dan mengoptimalkan kata kunci resume Anda, memastikan kompatibilitas tinggi dengan Sistem Pelacakan Pelamar (ATS)."
     },
     "templates": {
         "pageTitle": "Pilih template resume pemenang kerja",
@@ -125,6 +141,7 @@
         "finishDownload": "Selesai & Unduh",
         "reset": "Reset",
         "editor": "Editor",
+        "preview": "Pratinjau",
         "selectTemplate": "Pilih Template",
         "switchTemplate": "Ganti Template",
         "pdf": "PDF",

@@ -1,4 +1,9 @@
 {
+    "metadata": {
+        "title": "AI Resume Builder & CV Maker - ATS Friendly & Free | cvGenfy",
+        "description": "Create professional, ATS-friendly resumes in minutes with cvGenfy. Free AI resume builder, expert templates, PDF download, and multi-language support.",
+        "keywords": "Resume Builder, CV Maker, Free Resume Creator, AI Resume, ATS Friendly, Professional CV, Job Application"
+    },
     "nav": {
         "home": "Home",
         "resume": "Resume",
@@ -110,7 +115,18 @@
         "copyright": "© 2026 cvGenfy. Craft your future.",
         "privacy": "Privacy",
         "terms": "Terms",
-        "contact": "Contact"
+        "contact": "Contact",
+        "about": "About"
+    },
+    "aboutPage": {
+        "title": "About cvGenfy",
+        "subtitle": "Democratizing career success through AI technology.",
+        "missionTitle": "Our Mission",
+        "missionText": "We believe everyone deserves a professional resume that represents their true potential, regardless of their design skills.",
+        "teamTitle": "Our Team",
+        "teamText": "Built by a team of HR experts and software engineers dedicated to helping you land your dream job.",
+        "transparencyTitle": "How We Work",
+        "transparencyText": "We use advanced AI to analyze job descriptions and optimize your resume keywords, ensuring high compatibility with Applicant Tracking Systems (ATS)."
     },
     "templates": {
         "pageTitle": "Select job-winning resume template",
