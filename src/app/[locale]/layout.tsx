@@ -8,20 +8,25 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { locales, type Locale } from "@/i18n";
-import { CookieBanner } from "@/components/CookieBanner";
+import dynamic from "next/dynamic";
+
+const CookieBanner = dynamic(() => import("@/components/CookieBanner").then(mod => mod.CookieBanner));
+const ClerkProfileSync = dynamic(() => import("@/components/ClerkProfileSync").then(mod => mod.ClerkProfileSync));
 import { JsonLd } from "@/components/JsonLd";
-import { GoogleAnalytics } from "@/components/GoogleAnalytics";
+import { Analytics } from "@/components/Analytics";
 import { MicrosoftClarity } from "@/components/MicrosoftClarity";
 import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({
     variable: "--font-inter",
     subsets: ["latin"],
+    display: "swap",
 });
 
 const outfit = Outfit({
     variable: "--font-outfit",
     subsets: ["latin"],
+    display: "swap",
 });
 
 import { getTranslations } from "next-intl/server";
@@ -60,7 +65,7 @@ export async function generateMetadata({ params }: Props) {
     };
 }
 
-import { ClerkProfileSync } from "@/components/ClerkProfileSync";
+
 
 type Props = {
     children: React.ReactNode;
@@ -77,7 +82,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     const messages = await getMessages();
 
     return (
-        <ClerkProvider>
+        <ClerkProvider appearance={{ theme: 'simple' }}>
             <html lang={locale} suppressHydrationWarning>
                 <body
                     className={`${inter.variable} ${outfit.variable} antialiased bg-background text-foreground selection:bg-primary/30`}
@@ -89,7 +94,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                         <CookieBanner />
                         <FooterWrapper />
                     </NextIntlClientProvider>
-                    <GoogleAnalytics />
+                    <Analytics />
                     <MicrosoftClarity />
                     <JsonLd
                         data={{

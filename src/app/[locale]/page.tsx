@@ -3,7 +3,8 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/Ca
 import { FileText, Upload, Sparkles, Download, Share2, Wand2, MousePointerClick, Keyboard, TrendingUp, Timer, Trophy, Bot } from "lucide-react";
 import Link from "next/link";
 import { GradientBlobs } from "@/components/GradientBlobs";
-import { HeroResumes } from "@/components/HeroResumes";
+
+import { HeroResumesWrapper } from "@/components/HeroResumesWrapper";
 // import { TemplateSlider } from "@/components/TemplateSlider";
 // import { FloatingElements } from "@/components/FloatingElements";
 import { useTranslations } from "next-intl";
@@ -73,8 +74,8 @@ export default function Home() {
                     </div>
 
                     {/* Right Column: Animated Resumes */}
-                    <div className="hidden lg:block relative z-10 animate-[fade-in_1.5s_ease-out]">
-                        <HeroResumes />
+                    <div className="hidden lg:block relative z-10 animate-[fade-in_0.5s_ease-out]">
+                        <HeroResumesWrapper />
                     </div>
                 </div>
             </section>

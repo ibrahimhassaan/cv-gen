@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import clarity from "@microsoft/clarity";
+
 
 export function MicrosoftClarity() {
     const clarityId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
@@ -9,15 +9,20 @@ export function MicrosoftClarity() {
     useEffect(() => {
         if (!clarityId) return;
 
+        const loadClarity = async () => {
+            const clarity = (await import("@microsoft/clarity")).default;
+            clarity.init(clarityId);
+        };
+
         // Check initial consent
         if (localStorage.getItem("cookie_consent") === "true") {
-            clarity.init(clarityId);
+            loadClarity();
         }
 
         // Listen for consent updates
         const handleConsentUpdate = () => {
             if (localStorage.getItem("cookie_consent") === "true") {
-                clarity.init(clarityId);
+                loadClarity();
             }
         };
 

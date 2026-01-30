@@ -1,7 +1,9 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Footer } from "./Footer";
+import dynamic from "next/dynamic";
+
+const Footer = dynamic(() => import("./Footer").then(mod => mod.Footer));
 
 // Routes where the footer should be hidden
 const HIDDEN_FOOTER_ROUTES = ["/resume-builder"];

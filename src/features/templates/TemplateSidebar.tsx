@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { ResumeData } from "@/features/editor/types";
 import { Mail, Phone, Globe, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -53,8 +54,15 @@ export const TemplateSidebar = ({
                     <div className="space-y-4 text-sm text-center">
                         {personalInfo.photoUrl && (
                             <div className="mb-6 flex justify-center">
-                                <div className={cn("w-32 h-32 rounded-full overflow-hidden border-4 shadow-md", featureThemeBg ? "border-white/30" : "border-white/20")}>
-                                    <img src={personalInfo.photoUrl} alt={personalInfo.fullName} className="w-full h-full object-cover" />
+                                <div className={cn("w-32 h-32 rounded-full overflow-hidden border-4 shadow-md relative", featureThemeBg ? "border-white/30" : "border-white/20")}>
+                                    <Image
+                                        src={personalInfo.photoUrl}
+                                        alt={personalInfo.fullName || "Profile Photo"}
+                                        fill
+                                        className="object-cover"
+                                        sizes="(max-width: 768px) 100vw, 128px"
+                                        priority
+                                    />
                                 </div>
                             </div>
                         )}
