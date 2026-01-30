@@ -134,14 +134,14 @@ function BuilderContent() {
 
                 if (activeRef.current) {
                     // Check if we need to dynamic import to avoid SSR issues
-                    const { toPng } = await import('html-to-image');
+                    const { toJpeg } = await import('html-to-image');
                     const { jsPDF } = await import('jspdf');
 
                     const element = activeRef.current;
 
                     // Generate high-quality image from the element
                     // pixelRatio 2 ensures good quality for print
-                    const dataUrl = await toPng(element, { quality: 0.95, pixelRatio: 2 });
+                    const dataUrl = await toJpeg(element, { quality: 0.85, pixelRatio: 2 });
 
                     const pdf = new jsPDF({
                         orientation: 'portrait',
@@ -153,7 +153,7 @@ function BuilderContent() {
                     const pdfWidth = pdf.internal.pageSize.getWidth();
                     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-                    pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                    pdf.addImage(dataUrl, 'JPEG', 0, 0, pdfWidth, pdfHeight);
                     pdf.save(`${resumeData.personalInfo.fullName || "Resume"}_Resume.pdf`);
                 }
             } else {
