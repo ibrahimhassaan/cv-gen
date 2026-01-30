@@ -43,11 +43,11 @@ export default function DashboardPage() {
                     // Wait for render
                     await new Promise(resolve => setTimeout(resolve, 100));
 
-                    const { toPng } = await import('html-to-image');
+                    const { toJpeg } = await import('html-to-image');
                     const { jsPDF } = await import('jspdf');
 
                     const element = printTemplateRef.current;
-                    const dataUrl = await toPng(element, { quality: 0.95, pixelRatio: 2 });
+                    const dataUrl = await toJpeg(element, { quality: 0.85, pixelRatio: 2 });
 
                     const pdf = new jsPDF({
                         orientation: 'portrait',
@@ -59,7 +59,7 @@ export default function DashboardPage() {
                     const pdfWidth = pdf.internal.pageSize.getWidth();
                     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-                    pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                    pdf.addImage(dataUrl, 'JPEG', 0, 0, pdfWidth, pdfHeight);
                     pdf.save(`${downloadData.personalInfo.fullName || "Resume"}_Resume.pdf`);
 
                 } catch (error) {
