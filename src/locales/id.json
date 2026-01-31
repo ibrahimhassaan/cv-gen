@@ -308,7 +308,8 @@
         "labelEducation": "Pendidikan",
         "labelSkills": "Keahlian",
         "labelProjects": "Proyek",
-        "labelPresent": "Sekarang"
+        "labelPresent": "Sekarang",
+        "labelLanguages": "Bahasa"
     },
     "dashboardPage": {
         "title": "Dasbor Anda",

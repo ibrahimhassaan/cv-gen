@@ -310,7 +310,8 @@
         "labelEducation": "Bildung",
         "labelSkills": "Fähigkeiten",
         "labelProjects": "Projekte",
-        "labelPresent": "Heute"
+        "labelPresent": "Heute",
+        "labelLanguages": "Sprachen"
     },
     "dashboardPage": {
         "title": "Ihr Dashboard",

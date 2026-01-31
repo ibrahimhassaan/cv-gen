@@ -310,7 +310,8 @@
         "labelEducation": "शिक्षा",
         "labelSkills": "कौशल",
         "labelProjects": "प्रोजेक्ट्स",
-        "labelPresent": "वर्तमान"
+        "labelPresent": "वर्तमान",
+        "labelLanguages": "भाषाएं"
     },
     "dashboardPage": {
         "title": "आपका डैशबोर्ड",

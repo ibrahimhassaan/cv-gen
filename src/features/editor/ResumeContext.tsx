@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ResumeData, initialResumeState, ExperienceItem, EducationItem, ProjectItem } from "./types";
+import { useTranslations } from "next-intl";
 
 interface ResumeContextType {
     resumeData: ResumeData;
@@ -33,6 +34,7 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
     const router = useRouter();
     const [resumeData, setResumeData] = useState<ResumeData>(() => JSON.parse(JSON.stringify(initialResumeState)));
     const [isLoaded, setIsLoaded] = useState(false);
+    const t = useTranslations('templatePreview');
 
     // Hydrate from local storage on mount
     useEffect(() => {
@@ -52,6 +54,24 @@ export function ResumeProvider({ children }: { children: React.ReactNode }) {
         setIsLoaded(true);
         console.log("[ResumeContext] Hydration complete, isLoaded set to true");
     }, []);
+
+    // Update labels when locale/translation changes
+    useEffect(() => {
+        if (!isLoaded) return;
+
+        setResumeData(prev => ({
+            ...prev,
+            labels: {
+                profile: t('labelProfile'),
+                experience: t('labelExperience'),
+                education: t('labelEducation'),
+                skills: t('labelSkills'),
+                languages: t('labelLanguages'),
+                projects: t('labelProjects'),
+                present: t('labelPresent')
+            }
+        }));
+    }, [t, isLoaded]);
 
     // Sync from URL params
     useEffect(() => {
