@@ -8,9 +8,10 @@ import { SkillsForm } from "./components/SkillsForm";
 import { LanguagesForm } from "./components/LanguagesForm";
 import { cn } from "@/lib/utils";
 import { SummaryForm } from "./components/SummaryForm";
-import { User, Briefcase, GraduationCap, Code, Globe, ChevronRight, ChevronLeft, Check, Loader2, FileText } from "lucide-react";
+import { User, Briefcase, GraduationCap, Code, Globe, ChevronRight, Check, Loader2, FileText } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useTranslations } from "next-intl";
+import { Accordion, AccordionItem } from "./components/Accordion";
 
 type Section = "personal" | "experience" | "education" | "skills" | "languages" | "summary";
 
@@ -33,6 +34,8 @@ export function EditorForm({ onDownload, isDownloading }: EditorFormProps) {
     ];
 
     const activeIndex = sections.findIndex((s) => s.id === activeSection);
+    // Track highest step reached to allow jumping back (optional, or just allow all if completed)
+    // For now, we rely on activeIndex comparisons for 'isCompleted'.
 
     const handleNext = () => {
         if (activeIndex < sections.length - 1) {
@@ -46,92 +49,103 @@ export function EditorForm({ onDownload, isDownloading }: EditorFormProps) {
         }
     };
 
+    // Helper to render the correct form component
+    const renderForm = (id: Section) => {
+        switch (id) {
+            case "personal": return <PersonalInfoForm />;
+            case "experience": return <ExperienceForm />;
+            case "education": return <EducationForm />;
+            case "skills": return <SkillsForm />;
+            case "languages": return <LanguagesForm />;
+            case "summary": return <SummaryForm />;
+            default: return null;
+        }
+    };
+
     return (
-        <div className="space-y-4">
-            {/* Stepper Navigation */}
-            <div className="relative px-2">
-                {/* Connecting Line */}
-                <div className="absolute top-1/2 left-4 right-4 h-0.5 bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 -z-10 transform -translate-y-[50%]" />
+        <div className="pb-24 pt-4 px-2 md:px-4">
+            <Accordion>
+                {sections.map((section, index) => {
+                    const isActive = activeSection === section.id;
+                    const isCompleted = index < activeIndex; // Simple logic: previous steps are complete
+                    const isLast = index === sections.length - 1;
 
-                <div className="flex justify-between items-center relative">
-                    {sections.map((section, index) => {
-                        const Icon = section.icon;
-                        const isActive = index === activeIndex;
-                        const isCompleted = index < activeIndex;
-
-                        return (
-                            <div key={section.id} className="flex flex-col items-center group cursor-pointer" onClick={() => setActiveSection(section.id)}>
-                                <div
-                                    className={cn(
-                                        "w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center transition-all duration-500 relative z-10",
-                                        isActive
-                                            ? "bg-white text-primary shadow-[0_0_15px_rgba(124,58,237,0.3)] border-2 border-primary scale-110"
-                                            : isCompleted
-                                                ? "bg-gradient-to-br from-primary to-accent text-white shadow-md border-transparent"
-                                                : "bg-white border-2 border-gray-100 text-gray-300 hover:border-primary/30 hover:text-primary/50"
-                                    )}
-                                >
-                                    {isCompleted ? <Check className="w-4 h-4 md:w-5 md:h-5" /> : <Icon className="w-4 h-4 md:w-5 md:h-5" />}
+                    return (
+                        <AccordionItem
+                            key={section.id}
+                            title={section.label}
+                            icon={section.icon}
+                            isActive={isActive}
+                            isCompleted={isCompleted}
+                            onClick={() => setActiveSection(section.id)}
+                            isLast={isLast}
+                            stepNumber={index + 1}
+                        >
+                            <div className="flex flex-col gap-6">
+                                {/* Form Content */}
+                                <div className="animate-in fade-in zoom-in-95 duration-300">
+                                    {renderForm(section.id)}
                                 </div>
-                                <span className={cn(
-                                    "text-[10px] md:text-xs font-semibold mt-1.5 transition-colors duration-300",
-                                    isActive ? "text-primary" : isCompleted ? "text-foreground" : "text-muted-foreground"
-                                )}>
-                                    {section.label}
-                                </span>
+
+                                {/* Step Navigation Buttons (Inside the expandable area) */}
+                                <div className="flex items-center justify-end gap-3 pt-4 border-t border-gray-100">
+                                    {/* Back Button (except first step) */}
+                                    {index > 0 && (
+                                        <Button
+                                            variant="ghost"
+                                            size="sm"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleBack();
+                                            }}
+                                            className="text-gray-500 hover:text-gray-900"
+                                        >
+                                            {t('back')}
+                                        </Button>
+                                    )}
+
+                                    {/* Next or Download Button */}
+                                    {isLast ? (
+                                        <Button
+                                            variant="default"
+                                            size="sm"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                onDownload?.();
+                                            }}
+                                            disabled={isDownloading}
+                                            className="bg-green-600 hover:bg-green-700 text-white shadow-md hover:shadow-lg transition-all rounded-full px-6"
+                                        >
+                                            {isDownloading ? (
+                                                <>
+                                                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                                                    {t('downloading')}...
+                                                </>
+                                            ) : (
+                                                <>
+                                                    {t('finishDownload')} <Check className="w-4 h-4 ml-2" />
+                                                </>
+                                            )}
+                                        </Button>
+                                    ) : (
+                                        <Button
+                                            variant="default"
+                                            size="sm"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                handleNext();
+                                            }}
+                                            className="bg-primary hover:bg-primary/90 text-white shadow-md hover:shadow-lg transition-all rounded-full px-6"
+                                        >
+                                            {t('nextStep')} <ChevronRight className="w-4 h-4 ml-2" />
+                                        </Button>
+                                    )}
+                                </div>
                             </div>
-                        );
-                    })}
-                </div>
-            </div>
-
-            {/* Active Form Area */}
-            <div className="mt-2 px-1">
-                <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 ease-out">
-                    {activeSection === "personal" && <PersonalInfoForm />}
-                    {activeSection === "experience" && <ExperienceForm />}
-                    {activeSection === "education" && <EducationForm />}
-                    {activeSection === "skills" && <SkillsForm />}
-                    {activeSection === "languages" && <LanguagesForm />}
-                    {activeSection === "summary" && <SummaryForm />}
-                </div>
-            </div>
-
-            {/* Navigation Buttons */}
-            <div className="sticky bottom-0 z-20 flex justify-between items-center pt-4 pb-4 border-t border-gray-100 bg-white/80 backdrop-blur-md -mx-4 px-4 mt-auto">
-                <Button
-                    variant="ghost"
-                    onClick={handleBack}
-                    disabled={activeIndex === 0}
-                    className={cn(activeIndex === 0 && "opacity-0 pointer-events-none", "hover:bg-gray-100 text-muted-foreground hover:text-foreground")}
-                >
-                    <ChevronLeft className="w-4 h-4 mr-2" /> {t('back')}
-                </Button>
-
-                {activeIndex === sections.length - 1 ? (
-                    <Button
-                        variant="default"
-                        onClick={onDownload}
-                        disabled={isDownloading}
-                        className="shadow-lg shadow-green-500/20 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white rounded-full px-8"
-                    >
-                        {isDownloading ? (
-                            <>
-                                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                                {t('downloading')}...
-                            </>
-                        ) : (
-                            <>
-                                {t('finishDownload')} <Check className="w-4 h-4 ml-2" />
-                            </>
-                        )}
-                    </Button>
-                ) : (
-                    <Button onClick={handleNext} variant="default" className="rounded-full px-8 shadow-lg shadow-primary/25 hover:shadow-primary/40">
-                        {t('nextStep')} <ChevronRight className="w-4 h-4 ml-2" />
-                    </Button>
-                )}
-            </div>
+                        </AccordionItem>
+                    );
+                })}
+            </Accordion>
         </div>
     );
 }

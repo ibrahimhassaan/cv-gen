@@ -83,7 +83,7 @@ export function ExperienceForm() {
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="h-8 w-8 text-muted-foreground/60 hover:text-destructive hover:bg-destructive/10 opacity-0 group-hover:opacity-100 transition-opacity"
+                                className="h-8 w-8 text-muted-foreground/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     removeExperience(exp.id);
@@ -92,14 +92,14 @@ export function ExperienceForm() {
                                 <Trash2 className="w-4 h-4" />
                             </Button>
                             <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground/70">
-                                {expandedId === exp.id ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                                {expandedId !== exp.id && <ChevronDown className="w-4 h-4 transition-transform" />}
                             </Button>
                         </div>
                     </div>
 
                     {expandedId === exp.id && (
                         <CardContent className="p-4 pt-0 space-y-4 border-t border-border/50 mt-2 animate-in slide-in-from-top-2 duration-200">
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <Label>{t('company')}</Label>
                                     <Input
@@ -118,7 +118,7 @@ export function ExperienceForm() {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <Label>{t('startDate')}</Label>
                                     <Input
@@ -134,11 +134,21 @@ export function ExperienceForm() {
                                             value={exp.endDate}
                                             onChange={(e) => updateExperience(exp.id, "endDate", e.target.value)}
                                             placeholder={t('datePlaceholder')}
-                                            disabled={exp.current}
                                         />
-                                        {/* Checkbox for 'Current' could go here */}
                                     </div>
                                 </div>
+                            </div>
+
+                            <div className="flex justify-end pt-2">
+                                <Button
+                                    variant="destructive"
+                                    size="sm"
+                                    onClick={() => removeExperience(exp.id)}
+                                    className="gap-2"
+                                >
+                                    <Trash2 className="w-4 h-4" />
+                                    {t('remove')}
+                                </Button>
                             </div>
 
                             <div className="space-y-2">

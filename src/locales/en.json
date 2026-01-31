@@ -206,7 +206,8 @@
             "datePlaceholder": "MMM YYYY",
             "description": "Description",
             "descriptionPlaceholder": "• Achievements...",
-            "addExperience": "Add Experience"
+            "addExperience": "Add Experience",
+            "remove": "Remove"
         },
         "educationForm": {
             "institution": "Institution",
@@ -217,10 +218,12 @@
             "fieldPlaceholder": "Computer Science",
             "year": "Year",
             "yearPlaceholder": "2020 - 2024",
-            "addEducation": "Add Education"
+            "addEducation": "Add Education",
+            "remove": "Remove"
         },
         "skillsForm": {
             "addSkills": "Add Skill",
+            "remove": "Remove",
             "skillName": "Skill Name",
             "skillPlaceholder": "Name",
             "level": "Proficiency Level",
@@ -249,6 +252,7 @@
         "summary": "Summary",
         "languagesForm": {
             "addLanguage": "Add Language",
+            "remove": "Remove",
             "languageName": "Language",
             "languagePlaceholder": "e.g. English",
             "level": "Proficiency Level",

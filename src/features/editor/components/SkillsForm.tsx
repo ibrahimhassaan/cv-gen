@@ -132,7 +132,7 @@ export function SkillsForm() {
                                 <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="h-8 w-8 text-muted-foreground/60 hover:text-destructive hover:bg-destructive/10 opacity-0 group-hover:opacity-100 transition-opacity"
+                                    className="h-8 w-8 text-muted-foreground/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         removeSkill(skill.id);
@@ -141,7 +141,7 @@ export function SkillsForm() {
                                     <X className="w-4 h-4" />
                                 </Button>
                                 <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground/70">
-                                    {expandedId === skill.id ? <ChevronDown className="w-4 h-4 rotate-180 transition-transform" /> : <ChevronDown className="w-4 h-4 transition-transform" />}
+                                    {expandedId !== skill.id && <ChevronDown className="w-4 h-4 transition-transform" />}
                                 </Button>
                             </div>
                         </div>
@@ -180,6 +180,18 @@ export function SkillsForm() {
                                             </DropdownMenuContent>
                                         </DropdownMenu>
                                     </div>
+                                </div>
+
+                                <div className="flex justify-end pt-2">
+                                    <Button
+                                        variant="destructive"
+                                        size="sm"
+                                        onClick={() => removeSkill(skill.id)}
+                                        className="gap-2"
+                                    >
+                                        <X className="w-4 h-4" />
+                                        {t('remove')}
+                                    </Button>
                                 </div>
                             </div>
                         )}

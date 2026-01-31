@@ -49,7 +49,7 @@ export function LanguagesForm() {
                                 <Button
                                     variant="ghost"
                                     size="icon"
-                                    className="h-8 w-8 text-muted-foreground/60 hover:text-destructive hover:bg-destructive/10 opacity-0 group-hover:opacity-100 transition-opacity"
+                                    className="h-8 w-8 text-muted-foreground/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         removeLanguage(lang.id);
@@ -58,7 +58,7 @@ export function LanguagesForm() {
                                     <X className="w-4 h-4" />
                                 </Button>
                                 <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground/70">
-                                    {expandedId === lang.id ? <ChevronDown className="w-4 h-4 rotate-180 transition-transform" /> : <ChevronDown className="w-4 h-4 transition-transform" />}
+                                    {expandedId !== lang.id && <ChevronDown className="w-4 h-4 transition-transform" />}
                                 </Button>
                             </div>
                         </div>

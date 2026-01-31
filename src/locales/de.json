@@ -202,7 +202,8 @@
             "datePlaceholder": "MMM JJJJ",
             "description": "Beschreibung",
             "descriptionPlaceholder": "• Erfolge...",
-            "addExperience": "Erfahrung hinzufügen"
+            "addExperience": "Erfahrung hinzufügen",
+            "remove": "Entfernen"
         },
         "educationForm": {
             "institution": "Institution",
@@ -213,10 +214,12 @@
             "fieldPlaceholder": "Informatik",
             "year": "Jahr",
             "yearPlaceholder": "2020 - 2024",
-            "addEducation": "Bildung hinzufügen"
+            "addEducation": "Bildung hinzufügen",
+            "remove": "Entfernen"
         },
         "skillsForm": {
             "addSkills": "Fähigkeit hinzufügen",
+            "remove": "Entfernen",
             "skillName": "Fähigkeitsbezeichnung",
             "skillPlaceholder": "Name",
             "level": "Kenntnisstufe",
@@ -245,6 +248,7 @@
         "summary": "Zusammenfassung",
         "languagesForm": {
             "addLanguage": "Sprache hinzufügen",
+            "remove": "Entfernen",
             "languageName": "Sprache",
             "languagePlaceholder": "z.B. Deutsch",
             "level": "Kenntnisstufe",

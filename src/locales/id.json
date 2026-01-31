@@ -201,7 +201,8 @@
             "datePlaceholder": "MMM YYYY",
             "description": "Deskripsi",
             "descriptionPlaceholder": "• Pencapaian...",
-            "addExperience": "Tambah Pengalaman"
+            "addExperience": "Tambah Pengalaman",
+            "remove": "Hapus"
         },
         "educationForm": {
             "institution": "Institusi",
@@ -212,10 +213,12 @@
             "fieldPlaceholder": "Ilmu Komputer",
             "year": "Tahun",
             "yearPlaceholder": "2020 - 2024",
-            "addEducation": "Tambah Pendidikan"
+            "addEducation": "Tambah Pendidikan",
+            "remove": "Hapus"
         },
         "skillsForm": {
             "addSkills": "Tambah Keahlian",
+            "remove": "Hapus",
             "skillName": "Nama Keahlian",
             "skillPlaceholder": "Nama",
             "noSkills": "Belum ada keahlian ditambahkan.",
@@ -243,6 +246,7 @@
         "summary": "Ringkasan",
         "languagesForm": {
             "addLanguage": "Tambah Bahasa",
+            "remove": "Hapus",
             "languageName": "Bahasa",
             "languagePlaceholder": "contoh: Indonesia",
             "level": "Tingkat Kemahiran",

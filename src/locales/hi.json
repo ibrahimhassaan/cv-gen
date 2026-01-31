@@ -202,7 +202,8 @@
             "datePlaceholder": "MMM YYYY",
             "description": "विवरण",
             "descriptionPlaceholder": "• उपलब्धियां...",
-            "addExperience": "अनुभव जोड़ें"
+            "addExperience": "अनुभव जोड़ें",
+            "remove": "हटाएं"
         },
         "educationForm": {
             "institution": "संस्थान",
@@ -213,10 +214,12 @@
             "fieldPlaceholder": "कंप्यूटर साइंस",
             "year": "वर्ष",
             "yearPlaceholder": "2020 - 2024",
-            "addEducation": "शिक्षा जोड़ें"
+            "addEducation": "शिक्षा जोड़ें",
+            "remove": "हटाएं"
         },
         "skillsForm": {
             "addSkills": "कौशल जोड़ें",
+            "remove": "हटाएं",
             "skillName": "कौशल का नाम",
             "skillPlaceholder": "नाम",
             "level": "दक्षता स्तर",
@@ -245,6 +248,7 @@
         "summary": "सारांश",
         "languagesForm": {
             "addLanguage": "भाषा जोड़ें",
+            "remove": "हटाएं",
             "languageName": "भाषा",
             "languagePlaceholder": "उदा. हिंदी",
             "level": "दक्षता स्तर",

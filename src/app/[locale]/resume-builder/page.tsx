@@ -137,24 +137,67 @@ function BuilderContent() {
                     const { toJpeg } = await import('html-to-image');
                     const { jsPDF } = await import('jspdf');
 
+                    // Clone the element to ensure we capture a clean, unscaled version
+                    // This is critical for mobile where the view might be hidden or scaled
                     const element = activeRef.current;
+                    const clone = element.cloneNode(true) as HTMLElement;
 
-                    // Generate high-quality image from the element
-                    // pixelRatio 2 ensures good quality for print
-                    const dataUrl = await toJpeg(element, { quality: 0.85, pixelRatio: 2 });
+                    // Create a hidden container for the clone
+                    const container = document.createElement('div');
+                    container.style.position = 'fixed';
+                    container.style.top = '-9999px';
+                    container.style.left = '-9999px';
+                    container.style.zIndex = '-9999';
+                    container.style.width = '210mm'; // Force A4 width
+                    container.style.minHeight = '297mm';
+                    container.style.backgroundColor = 'white';
 
-                    const pdf = new jsPDF({
-                        orientation: 'portrait',
-                        unit: 'mm',
-                        format: 'a4'
-                    });
+                    // Reset any transforms on the clone
+                    clone.style.transform = 'none';
+                    clone.style.margin = '0';
 
-                    const imgProps = pdf.getImageProperties(dataUrl);
-                    const pdfWidth = pdf.internal.pageSize.getWidth();
-                    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                    container.appendChild(clone);
+                    document.body.appendChild(container);
 
-                    pdf.addImage(dataUrl, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-                    pdf.save(`${resumeData.personalInfo.fullName || "Resume"}_Resume.pdf`);
+                    // Allow a tiny delay for layout to settle
+                    await new Promise(resolve => setTimeout(resolve, 100));
+
+                    try {
+                        // Generate high-quality image from the CLONE
+                        // pixelRatio 2 ensures good quality for print
+                        const dataUrl = await toJpeg(clone, {
+                            quality: 0.8,
+                            pixelRatio: 2,
+                            backgroundColor: 'white'
+                        });
+
+                        // Clean up
+                        document.body.removeChild(container);
+
+                        if (!dataUrl || dataUrl.length < 1000) {
+                            console.error("PDF Gen: Generated image data is too small or invalid");
+                            setIsDownloading(false);
+                            return;
+                        }
+
+                        const pdf = new jsPDF({
+                            orientation: 'portrait',
+                            unit: 'mm',
+                            format: 'a4'
+                        });
+
+                        const imgProps = pdf.getImageProperties(dataUrl);
+                        const pdfWidth = pdf.internal.pageSize.getWidth();
+                        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                        pdf.addImage(dataUrl, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+                        pdf.save(`${resumeData.personalInfo.fullName || "Resume"}_Resume.pdf`);
+                    } catch (pdfError) {
+                        console.error("PDF Generation Error (jsPDF):", pdfError);
+                        if (document.body.contains(container)) {
+                            document.body.removeChild(container);
+                        }
+                    }
                 }
             } else {
                 // Show Clerk sign in and set pending action

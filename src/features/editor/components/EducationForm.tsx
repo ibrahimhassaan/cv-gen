@@ -53,7 +53,7 @@ export function EducationForm() {
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="h-8 w-8 text-muted-foreground/60 hover:text-destructive hover:bg-destructive/10 opacity-0 group-hover:opacity-100 transition-opacity"
+                                className="h-8 w-8 text-muted-foreground/60 hover:text-destructive hover:bg-destructive/10 transition-colors"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     removeEducation(edu.id);
@@ -62,7 +62,7 @@ export function EducationForm() {
                                 <Trash2 className="w-4 h-4" />
                             </Button>
                             <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground/70">
-                                {expandedId === edu.id ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                                {expandedId !== edu.id && <ChevronDown className="w-4 h-4 transition-transform" />}
                             </Button>
                         </div>
                     </div>
@@ -80,7 +80,7 @@ export function EducationForm() {
                                 </div>
                             </div>
 
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div className="space-y-2">
                                     <Label>{t('degree')}</Label>
                                     <Input
@@ -106,6 +106,18 @@ export function EducationForm() {
                                     onChange={(e) => updateEducation(edu.id, "year", e.target.value)}
                                     placeholder={t('yearPlaceholder')}
                                 />
+                            </div>
+
+                            <div className="flex justify-end pt-2">
+                                <Button
+                                    variant="destructive"
+                                    size="sm"
+                                    onClick={() => removeEducation(edu.id)}
+                                    className="gap-2"
+                                >
+                                    <Trash2 className="w-4 h-4" />
+                                    {t('remove')}
+                                </Button>
                             </div>
                         </CardContent>
                     )}
