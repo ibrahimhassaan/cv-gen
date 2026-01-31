@@ -89,7 +89,7 @@ export default function TemplatesPage() {
                             )}
                         >
                             <div className="flex items-center gap-2">
-                                <span>{t('allTemplates')}</span>
+                                <span>{t('categories.All')}</span>
                             </div>
                         </button>
                         {categories.map((cat) => (
@@ -103,7 +103,7 @@ export default function TemplatesPage() {
                                         : "bg-white text-slate-600 border-slate-200 hover:border-slate-300 hover:bg-slate-50"
                                 )}
                             >
-                                {cat}
+                                {t(`categories.${cat}`)}
                             </button>
                         ))}
                     </div>
@@ -216,10 +216,10 @@ export default function TemplatesPage() {
                                 {/* Info */}
                                 <div className="mt-6 w-full px-2 flex flex-col items-start gap-3">
                                     <div className="flex justify-between w-full items-center">
-                                        <h3 className="font-bold text-lg text-slate-800">{template.name}</h3>
+                                        <h3 className="font-bold text-lg text-slate-800">{t(`templateNames.${template.name}`)}</h3>
                                         <div className="flex gap-2">
                                             <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 bg-slate-100 px-2 py-1 rounded">
-                                                {template.category}
+                                                {t(`categories.${template.category}`)}
                                             </span>
                                         </div>
                                     </div>

@@ -109,7 +109,12 @@
         "trustSignals": "✓ Gratis digunakan · ✓ Tidak perlu akun · ✓ Unduh langsung"
     },
     "footer": {
-        "copyright": "© 2026 cvGenfy. Raih masa depan Anda.",
+        "copyright": "© {year} cvGenfy. Raih masa depan Anda.",
+        "product": "Produk",
+        "legalSupport": "Legal & Dukungan",
+        "description": "Buat resume profesional dan ramah ATS dalam hitungan menit. Pilih dari template premium kami dan dapatkan pekerjaan impian Anda.",
+        "templates": "Template",
+        "createResume": "Buat Resume",
         "privacy": "Privasi",
         "terms": "Ketentuan",
         "contact": "Kontak",
@@ -120,8 +125,8 @@
         "subtitle": "Mendemokratisasikan kesuksesan karier melalui teknologi AI.",
         "missionTitle": "Misi Kami",
         "missionText": "Kami percaya setiap orang berhak mendapatkan resume profesional yang mewakili potensi sejati mereka, terlepas dari keterampilan desain mereka.",
-        "teamTitle": "Tim Kami",
-        "teamText": "Dibangun oleh tim ahli SDM dan insinyur perangkat lunak yang berdedikasi untuk membantu Anda mendapatkan pekerjaan impian.",
+        "visionTitle": "Visi Kami",
+        "visionText": "Untuk memberdayakan setiap pencari kerja dengan alat yang mereka butuhkan untuk menceritakan kisah profesional mereka secara efektif, menciptakan dunia di mana peluang karir dapat diakses oleh semua orang.",
         "transparencyTitle": "Cara Kami Bekerja",
         "transparencyText": "Kami menggunakan AI canggih untuk menganalisis deskripsi pekerjaan dan mengoptimalkan kata kunci resume Anda, memastikan kompatibilitas tinggi dengan Sistem Pelacakan Pelamar (ATS)."
     },
@@ -130,7 +135,27 @@
         "subtitle": "Anda selalu bisa mengganti template nanti.",
         "allTemplates": "Semua template",
         "recommended": "DIREKOMENDASIKAN",
-        "useThisTemplate": "Gunakan Template Ini"
+        "useThisTemplate": "Gunakan Template Ini",
+        "categories": {
+            "All": "Semua",
+            "Minimalist": "Minimalis",
+            "Professional": "Profesional",
+            "Modern": "Modern",
+            "Creative": "Kreatif",
+            "Corporate": "Korporat"
+        },
+        "templateNames": {
+            "Modern": "Modern",
+            "Sidebar Light": "Sidebar Terang",
+            "Sidebar Dark": "Sidebar Gelap",
+            "Sidebar Right": "Sidebar Kanan",
+            "Minimal Header": "Header Minimal",
+            "Banner Header": "Header Spanduk",
+            "Classic": "Klasik",
+            "Bold": "Bold",
+            "Ribbon": "Pita",
+            "Serif": "Serif"
+        }
     },
     "editor": {
         "personal": "Pribadi",

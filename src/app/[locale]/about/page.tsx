@@ -20,7 +20,7 @@ export default function AboutPage() {
     const t = useTranslations('aboutPage');
 
     return (
-        <main className="min-h-screen relative overflow-hidden bg-white dark:bg-zinc-950">
+        <main className="min-h-screen relative overflow-hidden bg-white">
             <GradientBlobs />
 
             {/* Hero Section */}
@@ -56,7 +56,7 @@ export default function AboutPage() {
             {/* Content Sections */}
             <section className="relative z-10 container mx-auto px-6 pb-24 space-y-24">
 
-                {/* Mission */}
+                {/* Mission & Vision */}
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                     <div className="order-2 md:order-1 glass-card p-8 rounded-2xl">
                         <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
@@ -69,28 +69,19 @@ export default function AboutPage() {
                             {t('missionText')}
                         </p>
                     </div>
-                    <div className="order-1 md:order-2 relative h-64 md:h-full min-h-[300px] rounded-2xl overflow-hidden bg-gradient-to-br from-primary/5 to-purple-500/5 border border-primary/10">
-                        {/* Abstract visual */}
-                        <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[bottom_1px_center]" style={{ maskImage: 'linear-gradient(to bottom, transparent, black)' }} />
-                    </div>
-                </div>
-
-                {/* Team / Expertise */}
-                <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="relative h-64 md:h-full min-h-[300px] rounded-2xl overflow-hidden bg-gradient-to-br from-[#06b6d4]/5 to-blue-500/5 border border-[#06b6d4]/10">
-                        <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[bottom_1px_center]" style={{ maskImage: 'linear-gradient(to bottom, transparent, black)' }} />
-                    </div>
                     <div className="glass-card p-8 rounded-2xl">
                         <div className="w-16 h-16 bg-[#06b6d4]/10 rounded-2xl flex items-center justify-center mb-6">
                             <svg className="w-8 h-8 text-[#06b6d4]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                             </svg>
                         </div>
-                        <h2 className="text-3xl font-bold mb-4">{t('teamTitle')}</h2>
+                        <h2 className="text-3xl font-bold mb-4">{t('visionTitle')}</h2>
                         <p className="text-lg text-muted-foreground leading-relaxed">
-                            {t('teamText')}
+                            {t('visionText')}
                         </p>
                     </div>
+
                 </div>
 
                 {/* Transparency / AI */}

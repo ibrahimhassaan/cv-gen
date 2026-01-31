@@ -20,7 +20,12 @@
         "titleHighlight": "Lebenslauf in Sekunden",
         "subtitle": "Erstellen Sie professionelle, ATS-freundliche Lebensläufe mit unseren Premium-Vorlagen. Nutzen Sie KI, um Daten aus Ihrem bestehenden Lebenslauf zu extrahieren oder erstellen Sie einen von Grund auf neu.",
         "ctaPrimary": "Kostenlos starten",
-        "ctaSecondary": "Lebenslauf verbessern →"
+        "ctaSecondary": "Lebenslauf verbessern →",
+        "chooseTemplate": {
+            "title": "Wählen Sie Ihre Vorlage",
+            "subtitle": "Wählen Sie aus unserer großen Auswahl an Premium-Vorlagen, um zu beginnen.",
+            "useTemplate": "Diese Vorlage verwenden"
+        }
     },
     "features": {
         "sectionTitle": "Leistungsstarke Funktionen",
@@ -104,7 +109,12 @@
         "trustSignals": "✓ Kostenlos nutzbar · ✓ Keine Registrierung erforderlich · ✓ Sofort herunterladen"
     },
     "footer": {
-        "copyright": "© 2026 cvGenfy. Gestalten Sie Ihre Zukunft.",
+        "copyright": "© {year} cvGenfy. Gestalten Sie Ihre Zukunft.",
+        "product": "Produkt",
+        "legalSupport": "Rechtliches & Support",
+        "description": "Erstellen Sie in Minuten professionelle, ATS-freundliche Lebensläufe. Wählen Sie aus unseren Premium-Vorlagen und landen Sie Ihren Traumjob.",
+        "templates": "Vorlagen",
+        "createResume": "Lebenslauf erstellen",
         "privacy": "Datenschutz",
         "terms": "AGB",
         "contact": "Kontakt",
@@ -115,8 +125,8 @@
         "subtitle": "Demokratisierung des Karriereerfolgs durch KI-Technologie.",
         "missionTitle": "Unsere Mission",
         "missionText": "Wir glauben, dass jeder einen professionellen Lebenslauf verdient, der sein wahres Potenzial repräsentiert, unabhängig von seinen Designfähigkeiten.",
-        "teamTitle": "Unser Team",
-        "teamText": "Entwickelt von einem Team aus HR-Experten und Softwareentwicklern, die Ihnen helfen wollen, Ihren Traumjob zu finden.",
+        "visionTitle": "Unsere Vision",
+        "visionText": "Jedem Arbeitssuchenden die Werkzeuge an die Hand zu geben, die er benötigt, um seine berufliche Geschichte effektiv zu erzählen, und eine Welt zu schaffen, in der Karrieremöglichkeiten für alle zugänglich sind.",
         "transparencyTitle": "Wie wir arbeiten",
         "transparencyText": "Wir verwenden fortschrittliche KI, um Stellenbeschreibungen zu analysieren und Ihre Lebenslauf-Schlüsselwörter zu optimieren, um eine hohe Kompatibilität mit Bewerber-Tracking-Systemen (ATS) zu gewährleisten."
     },
@@ -125,7 +135,27 @@
         "subtitle": "Sie können Ihre Vorlage später jederzeit ändern.",
         "allTemplates": "Alle Vorlagen",
         "recommended": "EMPFOHLEN",
-        "useThisTemplate": "Diese Vorlage verwenden"
+        "useThisTemplate": "Diese Vorlage verwenden",
+        "categories": {
+            "All": "Alle",
+            "Minimalist": "Minimalistisch",
+            "Professional": "Professionell",
+            "Modern": "Modern",
+            "Creative": "Kreativ",
+            "Corporate": "Corporate"
+        },
+        "templateNames": {
+            "Modern": "Modern",
+            "Sidebar Light": "Seitenleiste Hell",
+            "Sidebar Dark": "Seitenleiste Dunkel",
+            "Sidebar Right": "Seitenleiste Rechts",
+            "Minimal Header": "Minimaler Header",
+            "Banner Header": "Banner Header",
+            "Classic": "Klassisch",
+            "Bold": "Bold",
+            "Ribbon": "Ribbon",
+            "Serif": "Serif"
+        }
     },
     "editor": {
         "personal": "Persönlich",

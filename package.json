@@ -14,6 +14,7 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "@clerk/localizations": "^3.35.3",
     "@clerk/nextjs": "^6.37.0",
     "@clerk/themes": "^2.4.51",
     "@google/generative-ai": "^0.24.1",

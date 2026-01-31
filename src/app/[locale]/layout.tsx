@@ -72,6 +72,15 @@ type Props = {
     params: Promise<{ locale: string }>;
 };
 
+import { deDE, enUS, idID, hiIN } from "@clerk/localizations";
+
+const clerkLocalizations: Record<string, any> = {
+    en: enUS,
+    de: deDE,
+    id: idID,
+    hi: hiIN
+};
+
 export default async function LocaleLayout({ children, params }: Props) {
     const { locale } = await params;
 
@@ -82,7 +91,10 @@ export default async function LocaleLayout({ children, params }: Props) {
     const messages = await getMessages();
 
     return (
-        <ClerkProvider appearance={{ theme: 'simple' }}>
+        <ClerkProvider
+            appearance={{ theme: 'simple' }}
+            localization={clerkLocalizations[locale]}
+        >
             <html lang={locale} suppressHydrationWarning>
                 <body
                     className={`${inter.variable} ${outfit.variable} antialiased bg-background text-foreground selection:bg-primary/30`}

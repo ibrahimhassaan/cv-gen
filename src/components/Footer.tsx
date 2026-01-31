@@ -17,12 +17,7 @@ export function Footer() {
                             cvGenfy
                         </Link>
                         <p className="mt-4 text-sm text-muted-foreground max-w-xs">
-                            {/* Assuming we might want to translate this too later, but keeping static for now or adding key?
-                               Current json doesn't have this long text. Keeping static english or moving to json?
-                               The user didn't ask to translate this specifically, but good practice.
-                               I'll leave it static for now to minimize changes, or check if user edited it recently.
-                               User edited it to 'cvGenfy'. */}
-                            Create professional, ATS-friendly resumes in minutes. Choose from our premium templates and land your dream job.
+                            {t('description')}
                         </p>
                         <div className="flex items-center gap-4 mt-6">
                             <a href="https://www.facebook.com/cvgenfy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Facebook">
@@ -33,24 +28,23 @@ export function Footer() {
                     </div>
 
                     <div>
-                        <h3 className="text-sm font-semibold leading-6 text-foreground">Product</h3>
+                        <h3 className="text-sm font-semibold leading-6 text-foreground">{t('product')}</h3>
                         <ul role="list" className="mt-4 space-y-3">
                             <li>
                                 <Link href={`/${locale}/templates`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                                    {/* Using nav keys or templates keys? 'templates' key exists in nav */}
-                                    Templates
+                                    {t('templates')}
                                 </Link>
                             </li>
                             <li>
                                 <Link href={`/${locale}/resume-builder`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                                    Create Resume
+                                    {t('createResume')}
                                 </Link>
                             </li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 className="text-sm font-semibold leading-6 text-foreground">Legal & Support</h3>
+                        <h3 className="text-sm font-semibold leading-6 text-foreground">{t('legalSupport')}</h3>
                         <ul role="list" className="mt-4 space-y-3">
                             <li>
                                 <Link href={`/${locale}/about`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
@@ -78,7 +72,7 @@ export function Footer() {
             </div>
             <div className="mt-12 border-t border-border border-t-gray-200 pt-8">
                 <p className="text-xs text-muted-foreground text-center">
-                    {t('copyright')}
+                    {t('copyright', { year: new Date().getFullYear() })}
                 </p>
             </div>
         </footer>

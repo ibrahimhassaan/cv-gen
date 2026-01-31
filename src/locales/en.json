@@ -113,7 +113,12 @@
         "trustSignals": "✓ Free to use · ✓ No account required · ✓ Download instantly"
     },
     "footer": {
-        "copyright": "© 2026 cvGenfy. Craft your future.",
+        "copyright": "© {year} cvGenfy. Craft your future.",
+        "product": "Product",
+        "legalSupport": "Legal & Support",
+        "description": "Create professional, ATS-friendly resumes in minutes. Choose from our premium templates and land your dream job.",
+        "templates": "Templates",
+        "createResume": "Create Resume",
         "privacy": "Privacy",
         "terms": "Terms",
         "contact": "Contact",
@@ -124,8 +129,8 @@
         "subtitle": "Democratizing career success through AI technology.",
         "missionTitle": "Our Mission",
         "missionText": "We believe everyone deserves a professional resume that represents their true potential, regardless of their design skills.",
-        "teamTitle": "Our Team",
-        "teamText": "Built by a team of HR experts and software engineers dedicated to helping you land your dream job.",
+        "visionTitle": "Our Vision",
+        "visionText": "To empower every job seeker with the tools they need to tell their professional story effectively, creating a world where career opportunities are accessible to all.",
         "transparencyTitle": "How We Work",
         "transparencyText": "We use advanced AI to analyze job descriptions and optimize your resume keywords, ensuring high compatibility with Applicant Tracking Systems (ATS)."
     },
@@ -134,7 +139,27 @@
         "subtitle": "You can always change your template later.",
         "allTemplates": "All templates",
         "recommended": "RECOMMENDED",
-        "useThisTemplate": "Use This Template"
+        "useThisTemplate": "Use This Template",
+        "categories": {
+            "All": "All",
+            "Minimalist": "Minimalist",
+            "Professional": "Professional",
+            "Modern": "Modern",
+            "Creative": "Creative",
+            "Corporate": "Corporate"
+        },
+        "templateNames": {
+            "Modern": "Modern",
+            "Sidebar Light": "Sidebar Light",
+            "Sidebar Dark": "Sidebar Dark",
+            "Sidebar Right": "Sidebar Right",
+            "Minimal Header": "Minimal Header",
+            "Banner Header": "Banner Header",
+            "Classic": "Classic",
+            "Bold": "Bold",
+            "Ribbon": "Ribbon",
+            "Serif": "Serif"
+        }
     },
     "editor": {
         "personal": "Personal",
