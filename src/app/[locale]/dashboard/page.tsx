@@ -6,13 +6,14 @@ import { useUser, useClerk } from "@clerk/nextjs";
 import { useTranslations, useLocale } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { GradientBlobs } from "@/components/GradientBlobs";
-import { LogOut, User } from "lucide-react";
+import { LogOut, User, Check } from "lucide-react";
 import { loadAllResumes, getPendingAction, generateShareableLink } from "@/lib/resumeStorage";
 import { getResumes, saveResume, deleteResume, duplicateResume } from "@/lib/resumeService";
 import { getTemplate } from "@/features/templates/registry";
 import { ResumeData } from "@/features/editor/types";
 import { ShareModal } from "@/components/ShareModal";
 import { RenameModal } from "@/components/RenameModal";
+import { DownloadModal } from "@/components/DownloadModal";
 import { CVCard } from "@/app/[locale]/dashboard/CVCard";
 import { CreateCVCard } from "@/app/[locale]/dashboard/CreateCVCard";
 import { CVCardSkeleton } from "@/app/[locale]/dashboard/CVCardSkeleton";
@@ -30,10 +31,12 @@ export default function DashboardPage() {
     // Modals state
     const [shareData, setShareData] = useState<{ id: string, link: string } | null>(null);
     const [renameData, setRenameData] = useState<ResumeData | null>(null);
+    const [pendingDownloadResume, setPendingDownloadResume] = useState<ResumeData | null>(null);
 
     // For downloading PDF
     const printTemplateRef = useRef<HTMLDivElement>(null);
     const [downloadData, setDownloadData] = useState<ResumeData | null>(null);
+    const [showSuccess, setShowSuccess] = useState(false);
 
     // Trigger download when downloadData is set
     useEffect(() => {
@@ -61,6 +64,10 @@ export default function DashboardPage() {
 
                     pdf.addImage(dataUrl, 'JPEG', 0, 0, pdfWidth, pdfHeight);
                     pdf.save(`${downloadData.personalInfo.fullName || "Resume"}_Resume.pdf`);
+
+                    // Show success alert
+                    setShowSuccess(true);
+                    setTimeout(() => setShowSuccess(false), 3000);
 
                 } catch (error) {
                     console.error("PDF generation failed", error);
@@ -101,7 +108,8 @@ export default function DashboardPage() {
 
                     // Auto-trigger action
                     if (pending.action === "download") {
-                        onDownload(savedResume);
+                        // Instead of downloading immediately, show the confirmation modal
+                        setPendingDownloadResume(savedResume);
                     } else if (pending.action === "share") {
                         handleGenerateLink(savedResume);
                     }
@@ -264,6 +272,30 @@ export default function DashboardPage() {
                 currentTitle={renameData?.title || ""}
                 onRename={handleRename}
             />
+
+            <DownloadModal
+                isOpen={!!pendingDownloadResume}
+                onClose={() => setPendingDownloadResume(null)}
+                onConfirm={() => {
+                    if (pendingDownloadResume) {
+                        onDownload(pendingDownloadResume);
+                    }
+                }}
+                resumeName={pendingDownloadResume?.personalInfo.fullName || "Resume"}
+            />
+
+            {/* Success Alert */}
+            {showSuccess && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+                    <div className="glass-card rounded-3xl border border-green-200 bg-white/95 p-8 shadow-2xl animate-in fade-in zoom-in-95 duration-300 pointer-events-auto flex flex-col items-center">
+                        <div className="mb-4 rounded-full bg-green-100 p-4 text-green-600 shadow-sm animate-in zoom-in spin-in-180 duration-500">
+                            <Check className="h-8 w-8" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-gray-900 font-display mb-2">Download Successful!</h3>
+                        <p className="text-gray-500">Your resume has been saved to your device.</p>
+                    </div>
+                </div>
+            )}
         </main>
     );
 }

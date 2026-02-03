@@ -8,7 +8,7 @@ import { TemplateSelector } from "@/features/templates/TemplateSelector";
 import { getTemplate } from "@/features/templates/registry";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
-import { Download, Share2, LayoutTemplate, RotateCcw, Loader2, Eye, ChevronLeft } from "lucide-react";
+import { Download, Share2, LayoutTemplate, RotateCcw, Loader2, Eye, ChevronLeft, Check } from "lucide-react";
 import { GradientBlobs } from "@/components/GradientBlobs";
 import { useTranslations, useLocale } from "next-intl";
 import { useUser, useClerk } from "@clerk/nextjs";
@@ -108,6 +108,7 @@ function BuilderContent() {
     const [isDownloading, setIsDownloading] = useState(false);
     const [isSharing, setIsSharing] = useState(false);
     const [showResetConfirm, setShowResetConfirm] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
     const t = useTranslations('editor');
     const locale = useLocale();
     const tReset = useTranslations('modals.reset');
@@ -192,6 +193,10 @@ function BuilderContent() {
 
                         pdf.addImage(dataUrl, 'JPEG', 0, 0, pdfWidth, pdfHeight);
                         pdf.save(`${resumeData.personalInfo.fullName || "Resume"}_Resume.pdf`);
+
+                        // Show success alert
+                        setShowSuccess(true);
+                        setTimeout(() => setShowSuccess(false), 3000);
                     } catch (pdfError) {
                         console.error("PDF Generation Error (jsPDF):", pdfError);
                         if (document.body.contains(container)) {
@@ -275,6 +280,19 @@ function BuilderContent() {
                 confirmText={tReset('confirm')}
                 variant="danger"
             />
+
+            {/* Success Alert */}
+            {showSuccess && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 pointer-events-none">
+                    <div className="glass-card rounded-3xl border border-green-200 bg-white/95 p-8 shadow-2xl animate-in fade-in zoom-in-95 duration-300 pointer-events-auto flex flex-col items-center">
+                        <div className="mb-4 rounded-full bg-green-100 p-4 text-green-600 shadow-sm animate-in zoom-in spin-in-180 duration-500">
+                            <Check className="h-8 w-8" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-gray-900 font-display mb-2">Download Successful!</h3>
+                        <p className="text-gray-500">Your resume has been saved to your device.</p>
+                    </div>
+                </div>
+            )}
 
             <div className="flex min-h-[calc(100vh-80px)] container mx-auto p-4 gap-6 relative z-10">
                 {/* Left Side: Editor Form */}
