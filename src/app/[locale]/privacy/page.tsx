@@ -43,6 +43,9 @@ export default async function PrivacyPage() {
                             <p>
                                 {t('section2Content2')}
                             </p>
+
+                            <h3 className="mt-8">{t('section2Subtitle3')}</h3>
+                            <p dangerouslySetInnerHTML={{ __html: t.raw('section2Content3') }} />
                         </section>
 
                         <section className="mt-12">

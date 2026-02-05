@@ -6,6 +6,13 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { X } from "lucide-react";
 
+declare global {
+    interface Window {
+        dataLayer: Object[];
+        gtag: (...args: any[]) => void;
+    }
+}
+
 export function CookieBanner() {
     const [isVisible, setIsVisible] = useState(false);
     const t = useTranslations("cookieBanner");
@@ -13,7 +20,17 @@ export function CookieBanner() {
     useEffect(() => {
         // Check if user has already consented
         const consent = localStorage.getItem("cookie_consent");
-        if (!consent) {
+        if (consent === "true") {
+            // Apply consent if already granted previously
+            if (typeof window.gtag === 'function') {
+                window.gtag('consent', 'update', {
+                    'ad_storage': 'granted',
+                    'analytics_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted'
+                });
+            }
+        } else {
             // Small delay to ensure smooth entrance animation
             const timer = setTimeout(() => setIsVisible(true), 1000);
             return () => clearTimeout(timer);
@@ -22,7 +39,15 @@ export function CookieBanner() {
 
     const acceptCookies = () => {
         localStorage.setItem("cookie_consent", "true");
-        window.dispatchEvent(new Event("cookie_consent_updated"));
+        // Update Google Consent Mode
+        if (typeof window.gtag === 'function') {
+            window.gtag('consent', 'update', {
+                'ad_storage': 'granted',
+                'analytics_storage': 'granted',
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted'
+            });
+        }
         setIsVisible(false);
     };
 

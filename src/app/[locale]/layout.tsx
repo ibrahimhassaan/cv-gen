@@ -14,6 +14,7 @@ const CookieBanner = dynamic(() => import("@/components/CookieBanner").then(mod 
 const ClerkProfileSync = dynamic(() => import("@/components/ClerkProfileSync").then(mod => mod.ClerkProfileSync));
 import { JsonLd } from "@/components/JsonLd";
 import { Analytics } from "@/components/Analytics";
+import { GoogleConsentMode } from "@/components/GoogleConsentMode";
 import { MicrosoftClarity } from "@/components/MicrosoftClarity";
 import { ClerkProvider } from "@clerk/nextjs";
 
@@ -119,6 +120,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                         <CookieBanner />
                         <FooterWrapper />
                     </NextIntlClientProvider>
+                    <GoogleConsentMode />
                     <Analytics />
                     <MicrosoftClarity />
                     <JsonLd
