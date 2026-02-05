@@ -8,7 +8,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const routes = [
         '',
         '/templates',
-        '/login',
         '/about' // Added this since we plan to add it
     ];
 
