@@ -1,4 +1,4 @@
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { GradientBlobs } from '@/components/GradientBlobs';
 import { JsonLd } from '@/components/JsonLd';
@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function AboutPage() {
     const t = useTranslations('aboutPage');
+    const locale = useLocale();
 
     return (
         <main className="min-h-screen relative overflow-hidden bg-white">
@@ -33,13 +34,13 @@ export default function AboutPage() {
                             '@type': 'ListItem',
                             'position': 1,
                             'name': 'Home',
-                            'item': 'https://cvgenfy.com'
+                            'item': `https://cvgenfy.com/${locale}`
                         },
                         {
                             '@type': 'ListItem',
                             'position': 2,
                             'name': 'About',
-                            'item': 'https://cvgenfy.com/about'
+                            'item': `https://cvgenfy.com/${locale}/about`
                         }
                     ]
                 }}

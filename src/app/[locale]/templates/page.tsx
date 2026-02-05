@@ -15,7 +15,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     };
 }
 
+import { useLocale } from "next-intl";
 export default function TemplatesPage() {
+    const locale = useLocale();
     return (
         <>
             <JsonLd
@@ -27,13 +29,13 @@ export default function TemplatesPage() {
                             '@type': 'ListItem',
                             'position': 1,
                             'name': 'Home',
-                            'item': 'https://cvgenfy.com'
+                            'item': `https://cvgenfy.com/${locale}`
                         },
                         {
                             '@type': 'ListItem',
                             'position': 2,
                             'name': 'Templates',
-                            'item': 'https://cvgenfy.com/templates'
+                            'item': `https://cvgenfy.com/${locale}/templates`
                         }
                     ]
                 }}

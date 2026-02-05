@@ -38,6 +38,7 @@ export async function generateMetadata({ params }: Props) {
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://cvgenfy.com';
 
     return {
+        metadataBase: new URL(baseUrl),
         title: t('title'),
         description: t('description'),
         keywords: t('keywords'),
@@ -56,11 +57,20 @@ export async function generateMetadata({ params }: Props) {
             siteName: 'cvGenfy',
             locale: locale,
             type: 'website',
+            images: [
+                {
+                    url: '/images/og-image.jpg',
+                    width: 1200,
+                    height: 630,
+                    alt: 'cvGenfy - AI Resume Builder',
+                }
+            ],
         },
         twitter: {
             card: 'summary_large_image',
             title: t('title'),
             description: t('description'),
+            images: ['/images/og-image.jpg'],
         }
     };
 }
@@ -100,6 +110,9 @@ export default async function LocaleLayout({ children, params }: Props) {
                     className={`${inter.variable} ${outfit.variable} antialiased bg-background text-foreground selection:bg-primary/30`}
                 >
                     <NextIntlClientProvider messages={messages}>
+                        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-[200] px-4 py-2 bg-white text-primary font-bold rounded-lg shadow-lg ring-2 ring-primary">
+                            Skip to content
+                        </a>
                         <Navbar />
                         <ClerkProfileSync />
                         {children}

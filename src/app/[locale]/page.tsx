@@ -3,6 +3,7 @@ import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/Ca
 import { FileText, Upload, Sparkles, Download, Share2, Wand2, MousePointerClick, Keyboard, TrendingUp, Timer, Trophy, Bot } from "lucide-react";
 import Link from "next/link";
 import { GradientBlobs } from "@/components/GradientBlobs";
+import { JsonLd } from "@/components/JsonLd";
 
 import { HeroResumesWrapper } from "@/components/HeroResumesWrapper";
 // import { TemplateSlider } from "@/components/TemplateSlider";
@@ -30,7 +31,7 @@ export default function Home() {
     const t = useTranslations();
 
     return (
-        <main className="min-h-screen relative overflow-hidden">
+        <main id="main-content" className="min-h-screen relative overflow-hidden">
             {/* Animated Gradient Blobs */}
             <GradientBlobs />
 
@@ -205,6 +206,55 @@ export default function Home() {
             </section>
 
 
+
+            <JsonLd
+                data={{
+                    '@context': 'https://schema.org',
+                    '@type': 'FAQPage',
+                    'mainEntity': [
+                        {
+                            '@type': 'Question',
+                            'name': t('faq.q1.question'),
+                            'acceptedAnswer': {
+                                '@type': 'Answer',
+                                'text': t('faq.q1.answer')
+                            }
+                        },
+                        {
+                            '@type': 'Question',
+                            'name': t('faq.q2.question'),
+                            'acceptedAnswer': {
+                                '@type': 'Answer',
+                                'text': t('faq.q2.answer')
+                            }
+                        },
+                        {
+                            '@type': 'Question',
+                            'name': t('faq.q3.question'),
+                            'acceptedAnswer': {
+                                '@type': 'Answer',
+                                'text': t('faq.q3.answer')
+                            }
+                        },
+                        {
+                            '@type': 'Question',
+                            'name': t('faq.q4.question'),
+                            'acceptedAnswer': {
+                                '@type': 'Answer',
+                                'text': t('faq.q4.answer')
+                            }
+                        },
+                        {
+                            '@type': 'Question',
+                            'name': t('faq.q5.question'),
+                            'acceptedAnswer': {
+                                '@type': 'Answer',
+                                'text': t('faq.q5.answer')
+                            }
+                        }
+                    ]
+                }}
+            />
             {/* FAQ Section */}
             <section className="relative z-10 container mx-auto px-6 py-24">
                 <h2 className="text-3xl font-display font-bold text-center mb-4">{t('faq.title')}</h2>
