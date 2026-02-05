@@ -25,7 +25,22 @@ export function Analytics() {
         };
     }, []);
 
+
     if (!consentGiven || !gaId) return null;
 
-    return <GoogleAnalytics gaId={gaId} />;
+    return (
+        <>
+            <GoogleAnalytics gaId={gaId} />
+            <script
+                id="google-ads-config"
+                dangerouslySetInnerHTML={{
+                    __html: `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}');
+                    `
+                }}
+            />
+        </>
+    );
 }
