@@ -8,7 +8,7 @@ import { X } from "lucide-react";
 
 declare global {
     interface Window {
-        dataLayer: Object[];
+        dataLayer?: Object[];
         gtag: (...args: any[]) => void;
     }
 }
