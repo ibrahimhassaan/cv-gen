@@ -194,6 +194,13 @@ function BuilderContent() {
                         pdf.addImage(dataUrl, 'JPEG', 0, 0, pdfWidth, pdfHeight);
                         pdf.save(`${resumeData.personalInfo.fullName || "Resume"}_Resume.pdf`);
 
+                        // Track conversion in Google Ads
+                        if (typeof window !== 'undefined' && (window as any).gtag) {
+                            (window as any).gtag('event', 'conversion', {
+                                'send_to': `${process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_ID}`
+                            });
+                        }
+
                         // Show success alert
                         setShowSuccess(true);
                         setTimeout(() => setShowSuccess(false), 3000);
